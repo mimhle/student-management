@@ -7,8 +7,8 @@ using System.Text.RegularExpressions;
 namespace studentManagement {
 
     /// <summary>
-    ///   Sqlite connector (wrapper for SQLiteConnection)
-    ///   Only for internal use, do not use outside this file
+    ///   Sqlite connector (wrapper for SQLiteConnection).
+    ///   Only for internal use, do not use outside this file.
     /// </summary>
     internal class SqliteConnector {
         private readonly SQLiteConnection _connection;
@@ -44,7 +44,7 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Create database and tables if not exists
+        ///   Create database and tables if not exists.
         /// </summary>
         public Database(string connectionString) {
             _connector = new SqliteConnector(connectionString);
@@ -91,7 +91,7 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Insert student
+        ///   Insert student.
         ///   If student exists, update student info
         /// </summary>
         /// <param name="maSinhVien"></param>
@@ -120,6 +120,11 @@ namespace studentManagement {
             return true;
         }
 
+        /// <summary>
+        ///   Update student.
+        /// </summary>
+        /// <param name="maSinhVien"></param>
+        /// <returns> true if success whether student exists or not </returns>
         public bool removeStudent(string maSinhVien) {
             try {
                 _connector.createAndExecuteCommand(@"
@@ -137,7 +142,7 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Check login
+        ///   Check login.
         /// </summary>
         /// <returns> true if username and password is correct </returns>
         public bool checkLogin(string username, string password) {
@@ -154,7 +159,7 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Update password
+        ///   Update password.
         /// </summary>
         /// <returns> true if username exists </returns>
         public bool updatePassword(string username, string password) {
@@ -165,7 +170,8 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Insert faculty
+        ///   Insert faculty.
+        ///   If faculty exists, update faculty info.
         /// </summary>
         /// <param name="maKhoa"></param>
         /// <param name="tenKhoa"></param>
@@ -185,7 +191,8 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Insert subject
+        ///   Insert subject.
+        ///   If subject exists, update subject info.
         /// </summary>
         /// <param name="maMonHoc"></param>
         /// <param name="tenMonHoc"></param>
@@ -205,7 +212,8 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Insert class
+        ///   Insert class.
+        ///   If class exists, update class info.
         /// </summary>
         /// <param name="maLop"></param>
         /// <param name="tenLop"></param>
@@ -227,7 +235,8 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Insert class student
+        ///   Insert class student.
+        ///   If class student exists, update class student info.
         /// </summary>
         /// <param name="maSinhVien"></param>
         /// <param name="maLop"></param>
@@ -248,6 +257,7 @@ namespace studentManagement {
 
         /// <summary>
         ///   Insert score
+        ///   If score exists, update score info.
         /// </summary>
         /// <param name="maSinhVien"></param>
         /// <param name="maMonHoc"></param>
