@@ -4,3 +4,4 @@
 bin/
 build/
 obj/
+*.sln.DotSettings.user

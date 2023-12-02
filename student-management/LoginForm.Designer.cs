@@ -1,4 +1,4 @@
-﻿namespace ltwin {
+﻿namespace student {
     partial class LoginForm {
         /// <summary>
         /// Required designer variable.

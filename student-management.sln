@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ltwin", "ltwin\ltwin.csproj", "{15ABBFC3-12CD-42C0-B4F1-697B2C2B7447}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "student-management", "student-management\student-management.csproj", "{15ABBFC3-12CD-42C0-B4F1-697B2C2B7447}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

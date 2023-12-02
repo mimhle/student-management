@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ltwin.Properties {
+namespace student {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -39,7 +39,7 @@ namespace ltwin.Properties {
             get {
                 if ((resourceMan == null)) {
                     global::System.Resources.ResourceManager temp =
-                        new global::System.Resources.ResourceManager("ltwin.Properties.Resources",
+                        new global::System.Resources.ResourceManager("student-management.Properties.Resources",
                             typeof(Resources).Assembly);
                     resourceMan = temp;
                 }

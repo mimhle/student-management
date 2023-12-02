@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ltwin {
+namespace student {
     public class SqliteConnector {
         private readonly SQLiteConnection _connection;
 
