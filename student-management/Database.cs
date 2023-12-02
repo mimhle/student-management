@@ -116,6 +116,22 @@ namespace student {
             return true;
         }
 
+        public bool removeStudent(string maSinhVien) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSSinhVien WHERE MaSinhVien = @MaSinhVien
+                ", maSinhVien);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSUser WHERE MaSinhVien = @MaSinhVien
+                ", maSinhVien);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         ///   Check login
         /// </summary>
