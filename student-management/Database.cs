@@ -4,8 +4,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace student {
-    public class SqliteConnector {
+namespace studentManagement {
+
+    /// <summary>
+    ///   Sqlite connector (wrapper for SQLiteConnection)
+    ///   Only for internal use, do not use outside this file
+    /// </summary>
+    internal class SqliteConnector {
         private readonly SQLiteConnection _connection;
 
         public SqliteConnector(string connectionString) {
