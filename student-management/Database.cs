@@ -103,7 +103,6 @@ namespace student {
                     INSERT OR REPLACE INTO DSSinhVien (MaSinhVien, HoTen, NgaySinh, GioiTinh, MaKhoa, LopTruong)
                     VALUES (@MaSinhVien, @hoTen, @ngaySinh, @gioiTinh, @maKhoa, @lopTruong)
                 ", maSinhVien, hoTen, ngaySinh, gioiTinh, maKhoa, lopTruong ? "1" : "0");
-
                 _connector.createAndExecuteCommand(@"
                     INSERT OR REPLACE INTO DSUser (Username, Password, MaSinhVien)
                     VALUES (@MaSinhVien, @password, @MaSinhVien)
