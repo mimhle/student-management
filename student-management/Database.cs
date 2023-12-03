@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 namespace studentManagement {
-
     /// <summary>
     ///   Sqlite connector (wrapper for SQLiteConnection).
     ///   Only for internal use, do not use outside this file.
@@ -55,12 +54,17 @@ namespace studentManagement {
                     NgaySinh TEXT,
                     GioiTinh TEXT,
                     MaKhoa TEXT REFERENCES DSKhoa(MaKhoa),
-                    LopTruong INTEGER DEFAULT 0,
-                    Lop TEXT
+                    MaLop TEXT REFERENCES DSLop(MaLop),
+                    LopTruong INTEGER DEFAULT 0
                 );
                 CREATE TABLE IF NOT EXISTS DSKhoa (
                     MaKhoa TEXT PRIMARY KEY,
                     TenKhoa TEXT
+                );
+                CREATE TABLE IF NOT EXISTS DSLop (
+                    MaLop TEXT PRIMARY KEY,
+                    TenLop TEXT,
+                    MaKhoa TEXT REFERENCES DSKhoa(MaKhoa)
                 );
                 CREATE TABLE IF NOT EXISTS DSMonHoc (
                     MaMonHoc TEXT PRIMARY KEY,
@@ -100,15 +104,23 @@ namespace studentManagement {
         /// <param name="ngaySinh"></param>
         /// <param name="gioiTinh"></param>
         /// <param name="maKhoa"></param>
+        /// <param name="maLop"></param>
         /// <param name="lopTruong"></param>
         /// <returns> true if insert success </returns>
-        public bool insertStudent(string maSinhVien, string hoTen, string ngaySinh, string gioiTinh, string maKhoa,
-            bool lopTruong = false) {
+        public bool insertStudent(
+            string maSinhVien,
+            string hoTen,
+            string ngaySinh,
+            string gioiTinh,
+            string maKhoa,
+            string maLop,
+            bool lopTruong = false
+        ) {
             try {
                 _connector.createAndExecuteCommand(@"
-                    INSERT OR REPLACE INTO DSSinhVien (MaSinhVien, HoTen, NgaySinh, GioiTinh, MaKhoa, LopTruong)
-                    VALUES (@MaSinhVien, @hoTen, @ngaySinh, @gioiTinh, @maKhoa, @LopTruong)
-                ", maSinhVien, hoTen, ngaySinh, gioiTinh, maKhoa, lopTruong ? "1" : "0");
+                    INSERT OR REPLACE INTO DSSinhVien (MaSinhVien, HoTen, NgaySinh, GioiTinh, MaKhoa, MaLop, LopTruong)
+                    VALUES (@MaSinhVien, @hoTen, @ngaySinh, @gioiTinh, @maKhoa, @maLop, @lopTruong)
+                ", maSinhVien, hoTen, ngaySinh, gioiTinh, maKhoa, maLop, lopTruong ? "1" : "0");
                 _connector.createAndExecuteCommand(@"
                     INSERT OR REPLACE INTO DSUser (Username, Password, MaSinhVien)
                     VALUES (@MaSinhVien, @password, @MaSinhVien)
@@ -180,9 +192,30 @@ namespace studentManagement {
         public bool insertFaculty(string maKhoa, string tenKhoa) {
             try {
                 _connector.createAndExecuteCommand(@"
-                INSERT OR REPLACE INTO DSKhoa (MaKhoa, TenKhoa)
-                VALUES (@maKhoa, @tenKhoa)
-            ", maKhoa, tenKhoa);
+                    INSERT OR REPLACE INTO DSKhoa (MaKhoa, TenKhoa)
+                    VALUES (@maKhoa, @tenKhoa)
+                ", maKhoa, tenKhoa);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///   Insert class.
+        /// </summary>
+        /// <param name="maLop"></param>
+        /// <param name="tenLop"></param>
+        /// <param name="maKhoa"></param>
+        /// <returns> true if insert success </returns>
+        public bool insertClass(string maLop, string tenLop, string maKhoa) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    INSERT OR REPLACE INTO DSLop (MaLop, TenLop, MaKhoa)
+                    VALUES (@maLop, @tenLop, @maKhoa)
+                ", maLop, tenLop, maKhoa);
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
@@ -201,9 +234,9 @@ namespace studentManagement {
         public bool insertSubject(string maMonHoc, string tenMonHoc) {
             try {
                 _connector.createAndExecuteCommand(@"
-                INSERT OR REPLACE INTO DSMonHoc (MaMonHoc, TenMonHoc)
-                VALUES (@maMonHoc, @tenMonHoc)
-            ", maMonHoc, tenMonHoc);
+                    INSERT OR REPLACE INTO DSMonHoc (MaMonHoc, TenMonHoc)
+                    VALUES (@maMonHoc, @tenMonHoc)
+                ", maMonHoc, tenMonHoc);
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
@@ -221,12 +254,12 @@ namespace studentManagement {
         /// <param name="maKhoa"></param>
         /// <param name="maMonHoc"></param>
         /// <returns> true if insert success </returns>
-        public bool insertClass(string maLopHocPhan, string tenLopHocPhan, string maKhoa, string maMonHoc) {
+        public bool insertSubjectClass(string maLopHocPhan, string tenLopHocPhan, string maKhoa, string maMonHoc) {
             try {
                 _connector.createAndExecuteCommand(@"
-                INSERT OR REPLACE INTO DSLopHocPhan (MaLopHocPhan, TenLopHocPhan, MaKhoa, MaMonHoc)
-                VALUES (@maLopHocPhan, @tenLopHocPhan, @maKhoa, @maMonHoc)
-            ", maLopHocPhan, tenLopHocPhan, maKhoa, maMonHoc);
+                    INSERT OR REPLACE INTO DSLopHocPhan (MaLopHocPhan, TenLopHocPhan, MaKhoa, MaMonHoc)
+                    VALUES (@maLopHocPhan, @tenLopHocPhan, @maKhoa, @maMonHoc)
+                ", maLopHocPhan, tenLopHocPhan, maKhoa, maMonHoc);
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
@@ -242,12 +275,12 @@ namespace studentManagement {
         /// <param name="maSinhVien"></param>
         /// <param name="maLopHocPhan"></param>
         /// <returns> true if insert success </returns>
-        public bool insertClassStudent(string maSinhVien, string maLopHocPhan) {
+        public bool insertSubjectClassStudent(string maSinhVien, string maLopHocPhan) {
             try {
                 _connector.createAndExecuteCommand(@"
-                INSERT OR REPLACE INTO DSSinhVienLopHocPhan (MaSinhVien, MaLopHocPhan)
-                VALUES (@MaSinhVien, @maLopHocPhan)
-            ", maSinhVien, maLopHocPhan);
+                    INSERT OR REPLACE INTO DSSinhVienLopHocPhan (MaSinhVien, MaLopHocPhan)
+                    VALUES (@MaSinhVien, @maLopHocPhan)
+                ", maSinhVien, maLopHocPhan);
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
@@ -267,9 +300,9 @@ namespace studentManagement {
         public bool insertScore(string maSinhVien, string maMonHoc, int diem) {
             try {
                 _connector.createAndExecuteCommand(@"
-                INSERT OR REPLACE INTO DSDiem (MaSinhVien, MaMonHoc, Diem)
-                VALUES (@MaSinhVien, @maMonHoc, @diem)
-            ", maSinhVien, maMonHoc, diem.ToString());
+                    INSERT OR REPLACE INTO DSDiem (MaSinhVien, MaMonHoc, Diem)
+                    VALUES (@MaSinhVien, @maMonHoc, @diem)
+                ", maSinhVien, maMonHoc, diem.ToString());
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
