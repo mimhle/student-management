@@ -55,7 +55,8 @@ namespace studentManagement {
                     NgaySinh TEXT,
                     GioiTinh TEXT,
                     MaKhoa TEXT REFERENCES DSKhoa(MaKhoa),
-                    LopTruong INTEGER DEFAULT 0
+                    LopTruong INTEGER DEFAULT 0,
+                    Lop TEXT
                 );
                 CREATE TABLE IF NOT EXISTS DSKhoa (
                     MaKhoa TEXT PRIMARY KEY,
@@ -65,16 +66,16 @@ namespace studentManagement {
                     MaMonHoc TEXT PRIMARY KEY,
                     TenMonHoc TEXT
                 );
-                CREATE TABLE IF NOT EXISTS DSLop (
-                    MaLop TEXT PRIMARY KEY,
-                    TenLop TEXT,
+                CREATE TABLE IF NOT EXISTS DSLopHocPhan (
+                    MaLopHocPhan TEXT PRIMARY KEY,
+                    TenLopHocPhan TEXT,
                     MaKhoa TEXT REFERENCES DSKhoa(MaKhoa),
                     MaMonHoc TEXT REFERENCES DSMonHoc(MaMonHoc)
                 );
-                CREATE TABLE IF NOT EXISTS DSSinhVienLop (
+                CREATE TABLE IF NOT EXISTS DSSinhVienLopHocPhan (
                     MaSinhVien TEXT REFERENCES DSSinhVien(MaSinhVien),
-                    MaLop TEXT REFERENCES DSLop(MaLop),
-                    PRIMARY KEY (MaSinhVien, MaLop)
+                    MaLopHocPhan TEXT REFERENCES DSLopHocPhan(MaLopHocPhan),
+                    PRIMARY KEY (MaSinhVien, MaLopHocPhan)
                 );
                 CREATE TABLE IF NOT EXISTS DSDiem (
                     MaSinhVien TEXT REFERENCES DSSinhVien(MaSinhVien),
@@ -106,7 +107,7 @@ namespace studentManagement {
             try {
                 _connector.createAndExecuteCommand(@"
                     INSERT OR REPLACE INTO DSSinhVien (MaSinhVien, HoTen, NgaySinh, GioiTinh, MaKhoa, LopTruong)
-                    VALUES (@MaSinhVien, @hoTen, @ngaySinh, @gioiTinh, @maKhoa, @lopTruong)
+                    VALUES (@MaSinhVien, @hoTen, @ngaySinh, @gioiTinh, @maKhoa, @LopTruong)
                 ", maSinhVien, hoTen, ngaySinh, gioiTinh, maKhoa, lopTruong ? "1" : "0");
                 _connector.createAndExecuteCommand(@"
                     INSERT OR REPLACE INTO DSUser (Username, Password, MaSinhVien)
@@ -215,17 +216,17 @@ namespace studentManagement {
         ///   Insert class.
         ///   If class exists, update class info.
         /// </summary>
-        /// <param name="maLop"></param>
-        /// <param name="tenLop"></param>
+        /// <param name="maLopHocPhan"></param>
+        /// <param name="tenLopHocPhan"></param>
         /// <param name="maKhoa"></param>
         /// <param name="maMonHoc"></param>
         /// <returns> true if insert success </returns>
-        public bool insertClass(string maLop, string tenLop, string maKhoa, string maMonHoc) {
+        public bool insertClass(string maLopHocPhan, string tenLopHocPhan, string maKhoa, string maMonHoc) {
             try {
                 _connector.createAndExecuteCommand(@"
-                INSERT OR REPLACE INTO DSLop (MaLop, TenLop, MaKhoa, MaMonHoc)
-                VALUES (@maLop, @tenLop, @maKhoa, @maMonHoc)
-            ", maLop, tenLop, maKhoa, maMonHoc);
+                INSERT OR REPLACE INTO DSLopHocPhan (MaLopHocPhan, TenLopHocPhan, MaKhoa, MaMonHoc)
+                VALUES (@maLopHocPhan, @tenLopHocPhan, @maKhoa, @maMonHoc)
+            ", maLopHocPhan, tenLopHocPhan, maKhoa, maMonHoc);
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
@@ -239,14 +240,14 @@ namespace studentManagement {
         ///   If class student exists, update class student info.
         /// </summary>
         /// <param name="maSinhVien"></param>
-        /// <param name="maLop"></param>
+        /// <param name="maLopHocPhan"></param>
         /// <returns> true if insert success </returns>
-        public bool insertClassStudent(string maSinhVien, string maLop) {
+        public bool insertClassStudent(string maSinhVien, string maLopHocPhan) {
             try {
                 _connector.createAndExecuteCommand(@"
-                INSERT OR REPLACE INTO DSSinhVienLop (MaSinhVien, MaLop)
-                VALUES (@MaSinhVien, @maLop)
-            ", maSinhVien, maLop);
+                INSERT OR REPLACE INTO DSSinhVienLopHocPhan (MaSinhVien, MaLopHocPhan)
+                VALUES (@MaSinhVien, @maLopHocPhan)
+            ", maSinhVien, maLopHocPhan);
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
