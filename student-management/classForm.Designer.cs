@@ -24,6 +24,16 @@
         /// </summary>
         private void InitializeComponent() {
             this.gbAddClass = new System.Windows.Forms.GroupBox();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.groupBoxAddStudent = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxFaculty = new System.Windows.Forms.ComboBox();
+            this.btnAddStudent = new System.Windows.Forms.Button();
+            this.btnDeleteStudent = new System.Windows.Forms.Button();
+            this.txtIdStudent = new System.Windows.Forms.TextBox();
             this.labelSubjectAdd = new System.Windows.Forms.Label();
             this.labelFacultyAdd = new System.Windows.Forms.Label();
             this.labelNameAddAdd = new System.Windows.Forms.Label();
@@ -39,6 +49,14 @@
             this.txtNameClassAdd = new System.Windows.Forms.TextBox();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
             this.gbChangeClass = new System.Windows.Forms.GroupBox();
+            this.labelIdFind = new System.Windows.Forms.Label();
+            this.txtIdFInd = new System.Windows.Forms.TextBox();
+            this.btnFindClass = new System.Windows.Forms.Button();
+            this.btnEditClass = new System.Windows.Forms.Button();
+            this.btnDeleteClass = new System.Windows.Forms.Button();
+            this.gbOptionChange = new System.Windows.Forms.GroupBox();
+            this.btnReturnMenuChange = new System.Windows.Forms.Button();
+            this.btnAddClassChange = new System.Windows.Forms.Button();
             this.labelSubjectChange = new System.Windows.Forms.Label();
             this.labelFacultyChange = new System.Windows.Forms.Label();
             this.labelIdChange = new System.Windows.Forms.Label();
@@ -48,29 +66,11 @@
             this.comboBoxSubjectChange = new System.Windows.Forms.ComboBox();
             this.txtNameChange = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.btnDeleteClass = new System.Windows.Forms.Button();
-            this.btnEditClass = new System.Windows.Forms.Button();
-            this.btnFindClass = new System.Windows.Forms.Button();
-            this.btnAddClassChange = new System.Windows.Forms.Button();
-            this.btnReturnMenuChange = new System.Windows.Forms.Button();
-            this.gbOptionChange = new System.Windows.Forms.GroupBox();
-            this.txtIdFInd = new System.Windows.Forms.TextBox();
-            this.labelIdFind = new System.Windows.Forms.Label();
-            this.txtIdStudent = new System.Windows.Forms.TextBox();
-            this.groupBoxAddStudent = new System.Windows.Forms.GroupBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.btnFindAndAddStudent = new System.Windows.Forms.Button();
-            this.comboBoxFaculty = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.gbAddClass.SuspendLayout();
+            this.groupBoxAddStudent.SuspendLayout();
             this.gbOtherOptionAdd.SuspendLayout();
             this.gbChangeClass.SuspendLayout();
             this.gbOptionChange.SuspendLayout();
-            this.groupBoxAddStudent.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbAddClass
@@ -95,6 +95,101 @@
             this.gbAddClass.TabIndex = 0;
             this.gbAddClass.TabStop = false;
             this.gbAddClass.Text = "Thêm Lớp Học";
+            // 
+            // listView2
+            // 
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(6, 335);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(740, 363);
+            this.listView2.TabIndex = 13;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
+            // groupBoxAddStudent
+            // 
+            this.groupBoxAddStudent.Controls.Add(this.label4);
+            this.groupBoxAddStudent.Controls.Add(this.label3);
+            this.groupBoxAddStudent.Controls.Add(this.label2);
+            this.groupBoxAddStudent.Controls.Add(this.label1);
+            this.groupBoxAddStudent.Controls.Add(this.comboBoxFaculty);
+            this.groupBoxAddStudent.Controls.Add(this.btnAddStudent);
+            this.groupBoxAddStudent.Controls.Add(this.btnDeleteStudent);
+            this.groupBoxAddStudent.Controls.Add(this.txtIdStudent);
+            this.groupBoxAddStudent.Location = new System.Drawing.Point(549, 32);
+            this.groupBoxAddStudent.Name = "groupBoxAddStudent";
+            this.groupBoxAddStudent.Size = new System.Drawing.Size(465, 276);
+            this.groupBoxAddStudent.TabIndex = 12;
+            this.groupBoxAddStudent.TabStop = false;
+            this.groupBoxAddStudent.Text = "Thêm Sinh Viên";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(229, 114);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(152, 29);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Nhập MSSV";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(139, 29);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Chọn Khoa";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 69);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(464, 29);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Sinh Viên trong bảng để thêm Sinh Viên";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(458, 29);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Vui Lòng Chọn 1 trong 2 ô dưới và chọn";
+            // 
+            // comboBoxFaculty
+            // 
+            this.comboBoxFaculty.FormattingEnabled = true;
+            this.comboBoxFaculty.Location = new System.Drawing.Point(10, 158);
+            this.comboBoxFaculty.Name = "comboBoxFaculty";
+            this.comboBoxFaculty.Size = new System.Drawing.Size(217, 37);
+            this.comboBoxFaculty.TabIndex = 14;
+            // 
+            // btnAddStudent
+            // 
+            this.btnAddStudent.Location = new System.Drawing.Point(10, 199);
+            this.btnAddStudent.Name = "btnAddStudent";
+            this.btnAddStudent.Size = new System.Drawing.Size(218, 67);
+            this.btnAddStudent.TabIndex = 13;
+            this.btnAddStudent.Text = "Thêm Sinh Viên";
+            this.btnAddStudent.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteStudent
+            // 
+            this.btnDeleteStudent.Location = new System.Drawing.Point(234, 199);
+            this.btnDeleteStudent.Name = "btnDeleteStudent";
+            this.btnDeleteStudent.Size = new System.Drawing.Size(224, 67);
+            this.btnDeleteStudent.TabIndex = 12;
+            this.btnDeleteStudent.Text = "Xóa Sinh Viên";
+            this.btnDeleteStudent.UseVisualStyleBackColor = true;
+            // 
+            // txtIdStudent
+            // 
+            this.txtIdStudent.Location = new System.Drawing.Point(234, 157);
+            this.txtIdStudent.Name = "txtIdStudent";
+            this.txtIdStudent.Size = new System.Drawing.Size(224, 36);
+            this.txtIdStudent.TabIndex = 11;
             // 
             // labelSubjectAdd
             // 
@@ -248,6 +343,80 @@
             this.gbChangeClass.Text = "Chỉnh Sửa Thông Tin";
             this.gbChangeClass.Visible = false;
             // 
+            // labelIdFind
+            // 
+            this.labelIdFind.AutoSize = true;
+            this.labelIdFind.Location = new System.Drawing.Point(795, 25);
+            this.labelIdFind.Name = "labelIdFind";
+            this.labelIdFind.Size = new System.Drawing.Size(149, 29);
+            this.labelIdFind.TabIndex = 24;
+            this.labelIdFind.Text = "Mã Lớp Học";
+            // 
+            // txtIdFInd
+            // 
+            this.txtIdFInd.Location = new System.Drawing.Point(789, 66);
+            this.txtIdFInd.Name = "txtIdFInd";
+            this.txtIdFInd.Size = new System.Drawing.Size(212, 36);
+            this.txtIdFInd.TabIndex = 23;
+            // 
+            // btnFindClass
+            // 
+            this.btnFindClass.Location = new System.Drawing.Point(789, 123);
+            this.btnFindClass.Name = "btnFindClass";
+            this.btnFindClass.Size = new System.Drawing.Size(212, 122);
+            this.btnFindClass.TabIndex = 22;
+            this.btnFindClass.Text = "Hiển Thị Thông Tin Lớp";
+            this.btnFindClass.UseVisualStyleBackColor = true;
+            // 
+            // btnEditClass
+            // 
+            this.btnEditClass.Location = new System.Drawing.Point(528, 167);
+            this.btnEditClass.Name = "btnEditClass";
+            this.btnEditClass.Size = new System.Drawing.Size(212, 123);
+            this.btnEditClass.TabIndex = 21;
+            this.btnEditClass.Text = "Chỉnh Sửa Lớp";
+            this.btnEditClass.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteClass
+            // 
+            this.btnDeleteClass.Location = new System.Drawing.Point(528, 27);
+            this.btnDeleteClass.Name = "btnDeleteClass";
+            this.btnDeleteClass.Size = new System.Drawing.Size(212, 120);
+            this.btnDeleteClass.TabIndex = 20;
+            this.btnDeleteClass.Text = "Xóa Lớp";
+            this.btnDeleteClass.UseVisualStyleBackColor = true;
+            // 
+            // gbOptionChange
+            // 
+            this.gbOptionChange.Controls.Add(this.btnReturnMenuChange);
+            this.gbOptionChange.Controls.Add(this.btnAddClassChange);
+            this.gbOptionChange.Location = new System.Drawing.Point(765, 308);
+            this.gbOptionChange.Name = "gbOptionChange";
+            this.gbOptionChange.Size = new System.Drawing.Size(249, 400);
+            this.gbOptionChange.TabIndex = 19;
+            this.gbOptionChange.TabStop = false;
+            this.gbOptionChange.Text = "Các Chức Năng ";
+            // 
+            // btnReturnMenuChange
+            // 
+            this.btnReturnMenuChange.Location = new System.Drawing.Point(6, 210);
+            this.btnReturnMenuChange.Name = "btnReturnMenuChange";
+            this.btnReturnMenuChange.Size = new System.Drawing.Size(237, 174);
+            this.btnReturnMenuChange.TabIndex = 2;
+            this.btnReturnMenuChange.Text = "Trở Về Menu";
+            this.btnReturnMenuChange.UseVisualStyleBackColor = true;
+            this.btnReturnMenuChange.Click += new System.EventHandler(this.btnReturnMenuAdd_Click);
+            // 
+            // btnAddClassChange
+            // 
+            this.btnAddClassChange.Location = new System.Drawing.Point(6, 37);
+            this.btnAddClassChange.Name = "btnAddClassChange";
+            this.btnAddClassChange.Size = new System.Drawing.Size(237, 167);
+            this.btnAddClassChange.TabIndex = 0;
+            this.btnAddClassChange.Text = "Thêm Lớp Học";
+            this.btnAddClassChange.UseVisualStyleBackColor = true;
+            this.btnAddClassChange.Click += new System.EventHandler(this.btnAddClassChange_Click);
+            // 
             // labelSubjectChange
             // 
             this.labelSubjectChange.AutoSize = true;
@@ -326,175 +495,6 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // btnDeleteClass
-            // 
-            this.btnDeleteClass.Location = new System.Drawing.Point(528, 27);
-            this.btnDeleteClass.Name = "btnDeleteClass";
-            this.btnDeleteClass.Size = new System.Drawing.Size(212, 120);
-            this.btnDeleteClass.TabIndex = 20;
-            this.btnDeleteClass.Text = "Xóa Lớp";
-            this.btnDeleteClass.UseVisualStyleBackColor = true;
-            // 
-            // btnEditClass
-            // 
-            this.btnEditClass.Location = new System.Drawing.Point(528, 167);
-            this.btnEditClass.Name = "btnEditClass";
-            this.btnEditClass.Size = new System.Drawing.Size(212, 123);
-            this.btnEditClass.TabIndex = 21;
-            this.btnEditClass.Text = "Chỉnh Sửa Lớp";
-            this.btnEditClass.UseVisualStyleBackColor = true;
-            // 
-            // btnFindClass
-            // 
-            this.btnFindClass.Location = new System.Drawing.Point(789, 123);
-            this.btnFindClass.Name = "btnFindClass";
-            this.btnFindClass.Size = new System.Drawing.Size(212, 122);
-            this.btnFindClass.TabIndex = 22;
-            this.btnFindClass.Text = "Hiển Thị Thông Tin Lớp";
-            this.btnFindClass.UseVisualStyleBackColor = true;
-            // 
-            // btnAddClassChange
-            // 
-            this.btnAddClassChange.Location = new System.Drawing.Point(6, 37);
-            this.btnAddClassChange.Name = "btnAddClassChange";
-            this.btnAddClassChange.Size = new System.Drawing.Size(237, 167);
-            this.btnAddClassChange.TabIndex = 0;
-            this.btnAddClassChange.Text = "Thêm Lớp Học";
-            this.btnAddClassChange.UseVisualStyleBackColor = true;
-            this.btnAddClassChange.Click += new System.EventHandler(this.btnAddClassChange_Click);
-            // 
-            // btnReturnMenuChange
-            // 
-            this.btnReturnMenuChange.Location = new System.Drawing.Point(6, 210);
-            this.btnReturnMenuChange.Name = "btnReturnMenuChange";
-            this.btnReturnMenuChange.Size = new System.Drawing.Size(237, 174);
-            this.btnReturnMenuChange.TabIndex = 2;
-            this.btnReturnMenuChange.Text = "Trở Về Menu";
-            this.btnReturnMenuChange.UseVisualStyleBackColor = true;
-            this.btnReturnMenuChange.Click += new System.EventHandler(this.btnReturnMenuAdd_Click);
-            // 
-            // gbOptionChange
-            // 
-            this.gbOptionChange.Controls.Add(this.btnReturnMenuChange);
-            this.gbOptionChange.Controls.Add(this.btnAddClassChange);
-            this.gbOptionChange.Location = new System.Drawing.Point(765, 308);
-            this.gbOptionChange.Name = "gbOptionChange";
-            this.gbOptionChange.Size = new System.Drawing.Size(249, 400);
-            this.gbOptionChange.TabIndex = 19;
-            this.gbOptionChange.TabStop = false;
-            this.gbOptionChange.Text = "Các Chức Năng ";
-            // 
-            // txtIdFInd
-            // 
-            this.txtIdFInd.Location = new System.Drawing.Point(789, 66);
-            this.txtIdFInd.Name = "txtIdFInd";
-            this.txtIdFInd.Size = new System.Drawing.Size(212, 36);
-            this.txtIdFInd.TabIndex = 23;
-            // 
-            // labelIdFind
-            // 
-            this.labelIdFind.AutoSize = true;
-            this.labelIdFind.Location = new System.Drawing.Point(795, 25);
-            this.labelIdFind.Name = "labelIdFind";
-            this.labelIdFind.Size = new System.Drawing.Size(149, 29);
-            this.labelIdFind.TabIndex = 24;
-            this.labelIdFind.Text = "Mã Lớp Học";
-            // 
-            // txtIdStudent
-            // 
-            this.txtIdStudent.Location = new System.Drawing.Point(234, 157);
-            this.txtIdStudent.Name = "txtIdStudent";
-            this.txtIdStudent.Size = new System.Drawing.Size(224, 36);
-            this.txtIdStudent.TabIndex = 11;
-            // 
-            // groupBoxAddStudent
-            // 
-            this.groupBoxAddStudent.Controls.Add(this.label4);
-            this.groupBoxAddStudent.Controls.Add(this.label3);
-            this.groupBoxAddStudent.Controls.Add(this.label2);
-            this.groupBoxAddStudent.Controls.Add(this.label1);
-            this.groupBoxAddStudent.Controls.Add(this.comboBoxFaculty);
-            this.groupBoxAddStudent.Controls.Add(this.btnFindAndAddStudent);
-            this.groupBoxAddStudent.Controls.Add(this.btnReset);
-            this.groupBoxAddStudent.Controls.Add(this.txtIdStudent);
-            this.groupBoxAddStudent.Location = new System.Drawing.Point(549, 32);
-            this.groupBoxAddStudent.Name = "groupBoxAddStudent";
-            this.groupBoxAddStudent.Size = new System.Drawing.Size(465, 276);
-            this.groupBoxAddStudent.TabIndex = 12;
-            this.groupBoxAddStudent.TabStop = false;
-            this.groupBoxAddStudent.Text = "Thêm Sinh Viên";
-            // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(234, 199);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(224, 67);
-            this.btnReset.TabIndex = 12;
-            this.btnReset.Text = "Xóa Hiển Thị";
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
-            // listView2
-            // 
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(6, 335);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(740, 363);
-            this.listView2.TabIndex = 13;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            // 
-            // btnFindAndAddStudent
-            // 
-            this.btnFindAndAddStudent.Location = new System.Drawing.Point(10, 199);
-            this.btnFindAndAddStudent.Name = "btnFindAndAddStudent";
-            this.btnFindAndAddStudent.Size = new System.Drawing.Size(218, 67);
-            this.btnFindAndAddStudent.TabIndex = 13;
-            this.btnFindAndAddStudent.Text = "Hiển thị";
-            this.btnFindAndAddStudent.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxFaculty
-            // 
-            this.comboBoxFaculty.FormattingEnabled = true;
-            this.comboBoxFaculty.Location = new System.Drawing.Point(10, 158);
-            this.comboBoxFaculty.Name = "comboBoxFaculty";
-            this.comboBoxFaculty.Size = new System.Drawing.Size(217, 37);
-            this.comboBoxFaculty.TabIndex = 14;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(461, 29);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Vui Lòng Chọn 1 trong 2 ô dưới để thêm";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(119, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(211, 29);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Sinh Viên vào lớp";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 29);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Chọn Khoa";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(229, 114);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(152, 29);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Nhập MSSV";
-            // 
             // classForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -507,12 +507,12 @@
             this.Load += new System.EventHandler(this.classForm_Load);
             this.gbAddClass.ResumeLayout(false);
             this.gbAddClass.PerformLayout();
+            this.groupBoxAddStudent.ResumeLayout(false);
+            this.groupBoxAddStudent.PerformLayout();
             this.gbOtherOptionAdd.ResumeLayout(false);
             this.gbChangeClass.ResumeLayout(false);
             this.gbChangeClass.PerformLayout();
             this.gbOptionChange.ResumeLayout(false);
-            this.groupBoxAddStudent.ResumeLayout(false);
-            this.groupBoxAddStudent.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -554,11 +554,11 @@
         private System.Windows.Forms.Button btnAddClassChange;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.GroupBox groupBoxAddStudent;
-        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnDeleteStudent;
         private System.Windows.Forms.TextBox txtIdStudent;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxFaculty;
-        private System.Windows.Forms.Button btnFindAndAddStudent;
+        private System.Windows.Forms.Button btnAddStudent;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

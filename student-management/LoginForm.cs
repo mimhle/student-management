@@ -73,5 +73,12 @@ namespace studentManagement {
             start.Close();
             Show();
         }
+
+        private void btnSubject_Click(object sender, EventArgs e) {
+            var start = new subjectForm();
+            start.ShowDialog();
+            start.Close();
+            Show();
+        }
     }
 }

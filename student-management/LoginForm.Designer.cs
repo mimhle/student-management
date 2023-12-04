@@ -125,10 +125,11 @@
             // 
             this.btnSubject.Location = new System.Drawing.Point(29, 39);
             this.btnSubject.Name = "btnSubject";
-            this.btnSubject.Size = new System.Drawing.Size(961, 137);
+            this.btnSubject.Size = new System.Drawing.Size(961, 150);
             this.btnSubject.TabIndex = 6;
-            this.btnSubject.Text = "Chỉnh Sửa Môn Học";
+            this.btnSubject.Text = "Chỉnh Sửa Môn Học và thêm điểm";
             this.btnSubject.UseVisualStyleBackColor = true;
+            this.btnSubject.Click += new System.EventHandler(this.btnSubject_Click);
             // 
             // btnLogout
             // 
