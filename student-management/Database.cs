@@ -313,6 +313,11 @@ namespace studentManagement {
         }
 
 
+        /// <summary>
+        ///   Get student info.
+        /// </summary>
+        /// <param name="maSinhVien"></param>
+        /// <returns> null if student not exists </returns>
         public Dictionary<string, string> getStudent(string maSinhVien) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSSinhVien WHERE MaSinhVien = @maSinhVien
@@ -323,16 +328,20 @@ namespace studentManagement {
             }
 
             var student = new Dictionary<string, string>();
-            student["MaSinhVien"] = reader.GetString(0);
-            student["HoTen"] = reader.GetString(1);
-            student["NgaySinh"] = reader.GetString(2);
-            student["GioiTinh"] = reader.GetString(3);
-            student["MaKhoa"] = reader.GetString(4);
-            student["MaLop"] = reader.GetString(5);
-            student["LopTruong"] = reader.GetString(6);
+            for (var i = 0; i < reader.FieldCount; i++) {
+                var columnName = reader.GetName(i);
+                var columnValue = reader.GetValue(i);
+                student[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+            }
+
             return student;
         }
 
+        /// <summary>
+        ///   Get faculty info.
+        /// </summary>
+        /// <param name="maKhoa"></param>
+        /// <returns> null if faculty not exists </returns>
         public Dictionary<string, string> getFaculty(string maKhoa) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSKhoa WHERE MaKhoa = @maKhoa
@@ -343,11 +352,20 @@ namespace studentManagement {
             }
 
             var faculty = new Dictionary<string, string>();
-            faculty["MaKhoa"] = reader.GetString(0);
-            faculty["TenKhoa"] = reader.GetString(1);
+            for (var i = 0; i < reader.FieldCount; i++) {
+                var columnName = reader.GetName(i);
+                var columnValue = reader.GetValue(i);
+                faculty[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+            }
+
             return faculty;
         }
 
+        /// <summary>
+        ///   Get class info.
+        /// </summary>
+        /// <param name="maLop"></param>
+        /// <returns> null if class not exists </returns>
         public Dictionary<string, string> getClass(string maLop) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSLop WHERE MaLop = @maLop
@@ -357,13 +375,21 @@ namespace studentManagement {
                 return null;
             }
 
-            var @class = new Dictionary<string, string>();
-            @class["MaLop"] = reader.GetString(0);
-            @class["TenLop"] = reader.GetString(1);
-            @class["MaKhoa"] = reader.GetString(2);
-            return @class;
+            var class_ = new Dictionary<string, string>();
+            for (var i = 0; i < reader.FieldCount; i++) {
+                var columnName = reader.GetName(i);
+                var columnValue = reader.GetValue(i);
+                class_[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+            }
+
+            return class_;
         }
 
+        /// <summary>
+        ///   Get subject info.
+        /// </summary>
+        /// <param name="maMonHoc"></param>
+        /// <returns> null if subject not exists </returns>
         public Dictionary<string, string> getSubject(string maMonHoc) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSMonHoc WHERE MaMonHoc = @maMonHoc
@@ -374,11 +400,20 @@ namespace studentManagement {
             }
 
             var subject = new Dictionary<string, string>();
-            subject["MaMonHoc"] = reader.GetString(0);
-            subject["TenMonHoc"] = reader.GetString(1);
+            for (var i = 0; i < reader.FieldCount; i++) {
+                var columnName = reader.GetName(i);
+                var columnValue = reader.GetValue(i);
+                subject[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+            }
+
             return subject;
         }
 
+        /// <summary>
+        ///   Get class info.
+        /// </summary>
+        /// <param name="maLopHocPhan"></param>
+        /// <returns> null if class not exists </returns>
         public Dictionary<string, string> getSubjectClass(string maLopHocPhan) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSLopHocPhan WHERE MaLopHocPhan = @maLopHocPhan
@@ -389,13 +424,21 @@ namespace studentManagement {
             }
 
             var subjectClass = new Dictionary<string, string>();
-            subjectClass["MaLopHocPhan"] = reader.GetString(0);
-            subjectClass["TenLopHocPhan"] = reader.GetString(1);
-            subjectClass["MaKhoa"] = reader.GetString(2);
-            subjectClass["MaMonHoc"] = reader.GetString(3);
+            for (var i = 0; i < reader.FieldCount; i++) {
+                var columnName = reader.GetName(i);
+                var columnValue = reader.GetValue(i);
+                subjectClass[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+            }
+
             return subjectClass;
         }
 
+        /// <summary>
+        ///   Get score info.
+        /// </summary>
+        /// <param name="maSinhVien"></param>
+        /// <param name="maMonHoc"></param>
+        /// <returns> null if score not exists </returns>
         public Dictionary<string, string> getScore(string maSinhVien, string maMonHoc) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSDiem WHERE MaSinhVien = @maSinhVien AND MaMonHoc = @maMonHoc
@@ -406,12 +449,21 @@ namespace studentManagement {
             }
 
             var score = new Dictionary<string, string>();
-            score["MaSinhVien"] = reader.GetString(0);
-            score["MaMonHoc"] = reader.GetString(1);
-            score["Diem"] = reader.GetString(2);
+            for (var i = 0; i < reader.FieldCount; i++) {
+                var columnName = reader.GetName(i);
+                var columnValue = reader.GetValue(i);
+                score[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+            }
+
             return score;
         }
 
+        /// <summary>
+        ///   Get class student info.
+        /// </summary>
+        /// <param name="maSinhVien"></param>
+        /// <param name="maLopHocPhan"></param>
+        /// <returns> null if class student not exists </returns>
         public Dictionary<string, string> getStudentClass(string maSinhVien, string maLopHocPhan) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSSinhVienLopHocPhan WHERE MaSinhVien = @maSinhVien AND MaLopHocPhan = @maLopHocPhan
@@ -422,11 +474,20 @@ namespace studentManagement {
             }
 
             var studentClass = new Dictionary<string, string>();
-            studentClass["MaSinhVien"] = reader.GetString(0);
-            studentClass["MaLopHocPhan"] = reader.GetString(1);
+            for (var i = 0; i < reader.FieldCount; i++) {
+                var columnName = reader.GetName(i);
+                var columnValue = reader.GetValue(i);
+                studentClass[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+            }
+
             return studentClass;
         }
 
+        /// <summary>
+        ///   Get user info.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns> null if user not exists </returns>
         public Dictionary<string, string> getUser(string username) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSUser WHERE Username = @username
@@ -437,13 +498,20 @@ namespace studentManagement {
             }
 
             var user = new Dictionary<string, string>();
-            user["Username"] = reader.GetString(0);
-            user["Password"] = reader.GetString(1);
-            user["MaSinhVien"] = reader.GetString(2);
+            for (var i = 0; i < reader.FieldCount; i++) {
+                var columnName = reader.GetName(i);
+                var columnValue = reader.GetValue(i);
+                user[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+            }
+
             return user;
         }
 
-        public List<Dictionary<string, string>> getAllStudent() {
+        /// <summary>
+        ///   Get all students.
+        /// </summary>
+        /// <returns> list of students </returns>
+        public List<Dictionary<string, string>> getAllStudents() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSSinhVien
             ");
@@ -451,20 +519,23 @@ namespace studentManagement {
             var students = new List<Dictionary<string, string>>();
             while (reader.Read()) {
                 var student = new Dictionary<string, string>();
-                student["MaSinhVien"] = reader.GetString(0);
-                student["HoTen"] = reader.GetString(1);
-                student["NgaySinh"] = reader.GetString(2);
-                student["GioiTinh"] = reader.GetString(3);
-                student["MaKhoa"] = reader.GetString(4);
-                student["MaLop"] = reader.GetString(5);
-                student["LopTruong"] = reader.GetString(6);
+                for (var i = 0; i < reader.FieldCount; i++) {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader.GetValue(i);
+                    student[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+                }
+
                 students.Add(student);
             }
 
             return students;
         }
 
-        public List<Dictionary<string, string>> getAllFaculty() {
+        /// <summary>
+        ///   Get all faculties.
+        /// </summary>
+        /// <returns> list of faculties </returns>
+        public List<Dictionary<string, string>> getAllFaculties() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSKhoa
             ");
@@ -472,15 +543,23 @@ namespace studentManagement {
             var faculties = new List<Dictionary<string, string>>();
             while (reader.Read()) {
                 var faculty = new Dictionary<string, string>();
-                faculty["MaKhoa"] = reader.GetString(0);
-                faculty["TenKhoa"] = reader.GetString(1);
+                for (var i = 0; i < reader.FieldCount; i++) {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader.GetValue(i);
+                    faculty[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+                }
+
                 faculties.Add(faculty);
             }
 
             return faculties;
         }
 
-        public List<Dictionary<string, string>> getAllClass() {
+        /// <summary>
+        ///   Get all classes.
+        /// </summary>
+        /// <returns> list of classes </returns>
+        public List<Dictionary<string, string>> getAllClasses() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSLop
             ");
@@ -488,15 +567,22 @@ namespace studentManagement {
             var classes = new List<Dictionary<string, string>>();
             while (reader.Read()) {
                 var @class = new Dictionary<string, string>();
-                @class["MaLop"] = reader.GetString(0);
-                @class["TenLop"] = reader.GetString(1);
-                @class["MaKhoa"] = reader.GetString(2);
+                for (var i = 0; i < reader.FieldCount; i++) {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader.GetValue(i);
+                    @class[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+                }
+
                 classes.Add(@class);
             }
 
             return classes;
         }
 
+        /// <summary>
+        ///   Get all subjects.
+        /// </summary>
+        /// <returns> list of subjects </returns>
         public List<Dictionary<string, string>> getAllSubject() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSMonHoc
@@ -505,14 +591,22 @@ namespace studentManagement {
             var subjects = new List<Dictionary<string, string>>();
             while (reader.Read()) {
                 var subject = new Dictionary<string, string>();
-                subject["MaMonHoc"] = reader.GetString(0);
-                subject["TenMonHoc"] = reader.GetString(1);
+                for (var i = 0; i < reader.FieldCount; i++) {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader.GetValue(i);
+                    subject[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+                }
+
                 subjects.Add(subject);
             }
 
             return subjects;
         }
 
+        /// <summary>
+        ///   Get all subject classes.
+        /// </summary>
+        /// <returns> list of subject classes </returns>
         public List<Dictionary<string, string>> getAllSubjectClass() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSLopHocPhan
@@ -521,17 +615,23 @@ namespace studentManagement {
             var subjectClasses = new List<Dictionary<string, string>>();
             while (reader.Read()) {
                 var subjectClass = new Dictionary<string, string>();
-                subjectClass["MaLopHocPhan"] = reader.GetString(0);
-                subjectClass["TenLopHocPhan"] = reader.GetString(1);
-                subjectClass["MaKhoa"] = reader.GetString(2);
-                subjectClass["MaMonHoc"] = reader.GetString(3);
+                for (var i = 0; i < reader.FieldCount; i++) {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader.GetValue(i);
+                    subjectClass[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+                }
+
                 subjectClasses.Add(subjectClass);
             }
 
             return subjectClasses;
         }
 
-        public List<Dictionary<string, string>> getAllScore() {
+        /// <summary>
+        ///   Get all scores.
+        /// </summary>
+        /// <returns> list of scores </returns>
+        public List<Dictionary<string, string>> getAllScores() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSDiem
             ");
@@ -539,16 +639,23 @@ namespace studentManagement {
             var scores = new List<Dictionary<string, string>>();
             while (reader.Read()) {
                 var score = new Dictionary<string, string>();
-                score["MaSinhVien"] = reader.GetString(0);
-                score["MaMonHoc"] = reader.GetString(1);
-                score["Diem"] = reader.GetString(2);
+                for (var i = 0; i < reader.FieldCount; i++) {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader.GetValue(i);
+                    score[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+                }
+
                 scores.Add(score);
             }
 
             return scores;
         }
 
-        public List<Dictionary<string, string>> getAllStudentClass() {
+        /// <summary>
+        ///   Get all class students.
+        /// </summary>
+        /// <returns> list of class students </returns>
+        public List<Dictionary<string, string>> getAllStudentClasses() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSSinhVienLopHocPhan
             ");
@@ -556,15 +663,23 @@ namespace studentManagement {
             var studentClasses = new List<Dictionary<string, string>>();
             while (reader.Read()) {
                 var studentClass = new Dictionary<string, string>();
-                studentClass["MaSinhVien"] = reader.GetString(0);
-                studentClass["MaLopHocPhan"] = reader.GetString(1);
+                for (var i = 0; i < reader.FieldCount; i++) {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader.GetValue(i);
+                    studentClass[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+                }
+
                 studentClasses.Add(studentClass);
             }
 
             return studentClasses;
         }
 
-        public List<Dictionary<string, string>> getAllUser() {
+        /// <summary>
+        ///   Get all users.
+        /// </summary>
+        /// <returns> list of users </returns>
+        public List<Dictionary<string, string>> getAllUsers() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSUser
             ");
@@ -572,9 +687,12 @@ namespace studentManagement {
             var users = new List<Dictionary<string, string>>();
             while (reader.Read()) {
                 var user = new Dictionary<string, string>();
-                user["Username"] = reader.GetString(0);
-                user["Password"] = reader.GetString(1);
-                user["MaSinhVien"] = reader.GetString(2);
+                for (var i = 0; i < reader.FieldCount; i++) {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader.GetValue(i);
+                    user[columnName] = columnValue is DBNull ? null : columnValue.ToString();
+                }
+
                 users.Add(user);
             }
 
