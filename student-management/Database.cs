@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Security.Cryptography;
 using System.Text;
@@ -309,6 +310,275 @@ namespace studentManagement {
             }
 
             return true;
+        }
+
+
+        public Dictionary<string, string> getStudent(string maSinhVien) {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSSinhVien WHERE MaSinhVien = @maSinhVien
+            ", maSinhVien);
+            var reader = command.ExecuteReader();
+            if (!reader.Read()) {
+                return null;
+            }
+
+            var student = new Dictionary<string, string>();
+            student["MaSinhVien"] = reader.GetString(0);
+            student["HoTen"] = reader.GetString(1);
+            student["NgaySinh"] = reader.GetString(2);
+            student["GioiTinh"] = reader.GetString(3);
+            student["MaKhoa"] = reader.GetString(4);
+            student["MaLop"] = reader.GetString(5);
+            student["LopTruong"] = reader.GetString(6);
+            return student;
+        }
+
+        public Dictionary<string, string> getFaculty(string maKhoa) {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSKhoa WHERE MaKhoa = @maKhoa
+            ", maKhoa);
+            var reader = command.ExecuteReader();
+            if (!reader.Read()) {
+                return null;
+            }
+
+            var faculty = new Dictionary<string, string>();
+            faculty["MaKhoa"] = reader.GetString(0);
+            faculty["TenKhoa"] = reader.GetString(1);
+            return faculty;
+        }
+
+        public Dictionary<string, string> getClass(string maLop) {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSLop WHERE MaLop = @maLop
+            ", maLop);
+            var reader = command.ExecuteReader();
+            if (!reader.Read()) {
+                return null;
+            }
+
+            var @class = new Dictionary<string, string>();
+            @class["MaLop"] = reader.GetString(0);
+            @class["TenLop"] = reader.GetString(1);
+            @class["MaKhoa"] = reader.GetString(2);
+            return @class;
+        }
+
+        public Dictionary<string, string> getSubject(string maMonHoc) {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSMonHoc WHERE MaMonHoc = @maMonHoc
+            ", maMonHoc);
+            var reader = command.ExecuteReader();
+            if (!reader.Read()) {
+                return null;
+            }
+
+            var subject = new Dictionary<string, string>();
+            subject["MaMonHoc"] = reader.GetString(0);
+            subject["TenMonHoc"] = reader.GetString(1);
+            return subject;
+        }
+
+        public Dictionary<string, string> getSubjectClass(string maLopHocPhan) {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSLopHocPhan WHERE MaLopHocPhan = @maLopHocPhan
+            ", maLopHocPhan);
+            var reader = command.ExecuteReader();
+            if (!reader.Read()) {
+                return null;
+            }
+
+            var subjectClass = new Dictionary<string, string>();
+            subjectClass["MaLopHocPhan"] = reader.GetString(0);
+            subjectClass["TenLopHocPhan"] = reader.GetString(1);
+            subjectClass["MaKhoa"] = reader.GetString(2);
+            subjectClass["MaMonHoc"] = reader.GetString(3);
+            return subjectClass;
+        }
+
+        public Dictionary<string, string> getScore(string maSinhVien, string maMonHoc) {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSDiem WHERE MaSinhVien = @maSinhVien AND MaMonHoc = @maMonHoc
+            ", maSinhVien, maMonHoc);
+            var reader = command.ExecuteReader();
+            if (!reader.Read()) {
+                return null;
+            }
+
+            var score = new Dictionary<string, string>();
+            score["MaSinhVien"] = reader.GetString(0);
+            score["MaMonHoc"] = reader.GetString(1);
+            score["Diem"] = reader.GetString(2);
+            return score;
+        }
+
+        public Dictionary<string, string> getStudentClass(string maSinhVien, string maLopHocPhan) {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSSinhVienLopHocPhan WHERE MaSinhVien = @maSinhVien AND MaLopHocPhan = @maLopHocPhan
+            ", maSinhVien, maLopHocPhan);
+            var reader = command.ExecuteReader();
+            if (!reader.Read()) {
+                return null;
+            }
+
+            var studentClass = new Dictionary<string, string>();
+            studentClass["MaSinhVien"] = reader.GetString(0);
+            studentClass["MaLopHocPhan"] = reader.GetString(1);
+            return studentClass;
+        }
+
+        public Dictionary<string, string> getUser(string username) {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSUser WHERE Username = @username
+            ", username);
+            var reader = command.ExecuteReader();
+            if (!reader.Read()) {
+                return null;
+            }
+
+            var user = new Dictionary<string, string>();
+            user["Username"] = reader.GetString(0);
+            user["Password"] = reader.GetString(1);
+            user["MaSinhVien"] = reader.GetString(2);
+            return user;
+        }
+
+        public List<Dictionary<string, string>> getAllStudent() {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSSinhVien
+            ");
+            var reader = command.ExecuteReader();
+            var students = new List<Dictionary<string, string>>();
+            while (reader.Read()) {
+                var student = new Dictionary<string, string>();
+                student["MaSinhVien"] = reader.GetString(0);
+                student["HoTen"] = reader.GetString(1);
+                student["NgaySinh"] = reader.GetString(2);
+                student["GioiTinh"] = reader.GetString(3);
+                student["MaKhoa"] = reader.GetString(4);
+                student["MaLop"] = reader.GetString(5);
+                student["LopTruong"] = reader.GetString(6);
+                students.Add(student);
+            }
+
+            return students;
+        }
+
+        public List<Dictionary<string, string>> getAllFaculty() {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSKhoa
+            ");
+            var reader = command.ExecuteReader();
+            var faculties = new List<Dictionary<string, string>>();
+            while (reader.Read()) {
+                var faculty = new Dictionary<string, string>();
+                faculty["MaKhoa"] = reader.GetString(0);
+                faculty["TenKhoa"] = reader.GetString(1);
+                faculties.Add(faculty);
+            }
+
+            return faculties;
+        }
+
+        public List<Dictionary<string, string>> getAllClass() {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSLop
+            ");
+            var reader = command.ExecuteReader();
+            var classes = new List<Dictionary<string, string>>();
+            while (reader.Read()) {
+                var @class = new Dictionary<string, string>();
+                @class["MaLop"] = reader.GetString(0);
+                @class["TenLop"] = reader.GetString(1);
+                @class["MaKhoa"] = reader.GetString(2);
+                classes.Add(@class);
+            }
+
+            return classes;
+        }
+
+        public List<Dictionary<string, string>> getAllSubject() {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSMonHoc
+            ");
+            var reader = command.ExecuteReader();
+            var subjects = new List<Dictionary<string, string>>();
+            while (reader.Read()) {
+                var subject = new Dictionary<string, string>();
+                subject["MaMonHoc"] = reader.GetString(0);
+                subject["TenMonHoc"] = reader.GetString(1);
+                subjects.Add(subject);
+            }
+
+            return subjects;
+        }
+
+        public List<Dictionary<string, string>> getAllSubjectClass() {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSLopHocPhan
+            ");
+            var reader = command.ExecuteReader();
+            var subjectClasses = new List<Dictionary<string, string>>();
+            while (reader.Read()) {
+                var subjectClass = new Dictionary<string, string>();
+                subjectClass["MaLopHocPhan"] = reader.GetString(0);
+                subjectClass["TenLopHocPhan"] = reader.GetString(1);
+                subjectClass["MaKhoa"] = reader.GetString(2);
+                subjectClass["MaMonHoc"] = reader.GetString(3);
+                subjectClasses.Add(subjectClass);
+            }
+
+            return subjectClasses;
+        }
+
+        public List<Dictionary<string, string>> getAllScore() {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSDiem
+            ");
+            var reader = command.ExecuteReader();
+            var scores = new List<Dictionary<string, string>>();
+            while (reader.Read()) {
+                var score = new Dictionary<string, string>();
+                score["MaSinhVien"] = reader.GetString(0);
+                score["MaMonHoc"] = reader.GetString(1);
+                score["Diem"] = reader.GetString(2);
+                scores.Add(score);
+            }
+
+            return scores;
+        }
+
+        public List<Dictionary<string, string>> getAllStudentClass() {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSSinhVienLopHocPhan
+            ");
+            var reader = command.ExecuteReader();
+            var studentClasses = new List<Dictionary<string, string>>();
+            while (reader.Read()) {
+                var studentClass = new Dictionary<string, string>();
+                studentClass["MaSinhVien"] = reader.GetString(0);
+                studentClass["MaLopHocPhan"] = reader.GetString(1);
+                studentClasses.Add(studentClass);
+            }
+
+            return studentClasses;
+        }
+
+        public List<Dictionary<string, string>> getAllUser() {
+            var command = _connector.createAndExecuteCommand(@"
+                SELECT * FROM DSUser
+            ");
+            var reader = command.ExecuteReader();
+            var users = new List<Dictionary<string, string>>();
+            while (reader.Read()) {
+                var user = new Dictionary<string, string>();
+                user["Username"] = reader.GetString(0);
+                user["Password"] = reader.GetString(1);
+                user["MaSinhVien"] = reader.GetString(2);
+                users.Add(user);
+            }
+
+            return users;
         }
     }
 }
