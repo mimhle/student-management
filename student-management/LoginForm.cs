@@ -1,4 +1,5 @@
-﻿using System;
+﻿using student_management;
+using System;
 using System.Windows.Forms;
 
 namespace studentManagement {
@@ -60,6 +61,17 @@ namespace studentManagement {
         private void btnLogin_Click(object sender, EventArgs e) {
             menuForm(1);
             loginForm(0);
+        }
+
+        private void btnAddStudent_Click(object sender, EventArgs e) {
+            
+        }
+
+        private void btnAddClass_Click(object sender, EventArgs e) {
+            var start = new classForm();
+            start.ShowDialog();
+            start.Close();
+            Show();
         }
     }
 }
