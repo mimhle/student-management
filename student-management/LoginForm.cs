@@ -27,5 +27,39 @@ namespace studentManagement {
             Console.WriteLine(db.checkLogin("SV02", "SV02"));
             Console.WriteLine(db.checkLogin("SV02", "123456"));
         }
+        //all form display
+        //if it iNum == 1 return show or else hide
+        private void loginForm(int iNum) {
+            if (iNum == 1) {
+                gbLogin.Show();
+                txtPassWord.Clear();
+                txtUserName.Clear();
+            }
+            else gbLogin.Hide();
+        }
+
+        private void menuForm(int iNum) {
+            if(iNum == 1) {
+                gbMenu.Show();
+                btnLogout.Show() ;
+            }
+            else {
+                gbMenu.Hide();
+                btnLogout.Hide();
+            }
+        }
+        private void btnExit_Click(object sender, EventArgs e) {
+            Close();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e) {
+            menuForm(0);
+            loginForm(1);
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e) {
+            menuForm(1);
+            loginForm(0);
+        }
     }
 }
