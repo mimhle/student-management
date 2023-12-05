@@ -1,4 +1,4 @@
-﻿using student_management;
+﻿using studentManagement;
 using System;
 using System.Windows.Forms;
 

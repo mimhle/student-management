@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace student_management {
+namespace studentManagement {
     public partial class subjectForm : Form {
         public subjectForm() {
             InitializeComponent();

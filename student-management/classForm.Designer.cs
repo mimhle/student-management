@@ -1,4 +1,4 @@
-﻿namespace student_management {
+﻿namespace studentManagement {
     partial class classForm {
         /// <summary>
         /// Required designer variable.
