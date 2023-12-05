@@ -32,18 +32,12 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbMenu = new System.Windows.Forms.GroupBox();
             this.gbSubject = new System.Windows.Forms.GroupBox();
-            this.btnAddScore = new System.Windows.Forms.Button();
-            this.btnAddSubject = new System.Windows.Forms.Button();
-            this.btnDeleteSubject = new System.Windows.Forms.Button();
+            this.btnSubject = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.gbClass = new System.Windows.Forms.GroupBox();
-            this.btnAddStudentInClass = new System.Windows.Forms.Button();
-            this.btnAddClass = new System.Windows.Forms.Button();
-            this.btnDeleteClass = new System.Windows.Forms.Button();
+            this.btnClass = new System.Windows.Forms.Button();
             this.gbStudent = new System.Windows.Forms.GroupBox();
-            this.btnFindStudent = new System.Windows.Forms.Button();
-            this.btnDeleteStudent = new System.Windows.Forms.Button();
-            this.btnAddStudent = new System.Windows.Forms.Button();
+            this.btnStudent = new System.Windows.Forms.Button();
             this.gbLogin.SuspendLayout();
             this.gbMenu.SuspendLayout();
             this.gbSubject.SuspendLayout();
@@ -119,9 +113,7 @@
             // 
             // gbSubject
             // 
-            this.gbSubject.Controls.Add(this.btnAddScore);
-            this.gbSubject.Controls.Add(this.btnAddSubject);
-            this.gbSubject.Controls.Add(this.btnDeleteSubject);
+            this.gbSubject.Controls.Add(this.btnSubject);
             this.gbSubject.Location = new System.Drawing.Point(6, 439);
             this.gbSubject.Name = "gbSubject";
             this.gbSubject.Size = new System.Drawing.Size(1006, 195);
@@ -129,32 +121,15 @@
             this.gbSubject.TabStop = false;
             this.gbSubject.Text = "Môn học";
             // 
-            // btnAddScore
+            // btnSubject
             // 
-            this.btnAddScore.Location = new System.Drawing.Point(29, 121);
-            this.btnAddScore.Name = "btnAddScore";
-            this.btnAddScore.Size = new System.Drawing.Size(961, 45);
-            this.btnAddScore.TabIndex = 8;
-            this.btnAddScore.Text = "Nhập Điểm Số";
-            this.btnAddScore.UseVisualStyleBackColor = true;
-            // 
-            // btnAddSubject
-            // 
-            this.btnAddSubject.Location = new System.Drawing.Point(29, 39);
-            this.btnAddSubject.Name = "btnAddSubject";
-            this.btnAddSubject.Size = new System.Drawing.Size(961, 45);
-            this.btnAddSubject.TabIndex = 6;
-            this.btnAddSubject.Text = "Thêm Môn Học";
-            this.btnAddSubject.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteSubject
-            // 
-            this.btnDeleteSubject.Location = new System.Drawing.Point(29, 80);
-            this.btnDeleteSubject.Name = "btnDeleteSubject";
-            this.btnDeleteSubject.Size = new System.Drawing.Size(961, 45);
-            this.btnDeleteSubject.TabIndex = 7;
-            this.btnDeleteSubject.Text = "Xóa Môn Học";
-            this.btnDeleteSubject.UseVisualStyleBackColor = true;
+            this.btnSubject.Location = new System.Drawing.Point(29, 39);
+            this.btnSubject.Name = "btnSubject";
+            this.btnSubject.Size = new System.Drawing.Size(961, 150);
+            this.btnSubject.TabIndex = 6;
+            this.btnSubject.Text = "Chỉnh Sửa Môn Học và thêm điểm";
+            this.btnSubject.UseVisualStyleBackColor = true;
+            this.btnSubject.Click += new System.EventHandler(this.btnSubject_Click);
             // 
             // btnLogout
             // 
@@ -168,9 +143,7 @@
             // 
             // gbClass
             // 
-            this.gbClass.Controls.Add(this.btnAddStudentInClass);
-            this.gbClass.Controls.Add(this.btnAddClass);
-            this.gbClass.Controls.Add(this.btnDeleteClass);
+            this.gbClass.Controls.Add(this.btnClass);
             this.gbClass.Location = new System.Drawing.Point(6, 238);
             this.gbClass.Name = "gbClass";
             this.gbClass.Size = new System.Drawing.Size(1006, 195);
@@ -178,38 +151,19 @@
             this.gbClass.TabStop = false;
             this.gbClass.Text = "Lớp Học";
             // 
-            // btnAddStudentInClass
+            // btnClass
             // 
-            this.btnAddStudentInClass.Location = new System.Drawing.Point(23, 120);
-            this.btnAddStudentInClass.Name = "btnAddStudentInClass";
-            this.btnAddStudentInClass.Size = new System.Drawing.Size(961, 45);
-            this.btnAddStudentInClass.TabIndex = 5;
-            this.btnAddStudentInClass.Text = "Thêm Sinh Viên Vào Lớp";
-            this.btnAddStudentInClass.UseVisualStyleBackColor = true;
-            // 
-            // btnAddClass
-            // 
-            this.btnAddClass.Location = new System.Drawing.Point(23, 38);
-            this.btnAddClass.Name = "btnAddClass";
-            this.btnAddClass.Size = new System.Drawing.Size(961, 45);
-            this.btnAddClass.TabIndex = 3;
-            this.btnAddClass.Text = "Thêm Lớp Học";
-            this.btnAddClass.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteClass
-            // 
-            this.btnDeleteClass.Location = new System.Drawing.Point(23, 79);
-            this.btnDeleteClass.Name = "btnDeleteClass";
-            this.btnDeleteClass.Size = new System.Drawing.Size(961, 45);
-            this.btnDeleteClass.TabIndex = 4;
-            this.btnDeleteClass.Text = "Xóa Lớp Học";
-            this.btnDeleteClass.UseVisualStyleBackColor = true;
+            this.btnClass.Location = new System.Drawing.Point(23, 38);
+            this.btnClass.Name = "btnClass";
+            this.btnClass.Size = new System.Drawing.Size(961, 151);
+            this.btnClass.TabIndex = 3;
+            this.btnClass.Text = "Chỉnh Sửa Lớp Học";
+            this.btnClass.UseVisualStyleBackColor = true;
+            this.btnClass.Click += new System.EventHandler(this.btnAddClass_Click);
             // 
             // gbStudent
             // 
-            this.gbStudent.Controls.Add(this.btnFindStudent);
-            this.gbStudent.Controls.Add(this.btnDeleteStudent);
-            this.gbStudent.Controls.Add(this.btnAddStudent);
+            this.gbStudent.Controls.Add(this.btnStudent);
             this.gbStudent.Location = new System.Drawing.Point(6, 33);
             this.gbStudent.Name = "gbStudent";
             this.gbStudent.Size = new System.Drawing.Size(1006, 195);
@@ -217,32 +171,15 @@
             this.gbStudent.TabStop = false;
             this.gbStudent.Text = "Sinh Viên";
             // 
-            // btnFindStudent
+            // btnStudent
             // 
-            this.btnFindStudent.Location = new System.Drawing.Point(23, 120);
-            this.btnFindStudent.Name = "btnFindStudent";
-            this.btnFindStudent.Size = new System.Drawing.Size(961, 50);
-            this.btnFindStudent.TabIndex = 2;
-            this.btnFindStudent.Text = "Tìm Sinh Viên";
-            this.btnFindStudent.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteStudent
-            // 
-            this.btnDeleteStudent.Location = new System.Drawing.Point(23, 79);
-            this.btnDeleteStudent.Name = "btnDeleteStudent";
-            this.btnDeleteStudent.Size = new System.Drawing.Size(961, 50);
-            this.btnDeleteStudent.TabIndex = 1;
-            this.btnDeleteStudent.Text = "Xóa Sinh Viên";
-            this.btnDeleteStudent.UseVisualStyleBackColor = true;
-            // 
-            // btnAddStudent
-            // 
-            this.btnAddStudent.Location = new System.Drawing.Point(23, 38);
-            this.btnAddStudent.Name = "btnAddStudent";
-            this.btnAddStudent.Size = new System.Drawing.Size(961, 50);
-            this.btnAddStudent.TabIndex = 0;
-            this.btnAddStudent.Text = "Thêm Sinh Viên";
-            this.btnAddStudent.UseVisualStyleBackColor = true;
+            this.btnStudent.Location = new System.Drawing.Point(23, 38);
+            this.btnStudent.Name = "btnStudent";
+            this.btnStudent.Size = new System.Drawing.Size(961, 151);
+            this.btnStudent.TabIndex = 0;
+            this.btnStudent.Text = "Chỉnh Sửa Sinh Viên";
+            this.btnStudent.UseVisualStyleBackColor = true;
+            this.btnStudent.Click += new System.EventHandler(this.btnAddStudent_Click);
             // 
             // LoginForm
             // 
@@ -276,14 +213,8 @@
         private System.Windows.Forms.GroupBox gbClass;
         private System.Windows.Forms.GroupBox gbStudent;
         private System.Windows.Forms.GroupBox gbSubject;
-        private System.Windows.Forms.Button btnAddStudentInClass;
-        private System.Windows.Forms.Button btnAddClass;
-        private System.Windows.Forms.Button btnDeleteClass;
-        private System.Windows.Forms.Button btnFindStudent;
-        private System.Windows.Forms.Button btnDeleteStudent;
-        private System.Windows.Forms.Button btnAddStudent;
-        private System.Windows.Forms.Button btnAddScore;
-        private System.Windows.Forms.Button btnAddSubject;
-        private System.Windows.Forms.Button btnDeleteSubject;
+        private System.Windows.Forms.Button btnClass;
+        private System.Windows.Forms.Button btnStudent;
+        private System.Windows.Forms.Button btnSubject;
     }
 }
