@@ -17,7 +17,7 @@ namespace studentManagement {
             db.insertClass("48.CNTT.A", "Cong nghe thong tin A", "CNTT");
 
             db.insertSubjectClass("LTWIN001", "HCMUE_LTWin_HK1.2023-2024_901", "CNTT", "LTWIN");
-            db.insertSubject("LTWIN", "Lap trinh Windows");
+            db.insertSubject("LTWIN", "Lap trinh Windows", "CNTT", 2);
             db.insertSubjectClassStudent("SV02", "LTWIN001");
             db.insertScore("SV02", "LTWIN", 10);
 

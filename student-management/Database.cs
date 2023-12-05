@@ -69,7 +69,9 @@ namespace studentManagement {
                 );
                 CREATE TABLE IF NOT EXISTS DSMonHoc (
                     MaMonHoc TEXT PRIMARY KEY,
-                    TenMonHoc TEXT
+                    TenMonHoc TEXT,
+                    MaKhoa TEXT REFERENCES DSKhoa(MaKhoa),
+                    SoTinChi INTEGER DEFAULT 0
                 );
                 CREATE TABLE IF NOT EXISTS DSLopHocPhan (
                     MaLopHocPhan TEXT PRIMARY KEY,
@@ -231,13 +233,15 @@ namespace studentManagement {
         /// </summary>
         /// <param name="maMonHoc"></param>
         /// <param name="tenMonHoc"></param>
+        /// <param name="maKhoa"></param>
+        /// <param name="soTinChi"></param>
         /// <returns> true if insert success </returns>
-        public bool insertSubject(string maMonHoc, string tenMonHoc) {
+        public bool insertSubject(string maMonHoc, string tenMonHoc, string maKhoa, int soTinChi) {
             try {
                 _connector.createAndExecuteCommand(@"
-                    INSERT OR REPLACE INTO DSMonHoc (MaMonHoc, TenMonHoc)
-                    VALUES (@maMonHoc, @tenMonHoc)
-                ", maMonHoc, tenMonHoc);
+                    INSERT OR REPLACE INTO DSMonHoc (MaMonHoc, TenMonHoc, MaKhoa, SoTinChi)
+                    VALUES (@maMonHoc, @tenMonHoc, @maKhoa, @soTinChi)
+                ", maMonHoc, tenMonHoc, maKhoa, soTinChi.ToString());
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
