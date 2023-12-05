@@ -64,7 +64,10 @@ namespace studentManagement {
         }
 
         private void btnAddStudent_Click(object sender, EventArgs e) {
-            
+            var start = new StudentForm();
+            start.ShowDialog();
+            start.Close();
+            Show();
         }
 
         private void btnAddClass_Click(object sender, EventArgs e) {
