@@ -15,6 +15,7 @@ namespace studentManagement {
             db.updatePassword("SV03", "12345");
 
             db.insertFaculty("CNTT", "Cong nghe thong tin");
+            db.insertFaculty("QTKD", "Quan tri kinh doanh");
             db.insertClass("48.CNTT.A", "Cong nghe thong tin A", "CNTT");
 
             db.insertSubjectClass("LTWIN001", "HCMUE_LTWin_HK1.2023-2024_901", "CNTT", "LTWIN");
