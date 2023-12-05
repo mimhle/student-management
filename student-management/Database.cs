@@ -85,7 +85,7 @@ namespace studentManagement {
                 CREATE TABLE IF NOT EXISTS DSDiem (
                     MaSinhVien TEXT REFERENCES DSSinhVien(MaSinhVien),
                     MaMonHoc TEXT REFERENCES DSMonHoc(MaMonHoc),
-                    Diem INTEGER,
+                    Diem REAL,
                     PRIMARY KEY (MaSinhVien, MaMonHoc)
                 );
                 CREATE TABLE IF NOT EXISTS DSUser (
@@ -298,12 +298,12 @@ namespace studentManagement {
         /// <param name="maMonHoc"></param>
         /// <param name="diem"></param>
         /// <returns> true if insert success </returns>
-        public bool insertScore(string maSinhVien, string maMonHoc, int diem) {
+        public bool insertScore(string maSinhVien, string maMonHoc, float diem) {
             try {
                 _connector.createAndExecuteCommand(@"
                     INSERT OR REPLACE INTO DSDiem (MaSinhVien, MaMonHoc, Diem)
                     VALUES (@MaSinhVien, @maMonHoc, @diem)
-                ", maSinhVien, maMonHoc, diem.ToString());
+                ", maSinhVien, maMonHoc, diem.ToString("0.00"));
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
