@@ -69,7 +69,9 @@ namespace studentManagement {
                 );
                 CREATE TABLE IF NOT EXISTS DSMonHoc (
                     MaMonHoc TEXT PRIMARY KEY,
-                    TenMonHoc TEXT
+                    TenMonHoc TEXT,
+                    MaKhoa TEXT REFERENCES DSKhoa(MaKhoa),
+                    SoTinChi INTEGER DEFAULT 0
                 );
                 CREATE TABLE IF NOT EXISTS DSLopHocPhan (
                     MaLopHocPhan TEXT PRIMARY KEY,
@@ -85,7 +87,7 @@ namespace studentManagement {
                 CREATE TABLE IF NOT EXISTS DSDiem (
                     MaSinhVien TEXT REFERENCES DSSinhVien(MaSinhVien),
                     MaMonHoc TEXT REFERENCES DSMonHoc(MaMonHoc),
-                    Diem INTEGER,
+                    Diem REAL,
                     PRIMARY KEY (MaSinhVien, MaMonHoc)
                 );
                 CREATE TABLE IF NOT EXISTS DSUser (
@@ -231,13 +233,15 @@ namespace studentManagement {
         /// </summary>
         /// <param name="maMonHoc"></param>
         /// <param name="tenMonHoc"></param>
+        /// <param name="maKhoa"></param>
+        /// <param name="soTinChi"></param>
         /// <returns> true if insert success </returns>
-        public bool insertSubject(string maMonHoc, string tenMonHoc) {
+        public bool insertSubject(string maMonHoc, string tenMonHoc, string maKhoa, int soTinChi) {
             try {
                 _connector.createAndExecuteCommand(@"
-                    INSERT OR REPLACE INTO DSMonHoc (MaMonHoc, TenMonHoc)
-                    VALUES (@maMonHoc, @tenMonHoc)
-                ", maMonHoc, tenMonHoc);
+                    INSERT OR REPLACE INTO DSMonHoc (MaMonHoc, TenMonHoc, MaKhoa, SoTinChi)
+                    VALUES (@maMonHoc, @tenMonHoc, @maKhoa, @soTinChi)
+                ", maMonHoc, tenMonHoc, maKhoa, soTinChi.ToString());
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
@@ -298,12 +302,12 @@ namespace studentManagement {
         /// <param name="maMonHoc"></param>
         /// <param name="diem"></param>
         /// <returns> true if insert success </returns>
-        public bool insertScore(string maSinhVien, string maMonHoc, int diem) {
+        public bool insertScore(string maSinhVien, string maMonHoc, float diem) {
             try {
                 _connector.createAndExecuteCommand(@"
                     INSERT OR REPLACE INTO DSDiem (MaSinhVien, MaMonHoc, Diem)
                     VALUES (@MaSinhVien, @maMonHoc, @diem)
-                ", maSinhVien, maMonHoc, diem.ToString());
+                ", maSinhVien, maMonHoc, diem.ToString("0.00"));
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
