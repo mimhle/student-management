@@ -25,6 +25,19 @@
         private void InitializeComponent() {
             this.gbAddClass = new System.Windows.Forms.GroupBox();
             this.listView2 = new System.Windows.Forms.ListView();
+            this.labelSubjectAdd = new System.Windows.Forms.Label();
+            this.labelFacultyAdd = new System.Windows.Forms.Label();
+            this.labelNameAddAdd = new System.Windows.Forms.Label();
+            this.labelNameAdd = new System.Windows.Forms.Label();
+            this.gbOtherOptionAdd = new System.Windows.Forms.GroupBox();
+            this.btnReturnMenuAdd = new System.Windows.Forms.Button();
+            this.btnDeleteClassAdd = new System.Windows.Forms.Button();
+            this.btnAddNormalClass = new System.Windows.Forms.Button();
+            this.btnAddClass = new System.Windows.Forms.Button();
+            this.txtIdClassAdd = new System.Windows.Forms.TextBox();
+            this.comboBoxFacultyAdd = new System.Windows.Forms.ComboBox();
+            this.comboBoxSubjectAdd = new System.Windows.Forms.ComboBox();
+            this.txtNameClassAdd = new System.Windows.Forms.TextBox();
             this.groupBoxAddStudent = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -34,19 +47,6 @@
             this.btnAddStudent = new System.Windows.Forms.Button();
             this.btnDeleteStudent = new System.Windows.Forms.Button();
             this.txtIdStudent = new System.Windows.Forms.TextBox();
-            this.labelSubjectAdd = new System.Windows.Forms.Label();
-            this.labelFacultyAdd = new System.Windows.Forms.Label();
-            this.labelNameAddAdd = new System.Windows.Forms.Label();
-            this.labelNameAdd = new System.Windows.Forms.Label();
-            this.gbOtherOptionAdd = new System.Windows.Forms.GroupBox();
-            this.btnReturnMenuAdd = new System.Windows.Forms.Button();
-            this.btnDeleteClassAdd = new System.Windows.Forms.Button();
-            this.btnClearValue = new System.Windows.Forms.Button();
-            this.btnAddClass = new System.Windows.Forms.Button();
-            this.txtIdClassAdd = new System.Windows.Forms.TextBox();
-            this.comboBoxFacultyAdd = new System.Windows.Forms.ComboBox();
-            this.comboBoxSubjectAdd = new System.Windows.Forms.ComboBox();
-            this.txtNameClassAdd = new System.Windows.Forms.TextBox();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
             this.gbChangeClass = new System.Windows.Forms.GroupBox();
             this.labelIdFind = new System.Windows.Forms.Label();
@@ -67,8 +67,8 @@
             this.txtNameChange = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.gbAddClass.SuspendLayout();
-            this.groupBoxAddStudent.SuspendLayout();
             this.gbOtherOptionAdd.SuspendLayout();
+            this.groupBoxAddStudent.SuspendLayout();
             this.gbChangeClass.SuspendLayout();
             this.gbOptionChange.SuspendLayout();
             this.SuspendLayout();
@@ -76,20 +76,20 @@
             // gbAddClass
             // 
             this.gbAddClass.Controls.Add(this.listView2);
-            this.gbAddClass.Controls.Add(this.groupBoxAddStudent);
             this.gbAddClass.Controls.Add(this.labelSubjectAdd);
             this.gbAddClass.Controls.Add(this.labelFacultyAdd);
             this.gbAddClass.Controls.Add(this.labelNameAddAdd);
             this.gbAddClass.Controls.Add(this.labelNameAdd);
-            this.gbAddClass.Controls.Add(this.gbOtherOptionAdd);
-            this.gbAddClass.Controls.Add(this.btnClearValue);
+            this.gbAddClass.Controls.Add(this.btnAddNormalClass);
             this.gbAddClass.Controls.Add(this.btnAddClass);
             this.gbAddClass.Controls.Add(this.txtIdClassAdd);
             this.gbAddClass.Controls.Add(this.comboBoxFacultyAdd);
             this.gbAddClass.Controls.Add(this.comboBoxSubjectAdd);
             this.gbAddClass.Controls.Add(this.txtNameClassAdd);
+            this.gbAddClass.Controls.Add(this.groupBoxAddStudent);
+            this.gbAddClass.Controls.Add(this.gbOtherOptionAdd);
             this.gbAddClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.gbAddClass.Location = new System.Drawing.Point(4, 12);
+            this.gbAddClass.Location = new System.Drawing.Point(10, 8);
             this.gbAddClass.Name = "gbAddClass";
             this.gbAddClass.Size = new System.Drawing.Size(1020, 704);
             this.gbAddClass.TabIndex = 0;
@@ -99,11 +99,129 @@
             // listView2
             // 
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(6, 335);
+            this.listView2.Location = new System.Drawing.Point(6, 318);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(740, 363);
+            this.listView2.Size = new System.Drawing.Size(712, 380);
             this.listView2.TabIndex = 13;
             this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
+            // labelSubjectAdd
+            // 
+            this.labelSubjectAdd.AutoSize = true;
+            this.labelSubjectAdd.Location = new System.Drawing.Point(284, 131);
+            this.labelSubjectAdd.Name = "labelSubjectAdd";
+            this.labelSubjectAdd.Size = new System.Drawing.Size(272, 29);
+            this.labelSubjectAdd.TabIndex = 10;
+            this.labelSubjectAdd.Text = "Chọn Môn Thuộc Khoa";
+            // 
+            // labelFacultyAdd
+            // 
+            this.labelFacultyAdd.AutoSize = true;
+            this.labelFacultyAdd.Location = new System.Drawing.Point(12, 131);
+            this.labelFacultyAdd.Name = "labelFacultyAdd";
+            this.labelFacultyAdd.Size = new System.Drawing.Size(139, 29);
+            this.labelFacultyAdd.TabIndex = 9;
+            this.labelFacultyAdd.Text = "Chọn Khoa";
+            // 
+            // labelNameAddAdd
+            // 
+            this.labelNameAddAdd.AutoSize = true;
+            this.labelNameAddAdd.Location = new System.Drawing.Point(284, 29);
+            this.labelNameAddAdd.Name = "labelNameAddAdd";
+            this.labelNameAddAdd.Size = new System.Drawing.Size(149, 29);
+            this.labelNameAddAdd.TabIndex = 8;
+            this.labelNameAddAdd.Text = "Mã Lớp Học";
+            // 
+            // labelNameAdd
+            // 
+            this.labelNameAdd.AutoSize = true;
+            this.labelNameAdd.Location = new System.Drawing.Point(11, 32);
+            this.labelNameAdd.Name = "labelNameAdd";
+            this.labelNameAdd.Size = new System.Drawing.Size(157, 29);
+            this.labelNameAdd.TabIndex = 7;
+            this.labelNameAdd.Text = "Tên Lớp Học";
+            // 
+            // gbOtherOptionAdd
+            // 
+            this.gbOtherOptionAdd.Controls.Add(this.btnReturnMenuAdd);
+            this.gbOtherOptionAdd.Controls.Add(this.btnDeleteClassAdd);
+            this.gbOtherOptionAdd.Location = new System.Drawing.Point(724, 304);
+            this.gbOtherOptionAdd.Name = "gbOtherOptionAdd";
+            this.gbOtherOptionAdd.Size = new System.Drawing.Size(288, 394);
+            this.gbOtherOptionAdd.TabIndex = 6;
+            this.gbOtherOptionAdd.TabStop = false;
+            this.gbOtherOptionAdd.Text = "Các Chức Năng ";
+            // 
+            // btnReturnMenuAdd
+            // 
+            this.btnReturnMenuAdd.Location = new System.Drawing.Point(6, 222);
+            this.btnReturnMenuAdd.Name = "btnReturnMenuAdd";
+            this.btnReturnMenuAdd.Size = new System.Drawing.Size(276, 166);
+            this.btnReturnMenuAdd.TabIndex = 2;
+            this.btnReturnMenuAdd.Text = "Trở Về Menu";
+            this.btnReturnMenuAdd.UseVisualStyleBackColor = true;
+            this.btnReturnMenuAdd.Click += new System.EventHandler(this.btnReturnMenuAdd_Click);
+            // 
+            // btnDeleteClassAdd
+            // 
+            this.btnDeleteClassAdd.Location = new System.Drawing.Point(6, 35);
+            this.btnDeleteClassAdd.Name = "btnDeleteClassAdd";
+            this.btnDeleteClassAdd.Size = new System.Drawing.Size(276, 181);
+            this.btnDeleteClassAdd.TabIndex = 0;
+            this.btnDeleteClassAdd.Text = "Chỉnh sửa Lớp Học";
+            this.btnDeleteClassAdd.UseVisualStyleBackColor = true;
+            this.btnDeleteClassAdd.Click += new System.EventHandler(this.btnDeleteClassAdd_Click);
+            // 
+            // btnAddNormalClass
+            // 
+            this.btnAddNormalClass.Location = new System.Drawing.Point(291, 237);
+            this.btnAddNormalClass.Name = "btnAddNormalClass";
+            this.btnAddNormalClass.Size = new System.Drawing.Size(249, 71);
+            this.btnAddNormalClass.TabIndex = 5;
+            this.btnAddNormalClass.Text = "Thêm Lớp Học \nPhần";
+            this.btnAddNormalClass.UseVisualStyleBackColor = true;
+            // 
+            // btnAddClass
+            // 
+            this.btnAddClass.Location = new System.Drawing.Point(12, 237);
+            this.btnAddClass.Name = "btnAddClass";
+            this.btnAddClass.Size = new System.Drawing.Size(254, 71);
+            this.btnAddClass.TabIndex = 4;
+            this.btnAddClass.Text = "Thêm";
+            this.btnAddClass.UseVisualStyleBackColor = true;
+            // 
+            // txtIdClassAdd
+            // 
+            this.txtIdClassAdd.Location = new System.Drawing.Point(289, 71);
+            this.txtIdClassAdd.Name = "txtIdClassAdd";
+            this.txtIdClassAdd.Size = new System.Drawing.Size(249, 36);
+            this.txtIdClassAdd.TabIndex = 3;
+            // 
+            // comboBoxFacultyAdd
+            // 
+            this.comboBoxFacultyAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.comboBoxFacultyAdd.FormattingEnabled = true;
+            this.comboBoxFacultyAdd.Location = new System.Drawing.Point(16, 169);
+            this.comboBoxFacultyAdd.Name = "comboBoxFacultyAdd";
+            this.comboBoxFacultyAdd.Size = new System.Drawing.Size(250, 37);
+            this.comboBoxFacultyAdd.TabIndex = 2;
+            // 
+            // comboBoxSubjectAdd
+            // 
+            this.comboBoxSubjectAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.comboBoxSubjectAdd.FormattingEnabled = true;
+            this.comboBoxSubjectAdd.Location = new System.Drawing.Point(291, 166);
+            this.comboBoxSubjectAdd.Name = "comboBoxSubjectAdd";
+            this.comboBoxSubjectAdd.Size = new System.Drawing.Size(247, 37);
+            this.comboBoxSubjectAdd.TabIndex = 1;
+            // 
+            // txtNameClassAdd
+            // 
+            this.txtNameClassAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.txtNameClassAdd.Location = new System.Drawing.Point(14, 74);
+            this.txtNameClassAdd.Name = "txtNameClassAdd";
+            this.txtNameClassAdd.Size = new System.Drawing.Size(252, 36);
+            this.txtNameClassAdd.TabIndex = 0;
             // 
             // groupBoxAddStudent
             // 
@@ -191,124 +309,6 @@
             this.txtIdStudent.Size = new System.Drawing.Size(224, 36);
             this.txtIdStudent.TabIndex = 11;
             // 
-            // labelSubjectAdd
-            // 
-            this.labelSubjectAdd.AutoSize = true;
-            this.labelSubjectAdd.Location = new System.Drawing.Point(284, 131);
-            this.labelSubjectAdd.Name = "labelSubjectAdd";
-            this.labelSubjectAdd.Size = new System.Drawing.Size(272, 29);
-            this.labelSubjectAdd.TabIndex = 10;
-            this.labelSubjectAdd.Text = "Chọn Môn Thuộc Khoa";
-            // 
-            // labelFacultyAdd
-            // 
-            this.labelFacultyAdd.AutoSize = true;
-            this.labelFacultyAdd.Location = new System.Drawing.Point(12, 131);
-            this.labelFacultyAdd.Name = "labelFacultyAdd";
-            this.labelFacultyAdd.Size = new System.Drawing.Size(139, 29);
-            this.labelFacultyAdd.TabIndex = 9;
-            this.labelFacultyAdd.Text = "Chọn Khoa";
-            // 
-            // labelNameAddAdd
-            // 
-            this.labelNameAddAdd.AutoSize = true;
-            this.labelNameAddAdd.Location = new System.Drawing.Point(284, 29);
-            this.labelNameAddAdd.Name = "labelNameAddAdd";
-            this.labelNameAddAdd.Size = new System.Drawing.Size(149, 29);
-            this.labelNameAddAdd.TabIndex = 8;
-            this.labelNameAddAdd.Text = "Mã Lớp Học";
-            // 
-            // labelNameAdd
-            // 
-            this.labelNameAdd.AutoSize = true;
-            this.labelNameAdd.Location = new System.Drawing.Point(11, 32);
-            this.labelNameAdd.Name = "labelNameAdd";
-            this.labelNameAdd.Size = new System.Drawing.Size(157, 29);
-            this.labelNameAdd.TabIndex = 7;
-            this.labelNameAdd.Text = "Tên Lớp Học";
-            // 
-            // gbOtherOptionAdd
-            // 
-            this.gbOtherOptionAdd.Controls.Add(this.btnReturnMenuAdd);
-            this.gbOtherOptionAdd.Controls.Add(this.btnDeleteClassAdd);
-            this.gbOtherOptionAdd.Location = new System.Drawing.Point(777, 304);
-            this.gbOtherOptionAdd.Name = "gbOtherOptionAdd";
-            this.gbOtherOptionAdd.Size = new System.Drawing.Size(249, 403);
-            this.gbOtherOptionAdd.TabIndex = 6;
-            this.gbOtherOptionAdd.TabStop = false;
-            this.gbOtherOptionAdd.Text = "Các Chức Năng ";
-            // 
-            // btnReturnMenuAdd
-            // 
-            this.btnReturnMenuAdd.Location = new System.Drawing.Point(6, 220);
-            this.btnReturnMenuAdd.Name = "btnReturnMenuAdd";
-            this.btnReturnMenuAdd.Size = new System.Drawing.Size(237, 174);
-            this.btnReturnMenuAdd.TabIndex = 2;
-            this.btnReturnMenuAdd.Text = "Trở Về Menu";
-            this.btnReturnMenuAdd.UseVisualStyleBackColor = true;
-            this.btnReturnMenuAdd.Click += new System.EventHandler(this.btnReturnMenuAdd_Click);
-            // 
-            // btnDeleteClassAdd
-            // 
-            this.btnDeleteClassAdd.Location = new System.Drawing.Point(6, 47);
-            this.btnDeleteClassAdd.Name = "btnDeleteClassAdd";
-            this.btnDeleteClassAdd.Size = new System.Drawing.Size(237, 167);
-            this.btnDeleteClassAdd.TabIndex = 0;
-            this.btnDeleteClassAdd.Text = "Chỉnh sửa Lớp Học";
-            this.btnDeleteClassAdd.UseVisualStyleBackColor = true;
-            this.btnDeleteClassAdd.Click += new System.EventHandler(this.btnDeleteClassAdd_Click);
-            // 
-            // btnClearValue
-            // 
-            this.btnClearValue.Location = new System.Drawing.Point(291, 237);
-            this.btnClearValue.Name = "btnClearValue";
-            this.btnClearValue.Size = new System.Drawing.Size(249, 71);
-            this.btnClearValue.TabIndex = 5;
-            this.btnClearValue.Text = "Xóa Đặt Lại";
-            this.btnClearValue.UseVisualStyleBackColor = true;
-            // 
-            // btnAddClass
-            // 
-            this.btnAddClass.Location = new System.Drawing.Point(12, 237);
-            this.btnAddClass.Name = "btnAddClass";
-            this.btnAddClass.Size = new System.Drawing.Size(254, 71);
-            this.btnAddClass.TabIndex = 4;
-            this.btnAddClass.Text = "Thêm";
-            this.btnAddClass.UseVisualStyleBackColor = true;
-            // 
-            // txtIdClassAdd
-            // 
-            this.txtIdClassAdd.Location = new System.Drawing.Point(289, 71);
-            this.txtIdClassAdd.Name = "txtIdClassAdd";
-            this.txtIdClassAdd.Size = new System.Drawing.Size(249, 36);
-            this.txtIdClassAdd.TabIndex = 3;
-            // 
-            // comboBoxFacultyAdd
-            // 
-            this.comboBoxFacultyAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.comboBoxFacultyAdd.FormattingEnabled = true;
-            this.comboBoxFacultyAdd.Location = new System.Drawing.Point(16, 169);
-            this.comboBoxFacultyAdd.Name = "comboBoxFacultyAdd";
-            this.comboBoxFacultyAdd.Size = new System.Drawing.Size(250, 37);
-            this.comboBoxFacultyAdd.TabIndex = 2;
-            // 
-            // comboBoxSubjectAdd
-            // 
-            this.comboBoxSubjectAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.comboBoxSubjectAdd.FormattingEnabled = true;
-            this.comboBoxSubjectAdd.Location = new System.Drawing.Point(291, 166);
-            this.comboBoxSubjectAdd.Name = "comboBoxSubjectAdd";
-            this.comboBoxSubjectAdd.Size = new System.Drawing.Size(247, 37);
-            this.comboBoxSubjectAdd.TabIndex = 1;
-            // 
-            // txtNameClassAdd
-            // 
-            this.txtNameClassAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.txtNameClassAdd.Location = new System.Drawing.Point(14, 74);
-            this.txtNameClassAdd.Name = "txtNameClassAdd";
-            this.txtNameClassAdd.Size = new System.Drawing.Size(252, 36);
-            this.txtNameClassAdd.TabIndex = 0;
-            // 
             // entityCommand1
             // 
             this.entityCommand1.CommandTimeout = 0;
@@ -337,7 +337,7 @@
             this.gbChangeClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.gbChangeClass.Location = new System.Drawing.Point(10, 8);
             this.gbChangeClass.Name = "gbChangeClass";
-            this.gbChangeClass.Size = new System.Drawing.Size(1020, 708);
+            this.gbChangeClass.Size = new System.Drawing.Size(1020, 704);
             this.gbChangeClass.TabIndex = 1;
             this.gbChangeClass.TabStop = false;
             this.gbChangeClass.Text = "Chỉnh Sửa Thông Tin";
@@ -372,7 +372,7 @@
             // 
             this.btnEditClass.Location = new System.Drawing.Point(528, 167);
             this.btnEditClass.Name = "btnEditClass";
-            this.btnEditClass.Size = new System.Drawing.Size(212, 123);
+            this.btnEditClass.Size = new System.Drawing.Size(212, 135);
             this.btnEditClass.TabIndex = 21;
             this.btnEditClass.Text = "Chỉnh Sửa Lớp";
             this.btnEditClass.UseVisualStyleBackColor = true;
@@ -381,7 +381,7 @@
             // 
             this.btnDeleteClass.Location = new System.Drawing.Point(528, 27);
             this.btnDeleteClass.Name = "btnDeleteClass";
-            this.btnDeleteClass.Size = new System.Drawing.Size(212, 120);
+            this.btnDeleteClass.Size = new System.Drawing.Size(212, 133);
             this.btnDeleteClass.TabIndex = 20;
             this.btnDeleteClass.Text = "Xóa Lớp";
             this.btnDeleteClass.UseVisualStyleBackColor = true;
@@ -390,18 +390,18 @@
             // 
             this.gbOptionChange.Controls.Add(this.btnReturnMenuChange);
             this.gbOptionChange.Controls.Add(this.btnAddClassChange);
-            this.gbOptionChange.Location = new System.Drawing.Point(765, 308);
+            this.gbOptionChange.Location = new System.Drawing.Point(724, 304);
             this.gbOptionChange.Name = "gbOptionChange";
-            this.gbOptionChange.Size = new System.Drawing.Size(249, 400);
+            this.gbOptionChange.Size = new System.Drawing.Size(290, 398);
             this.gbOptionChange.TabIndex = 19;
             this.gbOptionChange.TabStop = false;
             this.gbOptionChange.Text = "Các Chức Năng ";
             // 
             // btnReturnMenuChange
             // 
-            this.btnReturnMenuChange.Location = new System.Drawing.Point(6, 210);
+            this.btnReturnMenuChange.Location = new System.Drawing.Point(6, 222);
             this.btnReturnMenuChange.Name = "btnReturnMenuChange";
-            this.btnReturnMenuChange.Size = new System.Drawing.Size(237, 174);
+            this.btnReturnMenuChange.Size = new System.Drawing.Size(277, 166);
             this.btnReturnMenuChange.TabIndex = 2;
             this.btnReturnMenuChange.Text = "Trở Về Menu";
             this.btnReturnMenuChange.UseVisualStyleBackColor = true;
@@ -409,9 +409,9 @@
             // 
             // btnAddClassChange
             // 
-            this.btnAddClassChange.Location = new System.Drawing.Point(6, 37);
+            this.btnAddClassChange.Location = new System.Drawing.Point(6, 35);
             this.btnAddClassChange.Name = "btnAddClassChange";
-            this.btnAddClassChange.Size = new System.Drawing.Size(237, 167);
+            this.btnAddClassChange.Size = new System.Drawing.Size(276, 181);
             this.btnAddClassChange.TabIndex = 0;
             this.btnAddClassChange.Text = "Thêm Lớp Học";
             this.btnAddClassChange.UseVisualStyleBackColor = true;
@@ -420,7 +420,7 @@
             // labelSubjectChange
             // 
             this.labelSubjectChange.AutoSize = true;
-            this.labelSubjectChange.Location = new System.Drawing.Point(242, 173);
+            this.labelSubjectChange.Location = new System.Drawing.Point(235, 192);
             this.labelSubjectChange.Name = "labelSubjectChange";
             this.labelSubjectChange.Size = new System.Drawing.Size(272, 29);
             this.labelSubjectChange.TabIndex = 18;
@@ -429,7 +429,7 @@
             // labelFacultyChange
             // 
             this.labelFacultyChange.AutoSize = true;
-            this.labelFacultyChange.Location = new System.Drawing.Point(10, 173);
+            this.labelFacultyChange.Location = new System.Drawing.Point(3, 192);
             this.labelFacultyChange.Name = "labelFacultyChange";
             this.labelFacultyChange.Size = new System.Drawing.Size(139, 29);
             this.labelFacultyChange.TabIndex = 17;
@@ -438,7 +438,7 @@
             // labelIdChange
             // 
             this.labelIdChange.AutoSize = true;
-            this.labelIdChange.Location = new System.Drawing.Point(263, 51);
+            this.labelIdChange.Location = new System.Drawing.Point(264, 61);
             this.labelIdChange.Name = "labelIdChange";
             this.labelIdChange.Size = new System.Drawing.Size(149, 29);
             this.labelIdChange.TabIndex = 16;
@@ -447,7 +447,7 @@
             // labelNameChange
             // 
             this.labelNameChange.AutoSize = true;
-            this.labelNameChange.Location = new System.Drawing.Point(5, 51);
+            this.labelNameChange.Location = new System.Drawing.Point(6, 61);
             this.labelNameChange.Name = "labelNameChange";
             this.labelNameChange.Size = new System.Drawing.Size(157, 29);
             this.labelNameChange.TabIndex = 15;
@@ -455,7 +455,7 @@
             // 
             // txtIdChange
             // 
-            this.txtIdChange.Location = new System.Drawing.Point(259, 111);
+            this.txtIdChange.Location = new System.Drawing.Point(260, 121);
             this.txtIdChange.Name = "txtIdChange";
             this.txtIdChange.Size = new System.Drawing.Size(237, 36);
             this.txtIdChange.TabIndex = 14;
@@ -464,7 +464,7 @@
             // 
             this.comboBoxFacultyChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.comboBoxFacultyChange.FormattingEnabled = true;
-            this.comboBoxFacultyChange.Location = new System.Drawing.Point(15, 241);
+            this.comboBoxFacultyChange.Location = new System.Drawing.Point(8, 260);
             this.comboBoxFacultyChange.Name = "comboBoxFacultyChange";
             this.comboBoxFacultyChange.Size = new System.Drawing.Size(237, 37);
             this.comboBoxFacultyChange.TabIndex = 13;
@@ -473,7 +473,7 @@
             // 
             this.comboBoxSubjectChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.comboBoxSubjectChange.FormattingEnabled = true;
-            this.comboBoxSubjectChange.Location = new System.Drawing.Point(268, 241);
+            this.comboBoxSubjectChange.Location = new System.Drawing.Point(261, 260);
             this.comboBoxSubjectChange.Name = "comboBoxSubjectChange";
             this.comboBoxSubjectChange.Size = new System.Drawing.Size(235, 37);
             this.comboBoxSubjectChange.TabIndex = 12;
@@ -481,7 +481,7 @@
             // txtNameChange
             // 
             this.txtNameChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.txtNameChange.Location = new System.Drawing.Point(6, 111);
+            this.txtNameChange.Location = new System.Drawing.Point(7, 121);
             this.txtNameChange.Name = "txtNameChange";
             this.txtNameChange.Size = new System.Drawing.Size(237, 36);
             this.txtNameChange.TabIndex = 11;
@@ -489,9 +489,9 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(10, 308);
+            this.listView1.Location = new System.Drawing.Point(6, 318);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(742, 386);
+            this.listView1.Size = new System.Drawing.Size(712, 380);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -507,9 +507,9 @@
             this.Load += new System.EventHandler(this.classForm_Load);
             this.gbAddClass.ResumeLayout(false);
             this.gbAddClass.PerformLayout();
+            this.gbOtherOptionAdd.ResumeLayout(false);
             this.groupBoxAddStudent.ResumeLayout(false);
             this.groupBoxAddStudent.PerformLayout();
-            this.gbOtherOptionAdd.ResumeLayout(false);
             this.gbChangeClass.ResumeLayout(false);
             this.gbChangeClass.PerformLayout();
             this.gbOptionChange.ResumeLayout(false);
@@ -527,7 +527,7 @@
         private System.Windows.Forms.GroupBox gbOtherOptionAdd;
         private System.Windows.Forms.Button btnReturnMenuAdd;
         private System.Windows.Forms.Button btnDeleteClassAdd;
-        private System.Windows.Forms.Button btnClearValue;
+        private System.Windows.Forms.Button btnAddNormalClass;
         private System.Windows.Forms.Button btnAddClass;
         private System.Windows.Forms.TextBox txtIdClassAdd;
         private System.Windows.Forms.Label labelSubjectAdd;
