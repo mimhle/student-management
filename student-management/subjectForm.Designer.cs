@@ -41,22 +41,22 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbAddScore = new System.Windows.Forms.GroupBox();
+            this.labelMssvAddScore = new System.Windows.Forms.Label();
+            this.txtMssvAddScore = new System.Windows.Forms.TextBox();
+            this.btnAddScore = new System.Windows.Forms.Button();
+            this.btnConfirmStudent = new System.Windows.Forms.Button();
+            this.comboBoxClass = new System.Windows.Forms.ComboBox();
+            this.comboBoxSubject = new System.Windows.Forms.ComboBox();
+            this.comboBoxFaculty = new System.Windows.Forms.ComboBox();
+            this.labelClassAddScore = new System.Windows.Forms.Label();
+            this.labelSubjectAddScore = new System.Windows.Forms.Label();
+            this.labelFacultyAddScore = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtStudentName = new System.Windows.Forms.TextBox();
             this.listViewAddScore = new System.Windows.Forms.ListView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnReturnMenuAddScore = new System.Windows.Forms.Button();
             this.btnAddSubjectAddScore = new System.Windows.Forms.Button();
-            this.txtStudentName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelFacultyAddScore = new System.Windows.Forms.Label();
-            this.labelSubjectAddScore = new System.Windows.Forms.Label();
-            this.labelClassAddScore = new System.Windows.Forms.Label();
-            this.comboBoxFaculty = new System.Windows.Forms.ComboBox();
-            this.comboBoxSubject = new System.Windows.Forms.ComboBox();
-            this.comboBoxClass = new System.Windows.Forms.ComboBox();
-            this.btnConfirmStudent = new System.Windows.Forms.Button();
-            this.btnAddScore = new System.Windows.Forms.Button();
-            this.labelMssvAddScore = new System.Windows.Forms.Label();
-            this.txtMssvAddScore = new System.Windows.Forms.TextBox();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
             this.gbAddSubject.SuspendLayout();
             this.gbOptionAddSubject.SuspendLayout();
@@ -140,6 +140,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(355, 37);
             this.comboBox2.TabIndex = 9;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // btnEditSubject
             // 
@@ -159,6 +160,7 @@
             this.btnDeleteSubject.TabIndex = 7;
             this.btnDeleteSubject.Text = "Xóa";
             this.btnDeleteSubject.UseVisualStyleBackColor = true;
+            this.btnDeleteSubject.Click += new System.EventHandler(this.btnDeleteSubject_Click);
             // 
             // listViewDisplaySubject
             // 
@@ -256,6 +258,114 @@
             this.gbAddScore.Text = "Thêm Điểm Môn Học";
             this.gbAddScore.Visible = false;
             // 
+            // labelMssvAddScore
+            // 
+            this.labelMssvAddScore.AutoSize = true;
+            this.labelMssvAddScore.Location = new System.Drawing.Point(276, 183);
+            this.labelMssvAddScore.Name = "labelMssvAddScore";
+            this.labelMssvAddScore.Size = new System.Drawing.Size(202, 29);
+            this.labelMssvAddScore.TabIndex = 17;
+            this.labelMssvAddScore.Text = "Mã Số Sinh Viên";
+            // 
+            // txtMssvAddScore
+            // 
+            this.txtMssvAddScore.Enabled = false;
+            this.txtMssvAddScore.Location = new System.Drawing.Point(268, 226);
+            this.txtMssvAddScore.Name = "txtMssvAddScore";
+            this.txtMssvAddScore.ReadOnly = true;
+            this.txtMssvAddScore.Size = new System.Drawing.Size(224, 36);
+            this.txtMssvAddScore.TabIndex = 16;
+            // 
+            // btnAddScore
+            // 
+            this.btnAddScore.Location = new System.Drawing.Point(811, 29);
+            this.btnAddScore.Name = "btnAddScore";
+            this.btnAddScore.Size = new System.Drawing.Size(195, 145);
+            this.btnAddScore.TabIndex = 15;
+            this.btnAddScore.Text = "Nhập Điểm";
+            this.btnAddScore.UseVisualStyleBackColor = true;
+            // 
+            // btnConfirmStudent
+            // 
+            this.btnConfirmStudent.Location = new System.Drawing.Point(515, 214);
+            this.btnConfirmStudent.Name = "btnConfirmStudent";
+            this.btnConfirmStudent.Size = new System.Drawing.Size(195, 47);
+            this.btnConfirmStudent.TabIndex = 14;
+            this.btnConfirmStudent.Text = "Chọn";
+            this.btnConfirmStudent.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxClass
+            // 
+            this.comboBoxClass.FormattingEnabled = true;
+            this.comboBoxClass.Location = new System.Drawing.Point(537, 93);
+            this.comboBoxClass.Name = "comboBoxClass";
+            this.comboBoxClass.Size = new System.Drawing.Size(224, 37);
+            this.comboBoxClass.TabIndex = 13;
+            this.comboBoxClass.SelectedIndexChanged += new System.EventHandler(this.comboBoxClass_SelectedIndexChanged);
+            // 
+            // comboBoxSubject
+            // 
+            this.comboBoxSubject.FormattingEnabled = true;
+            this.comboBoxSubject.Location = new System.Drawing.Point(268, 89);
+            this.comboBoxSubject.Name = "comboBoxSubject";
+            this.comboBoxSubject.Size = new System.Drawing.Size(224, 37);
+            this.comboBoxSubject.TabIndex = 12;
+            this.comboBoxSubject.SelectedIndexChanged += new System.EventHandler(this.comboBoxSubject_SelectedIndexChanged);
+            // 
+            // comboBoxFaculty
+            // 
+            this.comboBoxFaculty.FormattingEnabled = true;
+            this.comboBoxFaculty.Location = new System.Drawing.Point(14, 89);
+            this.comboBoxFaculty.Name = "comboBoxFaculty";
+            this.comboBoxFaculty.Size = new System.Drawing.Size(224, 37);
+            this.comboBoxFaculty.TabIndex = 11;
+            this.comboBoxFaculty.SelectedIndexChanged += new System.EventHandler(this.comboBoxFaculty_SelectedIndexChanged);
+            // 
+            // labelClassAddScore
+            // 
+            this.labelClassAddScore.AutoSize = true;
+            this.labelClassAddScore.Location = new System.Drawing.Point(532, 49);
+            this.labelClassAddScore.Name = "labelClassAddScore";
+            this.labelClassAddScore.Size = new System.Drawing.Size(55, 29);
+            this.labelClassAddScore.TabIndex = 10;
+            this.labelClassAddScore.Text = "Lớp";
+            // 
+            // labelSubjectAddScore
+            // 
+            this.labelSubjectAddScore.AutoSize = true;
+            this.labelSubjectAddScore.Location = new System.Drawing.Point(263, 49);
+            this.labelSubjectAddScore.Name = "labelSubjectAddScore";
+            this.labelSubjectAddScore.Size = new System.Drawing.Size(62, 29);
+            this.labelSubjectAddScore.TabIndex = 9;
+            this.labelSubjectAddScore.Text = "Môn";
+            // 
+            // labelFacultyAddScore
+            // 
+            this.labelFacultyAddScore.AutoSize = true;
+            this.labelFacultyAddScore.Location = new System.Drawing.Point(9, 49);
+            this.labelFacultyAddScore.Name = "labelFacultyAddScore";
+            this.labelFacultyAddScore.Size = new System.Drawing.Size(72, 29);
+            this.labelFacultyAddScore.TabIndex = 8;
+            this.labelFacultyAddScore.Text = "Khoa";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 183);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 29);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Tên Sinh Viên";
+            // 
+            // txtStudentName
+            // 
+            this.txtStudentName.Enabled = false;
+            this.txtStudentName.Location = new System.Drawing.Point(8, 226);
+            this.txtStudentName.Name = "txtStudentName";
+            this.txtStudentName.ReadOnly = true;
+            this.txtStudentName.Size = new System.Drawing.Size(239, 36);
+            this.txtStudentName.TabIndex = 6;
+            // 
             // listViewAddScore
             // 
             this.listViewAddScore.HideSelection = false;
@@ -264,6 +374,7 @@
             this.listViewAddScore.Size = new System.Drawing.Size(703, 398);
             this.listViewAddScore.TabIndex = 5;
             this.listViewAddScore.UseCompatibleStateImageBehavior = false;
+            this.listViewAddScore.SelectedIndexChanged += new System.EventHandler(this.listViewAddScore_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -296,111 +407,6 @@
             this.btnAddSubjectAddScore.UseVisualStyleBackColor = true;
             this.btnAddSubjectAddScore.Click += new System.EventHandler(this.btnAddSubjectAddScore_Click);
             // 
-            // txtStudentName
-            // 
-            this.txtStudentName.Enabled = false;
-            this.txtStudentName.Location = new System.Drawing.Point(8, 226);
-            this.txtStudentName.Name = "txtStudentName";
-            this.txtStudentName.ReadOnly = true;
-            this.txtStudentName.Size = new System.Drawing.Size(239, 36);
-            this.txtStudentName.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 183);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 29);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Tên Sinh Viên";
-            // 
-            // labelFacultyAddScore
-            // 
-            this.labelFacultyAddScore.AutoSize = true;
-            this.labelFacultyAddScore.Location = new System.Drawing.Point(9, 49);
-            this.labelFacultyAddScore.Name = "labelFacultyAddScore";
-            this.labelFacultyAddScore.Size = new System.Drawing.Size(72, 29);
-            this.labelFacultyAddScore.TabIndex = 8;
-            this.labelFacultyAddScore.Text = "Khoa";
-            // 
-            // labelSubjectAddScore
-            // 
-            this.labelSubjectAddScore.AutoSize = true;
-            this.labelSubjectAddScore.Location = new System.Drawing.Point(263, 49);
-            this.labelSubjectAddScore.Name = "labelSubjectAddScore";
-            this.labelSubjectAddScore.Size = new System.Drawing.Size(62, 29);
-            this.labelSubjectAddScore.TabIndex = 9;
-            this.labelSubjectAddScore.Text = "Môn";
-            // 
-            // labelClassAddScore
-            // 
-            this.labelClassAddScore.AutoSize = true;
-            this.labelClassAddScore.Location = new System.Drawing.Point(532, 49);
-            this.labelClassAddScore.Name = "labelClassAddScore";
-            this.labelClassAddScore.Size = new System.Drawing.Size(55, 29);
-            this.labelClassAddScore.TabIndex = 10;
-            this.labelClassAddScore.Text = "Lớp";
-            // 
-            // comboBoxFaculty
-            // 
-            this.comboBoxFaculty.FormattingEnabled = true;
-            this.comboBoxFaculty.Location = new System.Drawing.Point(14, 89);
-            this.comboBoxFaculty.Name = "comboBoxFaculty";
-            this.comboBoxFaculty.Size = new System.Drawing.Size(224, 37);
-            this.comboBoxFaculty.TabIndex = 11;
-            // 
-            // comboBoxSubject
-            // 
-            this.comboBoxSubject.FormattingEnabled = true;
-            this.comboBoxSubject.Location = new System.Drawing.Point(268, 89);
-            this.comboBoxSubject.Name = "comboBoxSubject";
-            this.comboBoxSubject.Size = new System.Drawing.Size(224, 37);
-            this.comboBoxSubject.TabIndex = 12;
-            // 
-            // comboBoxClass
-            // 
-            this.comboBoxClass.FormattingEnabled = true;
-            this.comboBoxClass.Location = new System.Drawing.Point(537, 93);
-            this.comboBoxClass.Name = "comboBoxClass";
-            this.comboBoxClass.Size = new System.Drawing.Size(224, 37);
-            this.comboBoxClass.TabIndex = 13;
-            // 
-            // btnConfirmStudent
-            // 
-            this.btnConfirmStudent.Location = new System.Drawing.Point(515, 214);
-            this.btnConfirmStudent.Name = "btnConfirmStudent";
-            this.btnConfirmStudent.Size = new System.Drawing.Size(195, 47);
-            this.btnConfirmStudent.TabIndex = 14;
-            this.btnConfirmStudent.Text = "Chọn";
-            this.btnConfirmStudent.UseVisualStyleBackColor = true;
-            // 
-            // btnAddScore
-            // 
-            this.btnAddScore.Location = new System.Drawing.Point(811, 29);
-            this.btnAddScore.Name = "btnAddScore";
-            this.btnAddScore.Size = new System.Drawing.Size(195, 145);
-            this.btnAddScore.TabIndex = 15;
-            this.btnAddScore.Text = "Nhập Điểm";
-            this.btnAddScore.UseVisualStyleBackColor = true;
-            // 
-            // labelMssvAddScore
-            // 
-            this.labelMssvAddScore.AutoSize = true;
-            this.labelMssvAddScore.Location = new System.Drawing.Point(276, 183);
-            this.labelMssvAddScore.Name = "labelMssvAddScore";
-            this.labelMssvAddScore.Size = new System.Drawing.Size(202, 29);
-            this.labelMssvAddScore.TabIndex = 17;
-            this.labelMssvAddScore.Text = "Mã Số Sinh Viên";
-            // 
-            // txtMssvAddScore
-            // 
-            this.txtMssvAddScore.Enabled = false;
-            this.txtMssvAddScore.Location = new System.Drawing.Point(268, 226);
-            this.txtMssvAddScore.Name = "txtMssvAddScore";
-            this.txtMssvAddScore.ReadOnly = true;
-            this.txtMssvAddScore.Size = new System.Drawing.Size(224, 36);
-            this.txtMssvAddScore.TabIndex = 16;
-            // 
             // sqLiteCommand1
             // 
             this.sqLiteCommand1.CommandText = null;
@@ -410,8 +416,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 728);
-            this.Controls.Add(this.gbAddScore);
             this.Controls.Add(this.gbAddSubject);
+            this.Controls.Add(this.gbAddScore);
             this.Name = "subjectForm";
             this.Text = "subjectForm";
             this.gbAddSubject.ResumeLayout(false);
