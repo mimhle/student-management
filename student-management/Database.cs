@@ -18,6 +18,11 @@ namespace studentManagement {
             _connection.Open();
         }
 
+        ~SqliteConnector() {
+            _connection?.Dispose();
+        }
+
+
         public SQLiteCommand createAndExecuteCommand(string commandText, params string[] args) {
             var command = _connection.CreateCommand();
             command.CommandText = commandText;
