@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageAdd = new System.Windows.Forms.TabPage();
             this.groupBoxAddStudent = new System.Windows.Forms.GroupBox();
@@ -74,6 +75,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.errorProviderTxtFind = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl.SuspendLayout();
             this.tabPageAdd.SuspendLayout();
             this.groupBoxAddStudent.SuspendLayout();
@@ -82,6 +85,8 @@
             this.groupBoxFind.SuspendLayout();
             this.groupBoxEdit.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTxtFind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -240,6 +245,7 @@
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(252, 38);
             this.txtId.TabIndex = 12;
+            this.txtId.Validating += new System.ComponentModel.CancelEventHandler(this.txtId_Validating);
             // 
             // checkBoxClassMonitor
             // 
@@ -413,6 +419,7 @@
             this.txtIdFind.Name = "txtIdFind";
             this.txtIdFind.Size = new System.Drawing.Size(275, 38);
             this.txtIdFind.TabIndex = 12;
+            this.txtIdFind.Validating += new System.ComponentModel.CancelEventHandler(this.txtIdFind_Validating);
             // 
             // label5
             // 
@@ -639,6 +646,14 @@
             this.label14.TabIndex = 0;
             this.label14.Text = "Chỉnh sửa thông tin sinh viên";
             // 
+            // errorProviderTxtFind
+            // 
+            this.errorProviderTxtFind.ContainerControl = this;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -660,6 +675,8 @@
             this.groupBoxEdit.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderTxtFind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -717,5 +734,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ErrorProvider errorProviderTxtFind;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

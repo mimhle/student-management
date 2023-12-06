@@ -18,9 +18,13 @@ namespace studentManagement {
             db.insertClass("48.CNTT.A", "Cong nghe thong tin A", "CNTT");
 
             db.insertSubjectClass("LTWIN001", "HCMUE_LTWin_HK1.2023-2024_901", "CNTT", "LTWIN");
+            db.insertSubjectClass("XSTK001", "HCMUE_XSTK_HK1.2023-2024_701", "CNTT", "XSTK");
             db.insertSubject("LTWIN", "Lap trinh Windows", "CNTT", 2);
+            db.insertSubject("XSTK", "Xac suat thong ke", "CNTT", 3);
             db.insertSubjectClassStudent("SV02", "LTWIN001");
+            db.insertSubjectClassStudent("SV03", "XSTK001");
             db.insertScore("SV02", "LTWIN", 10);
+            db.insertScore("SV03", "XSTK", 9);
 
             db.removeStudent("SV01");
             db.removeStudent("SV04");

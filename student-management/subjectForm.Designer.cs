@@ -160,6 +160,7 @@
             this.btnDeleteSubject.TabIndex = 7;
             this.btnDeleteSubject.Text = "Xóa";
             this.btnDeleteSubject.UseVisualStyleBackColor = true;
+            this.btnDeleteSubject.Click += new System.EventHandler(this.btnDeleteSubject_Click);
             // 
             // listViewDisplaySubject
             // 
@@ -415,8 +416,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 728);
-            this.Controls.Add(this.gbAddScore);
             this.Controls.Add(this.gbAddSubject);
+            this.Controls.Add(this.gbAddScore);
             this.Name = "subjectForm";
             this.Text = "subjectForm";
             this.gbAddSubject.ResumeLayout(false);
