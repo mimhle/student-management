@@ -102,5 +102,9 @@ namespace studentManagement {
             listViewDisplay.Columns.Add("Ma Khoa", 100);
             listViewDisplay.Columns.Add("Ma Lop", 100);
         }
+
+        private void groupBoxFind_Enter(object sender, EventArgs e) {
+
+        }
     }
 }

@@ -34,7 +34,6 @@
             this.radioBtnMale = new System.Windows.Forms.RadioButton();
             this.labelSex = new System.Windows.Forms.Label();
             this.comboBoxFaculty = new System.Windows.Forms.ComboBox();
-            this.txtClassId = new System.Windows.Forms.TextBox();
             this.birth = new System.Windows.Forms.DateTimePicker();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -77,6 +76,14 @@
             this.label14 = new System.Windows.Forms.Label();
             this.errorProviderTxtFind = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.comboBoxClassId = new System.Windows.Forms.ComboBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.comboLefFaculty = new System.Windows.Forms.ComboBox();
+            this.comboBoxClass = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.radioButtonName = new System.Windows.Forms.RadioButton();
+            this.radioButtonId = new System.Windows.Forms.RadioButton();
             this.tabControl.SuspendLayout();
             this.tabPageAdd.SuspendLayout();
             this.groupBoxAddStudent.SuspendLayout();
@@ -115,11 +122,11 @@
             // 
             // groupBoxAddStudent
             // 
+            this.groupBoxAddStudent.Controls.Add(this.comboBoxClassId);
             this.groupBoxAddStudent.Controls.Add(this.btnInput);
             this.groupBoxAddStudent.Controls.Add(this.btnReturn);
             this.groupBoxAddStudent.Controls.Add(this.panel1);
             this.groupBoxAddStudent.Controls.Add(this.comboBoxFaculty);
-            this.groupBoxAddStudent.Controls.Add(this.txtClassId);
             this.groupBoxAddStudent.Controls.Add(this.birth);
             this.groupBoxAddStudent.Controls.Add(this.txtName);
             this.groupBoxAddStudent.Controls.Add(this.txtId);
@@ -132,9 +139,9 @@
             this.groupBoxAddStudent.Controls.Add(this.labelId);
             this.groupBoxAddStudent.Controls.Add(this.label1);
             this.groupBoxAddStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.groupBoxAddStudent.Location = new System.Drawing.Point(8, -29);
+            this.groupBoxAddStudent.Location = new System.Drawing.Point(-4, -29);
             this.groupBoxAddStudent.Name = "groupBoxAddStudent";
-            this.groupBoxAddStudent.Size = new System.Drawing.Size(1018, 730);
+            this.groupBoxAddStudent.Size = new System.Drawing.Size(1038, 730);
             this.groupBoxAddStudent.TabIndex = 1;
             this.groupBoxAddStudent.TabStop = false;
             // 
@@ -212,14 +219,6 @@
             this.comboBoxFaculty.Name = "comboBoxFaculty";
             this.comboBoxFaculty.Size = new System.Drawing.Size(366, 39);
             this.comboBoxFaculty.TabIndex = 16;
-            // 
-            // txtClassId
-            // 
-            this.txtClassId.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClassId.Location = new System.Drawing.Point(46, 514);
-            this.txtClassId.Name = "txtClassId";
-            this.txtClassId.Size = new System.Drawing.Size(269, 38);
-            this.txtClassId.TabIndex = 15;
             // 
             // birth
             // 
@@ -342,7 +341,14 @@
             // 
             // groupBoxFind
             // 
-            this.groupBoxFind.BackColor = System.Drawing.Color.White;
+            this.groupBoxFind.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxFind.Controls.Add(this.radioButtonId);
+            this.groupBoxFind.Controls.Add(this.radioButtonName);
+            this.groupBoxFind.Controls.Add(this.label13);
+            this.groupBoxFind.Controls.Add(this.label8);
+            this.groupBoxFind.Controls.Add(this.comboBoxClass);
+            this.groupBoxFind.Controls.Add(this.comboLefFaculty);
+            this.groupBoxFind.Controls.Add(this.btnDelete);
             this.groupBoxFind.Controls.Add(this.label2);
             this.groupBoxFind.Controls.Add(this.btnFind);
             this.groupBoxFind.Controls.Add(this.listViewDisplay);
@@ -353,17 +359,18 @@
             this.groupBoxFind.Controls.Add(this.label9);
             this.groupBoxFind.Controls.Add(this.label10);
             this.groupBoxFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.groupBoxFind.Location = new System.Drawing.Point(0, -29);
+            this.groupBoxFind.Location = new System.Drawing.Point(-4, -29);
             this.groupBoxFind.Name = "groupBoxFind";
-            this.groupBoxFind.Size = new System.Drawing.Size(1038, 724);
+            this.groupBoxFind.Size = new System.Drawing.Size(1042, 724);
             this.groupBoxFind.TabIndex = 2;
             this.groupBoxFind.TabStop = false;
+            this.groupBoxFind.Enter += new System.EventHandler(this.groupBoxFind_Enter);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label2.Location = new System.Drawing.Point(117, 238);
+            this.label2.Location = new System.Drawing.Point(39, 300);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 29);
             this.label2.TabIndex = 22;
@@ -372,9 +379,9 @@
             // btnFind
             // 
             this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFind.Location = new System.Drawing.Point(547, 565);
+            this.btnFind.Location = new System.Drawing.Point(826, 300);
             this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(146, 38);
+            this.btnFind.Size = new System.Drawing.Size(147, 38);
             this.btnFind.TabIndex = 21;
             this.btnFind.Text = "Tìm kiếm";
             this.btnFind.UseVisualStyleBackColor = true;
@@ -382,10 +389,11 @@
             // 
             // listViewDisplay
             // 
+            this.listViewDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewDisplay.HideSelection = false;
-            this.listViewDisplay.Location = new System.Drawing.Point(122, 282);
+            this.listViewDisplay.Location = new System.Drawing.Point(44, 353);
             this.listViewDisplay.Name = "listViewDisplay";
-            this.listViewDisplay.Size = new System.Drawing.Size(737, 261);
+            this.listViewDisplay.Size = new System.Drawing.Size(929, 261);
             this.listViewDisplay.TabIndex = 20;
             this.listViewDisplay.UseCompatibleStateImageBehavior = false;
             // 
@@ -393,9 +401,9 @@
             // 
             this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(713, 565);
+            this.btnEdit.Location = new System.Drawing.Point(44, 640);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(146, 38);
+            this.btnEdit.Size = new System.Drawing.Size(147, 38);
             this.btnEdit.TabIndex = 19;
             this.btnEdit.Text = "Chỉnh sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -415,9 +423,9 @@
             // txtIdFind
             // 
             this.txtIdFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdFind.Location = new System.Drawing.Point(120, 178);
+            this.txtIdFind.Location = new System.Drawing.Point(44, 239);
             this.txtIdFind.Name = "txtIdFind";
-            this.txtIdFind.Size = new System.Drawing.Size(275, 38);
+            this.txtIdFind.Size = new System.Drawing.Size(341, 38);
             this.txtIdFind.TabIndex = 12;
             this.txtIdFind.Validating += new System.ComponentModel.CancelEventHandler(this.txtIdFind_Validating);
             // 
@@ -434,11 +442,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label9.Location = new System.Drawing.Point(115, 132);
+            this.label9.Location = new System.Drawing.Point(39, 132);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(280, 29);
+            this.label9.Size = new System.Drawing.Size(220, 29);
             this.label9.TabIndex = 1;
-            this.label9.Text = "Mã số sinh viên cần tìm";
+            this.label9.Text = "Tìm sinh viên theo";
             // 
             // label10
             // 
@@ -446,9 +454,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.label10.Location = new System.Drawing.Point(264, 58);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(357, 39);
+            this.label10.Size = new System.Drawing.Size(303, 39);
             this.label10.TabIndex = 0;
-            this.label10.Text = "Tìm thông tin sinh viên";
+            this.label10.Text = "Thông tin sinh viên";
             // 
             // groupBoxEdit
             // 
@@ -467,9 +475,9 @@
             this.groupBoxEdit.Controls.Add(this.label12);
             this.groupBoxEdit.Controls.Add(this.label14);
             this.groupBoxEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.groupBoxEdit.Location = new System.Drawing.Point(3, -29);
+            this.groupBoxEdit.Location = new System.Drawing.Point(-4, -29);
             this.groupBoxEdit.Name = "groupBoxEdit";
-            this.groupBoxEdit.Size = new System.Drawing.Size(1031, 738);
+            this.groupBoxEdit.Size = new System.Drawing.Size(1038, 738);
             this.groupBoxEdit.TabIndex = 23;
             this.groupBoxEdit.TabStop = false;
             // 
@@ -654,6 +662,89 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // comboBoxClassId
+            // 
+            this.comboBoxClassId.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxClassId.FormattingEnabled = true;
+            this.comboBoxClassId.Location = new System.Drawing.Point(46, 514);
+            this.comboBoxClassId.Name = "comboBoxClassId";
+            this.comboBoxClassId.Size = new System.Drawing.Size(366, 39);
+            this.comboBoxClassId.TabIndex = 20;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(210, 640);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(147, 38);
+            this.btnDelete.TabIndex = 23;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // comboLefFaculty
+            // 
+            this.comboLefFaculty.BackColor = System.Drawing.SystemColors.Window;
+            this.comboLefFaculty.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboLefFaculty.FormattingEnabled = true;
+            this.comboLefFaculty.Location = new System.Drawing.Point(551, 240);
+            this.comboLefFaculty.Name = "comboLefFaculty";
+            this.comboLefFaculty.Size = new System.Drawing.Size(198, 37);
+            this.comboLefFaculty.TabIndex = 24;
+            // 
+            // comboBoxClass
+            // 
+            this.comboBoxClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxClass.FormattingEnabled = true;
+            this.comboBoxClass.Location = new System.Drawing.Point(775, 240);
+            this.comboBoxClass.Name = "comboBoxClass";
+            this.comboBoxClass.Size = new System.Drawing.Size(198, 37);
+            this.comboBoxClass.TabIndex = 25;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label8.Location = new System.Drawing.Point(546, 194);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 29);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Khoa";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label13.Location = new System.Drawing.Point(770, 194);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 29);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Lớp";
+            // 
+            // radioButtonName
+            // 
+            this.radioButtonName.AutoSize = true;
+            this.radioButtonName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonName.Location = new System.Drawing.Point(44, 190);
+            this.radioButtonName.Name = "radioButtonName";
+            this.radioButtonName.Size = new System.Drawing.Size(77, 33);
+            this.radioButtonName.TabIndex = 28;
+            this.radioButtonName.TabStop = true;
+            this.radioButtonName.Text = "Tên";
+            this.radioButtonName.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonId
+            // 
+            this.radioButtonId.AutoSize = true;
+            this.radioButtonId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonId.Location = new System.Drawing.Point(158, 190);
+            this.radioButtonId.Name = "radioButtonId";
+            this.radioButtonId.Size = new System.Drawing.Size(199, 33);
+            this.radioButtonId.TabIndex = 29;
+            this.radioButtonId.TabStop = true;
+            this.radioButtonId.Text = "Mã số sinh viên";
+            this.radioButtonId.UseVisualStyleBackColor = true;
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -693,7 +784,6 @@
         private System.Windows.Forms.RadioButton radioBtnMale;
         private System.Windows.Forms.Label labelSex;
         private System.Windows.Forms.ComboBox comboBoxFaculty;
-        private System.Windows.Forms.TextBox txtClassId;
         private System.Windows.Forms.DateTimePicker birth;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtId;
@@ -736,5 +826,13 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ErrorProvider errorProviderTxtFind;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ComboBox comboBoxClassId;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBoxClass;
+        private System.Windows.Forms.ComboBox comboLefFaculty;
+        private System.Windows.Forms.RadioButton radioButtonId;
+        private System.Windows.Forms.RadioButton radioButtonName;
     }
 }
