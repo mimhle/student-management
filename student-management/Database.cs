@@ -137,27 +137,6 @@ namespace studentManagement {
         }
 
         /// <summary>
-        ///   Update student.
-        /// </summary>
-        /// <param name="maSinhVien"></param>
-        /// <returns> true if success whether student exists or not </returns>
-        public bool removeStudent(string maSinhVien) {
-            try {
-                _connector.createAndExecuteCommand(@"
-                    DELETE FROM DSSinhVien WHERE MaSinhVien = @MaSinhVien
-                ", maSinhVien);
-                _connector.createAndExecuteCommand(@"
-                    DELETE FROM DSUser WHERE MaSinhVien = @MaSinhVien
-                ", maSinhVien);
-            } catch (Exception e) {
-                Console.WriteLine(e);
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         ///   Check login.
         /// </summary>
         /// <returns> true if username and password is correct </returns>
@@ -468,7 +447,7 @@ namespace studentManagement {
         /// <param name="maSinhVien"></param>
         /// <param name="maLopHocPhan"></param>
         /// <returns> null if class student not exists </returns>
-        public Dictionary<string, string> getStudentClass(string maSinhVien, string maLopHocPhan) {
+        public Dictionary<string, string> getSubjectClassStudents(string maSinhVien, string maLopHocPhan) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSSinhVienLopHocPhan WHERE MaSinhVien = @maSinhVien AND MaLopHocPhan = @maLopHocPhan
             ", maSinhVien, maLopHocPhan);
@@ -659,7 +638,7 @@ namespace studentManagement {
         ///   Get all class students.
         /// </summary>
         /// <returns> list of class students </returns>
-        public List<Dictionary<string, string>> getAllStudentClasses() {
+        public List<Dictionary<string, string>> getAllSubjectClassStudents() {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSSinhVienLopHocPhan
             ");
@@ -701,6 +680,179 @@ namespace studentManagement {
             }
 
             return users;
+        }
+
+        /// <summary>
+        ///   Remove student.
+        /// </summary>
+        /// <param name="maSinhVien"></param>
+        /// <returns> true if success whether student exists or not </returns>
+        public bool removeStudent(string maSinhVien) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSSinhVien WHERE MaSinhVien = @MaSinhVien
+                ", maSinhVien);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSUser WHERE MaSinhVien = @MaSinhVien
+                ", maSinhVien);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///   Remove faculty.
+        /// </summary>
+        /// <param name="maKhoa"></param>
+        /// <returns> true if success whether faculty exists or not </returns>
+        public bool removeFaculty(string maKhoa) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSKhoa WHERE MaKhoa = @MaKhoa
+                ", maKhoa);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSLop WHERE MaKhoa = @MaKhoa
+                ", maKhoa);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSMonHoc WHERE MaKhoa = @MaKhoa
+                ", maKhoa);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSLopHocPhan WHERE MaKhoa = @MaKhoa
+                ", maKhoa);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSDiem WHERE MaKhoa = @MaKhoa
+                ", maKhoa);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSUser WHERE MaSinhVien IN (SELECT MaSinhVien FROM DSSinhVien WHERE MaKhoa = @MaKhoa)
+                ", maKhoa);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSSinhVien WHERE MaKhoa = @MaKhoa
+                ", maKhoa);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///   Remove class.
+        /// </summary>
+        /// <param name="maLop"></param>
+        /// <returns> true if success whether class exists or not </returns>
+        public bool removeClass(string maLop) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSLop WHERE MaLop = @MaLop
+                ", maLop);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSUser WHERE MaSinhVien IN (SELECT MaSinhVien FROM DSSinhVien WHERE MaLop = @MaLop)
+                ", maLop);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSSinhVien WHERE MaLop = @MaLop
+                ", maLop);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSLopHocPhan WHERE MaLop = @MaLop
+                ", maLop);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSSinhVienLopHocPhan WHERE MaLop = @MaLop
+                ", maLop);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSDiem WHERE MaLop = @MaLop
+                ", maLop);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///   Remove subject.
+        /// </summary>
+        /// <param name="maMonHoc"></param>
+        /// <returns> true if success whether subject exists or not </returns>
+        public bool removeSubject(string maMonHoc) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSMonHoc WHERE MaMonHoc = @MaMonHoc
+                ", maMonHoc);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSLopHocPhan WHERE MaMonHoc = @MaMonHoc
+                ", maMonHoc);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSDiem WHERE MaMonHoc = @MaMonHoc
+                ", maMonHoc);
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSSinhVienLopHocPhan WHERE MaLopHocPhan IN (SELECT MaLopHocPhan FROM DSLopHocPhan WHERE MaMonHoc = @MaMonHoc)
+                ", maMonHoc);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///   Remove subject class.
+        /// </summary>
+        /// <param name="maLopHocPhan"></param>
+        /// <returns> true if success whether subject class exists or not </returns>
+        public bool removeSubjectClass(string maLopHocPhan) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSLopHocPhan WHERE MaLopHocPhan = @MaLopHocPhan
+                ", maLopHocPhan);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///   Remove class student.
+        /// </summary>
+        /// <param name="maSinhVien"></param>
+        /// <param name="maLopHocPhan"></param>
+        /// <returns> true if success whether class student exists or not </returns>
+        public bool removeSubjectClassStudent(string maSinhVien, string maLopHocPhan) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSSinhVienLopHocPhan WHERE MaSinhVien = @MaSinhVien AND MaLopHocPhan = @MaLopHocPhan
+                ", maSinhVien, maLopHocPhan);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///   Remove score.
+        /// </summary>
+        /// <param name="maSinhVien"></param>
+        /// <param name="maMonHoc"></param>
+        /// <returns> true if success whether score exists or not </returns>
+        public bool removeScore(string maSinhVien, string maMonHoc) {
+            try {
+                _connector.createAndExecuteCommand(@"
+                    DELETE FROM DSDiem WHERE MaSinhVien = @MaSinhVien AND MaMonHoc = @MaMonHoc
+                ", maSinhVien, maMonHoc);
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            return true;
         }
     }
 }
