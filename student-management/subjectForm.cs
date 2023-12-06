@@ -103,7 +103,7 @@ namespace studentManagement {
             var subject = db.getAllSubject();
 
             foreach (var row in subject) {
-                var temp = db.getFaculty(row["MaKhoa"].ToString()); ;
+                var temp = db.getFacultyID(row["MaKhoa"].ToString()); ;
                 if (temp != null) {
                     if (comboBoxFaculty.SelectedIndex != -1 && comboBoxFaculty.SelectedItem.ToString() == temp["TenKhoa"].ToString()) {
                         comboBoxSubject.Items.Add(row["TenMonHoc"]);
@@ -157,7 +157,7 @@ namespace studentManagement {
         private void loadListViewAddScore() {
             listViewAddScore.Items.Clear();
 
-            var students = db.getAllStudentClasses();
+            var students = db.getAllStudents();
             foreach (var row in students) {
                 var maLop = db.getSubjectClass(row["MaLopHocPhan"].ToString());
                 var diem = db.getScore(row["MaSinhVien"].ToString(), maLop["MaMonHoc"].ToString());

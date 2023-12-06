@@ -325,7 +325,7 @@ namespace studentManagement {
         /// </summary>
         /// <param name="maKhoa"></param>
         /// <returns> null if faculty not exists </returns>
-        public Dictionary<string, string> getFaculty(string maKhoa) {
+        public Dictionary<string, string> getFacultyID(string maKhoa) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSKhoa WHERE MaKhoa = @maKhoa
             ", maKhoa);
@@ -349,7 +349,7 @@ namespace studentManagement {
         /// </summary>
         /// <param name="maLop"></param>
         /// <returns> null if class not exists </returns>
-        public Dictionary<string, string> getClass(string maLop) {
+        public Dictionary<string, string> getClassID(string maLop) {
             var command = _connector.createAndExecuteCommand(@"
                 SELECT * FROM DSLop WHERE MaLop = @maLop
             ", maLop);
