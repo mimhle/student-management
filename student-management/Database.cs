@@ -36,7 +36,8 @@ namespace studentManagement {
     public class Database {
         private readonly SqliteConnector _connector;
 
-        private static string _hashPassword(string password) {
+        private static string _hashPassword(string password, string salt) {
+            password += salt;
             var passwordBytes = Encoding.UTF8.GetBytes(password);
             var hashBytes = new SHA256Managed().ComputeHash(passwordBytes);
             password = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
@@ -127,7 +128,7 @@ namespace studentManagement {
                 _connector.createAndExecuteCommand(@"
                     INSERT OR REPLACE INTO DSUser (Username, Password, MaSinhVien)
                     VALUES (@MaSinhVien, @password, @MaSinhVien)
-                ", maSinhVien, _hashPassword(maSinhVien), maSinhVien);
+                ", maSinhVien, _hashPassword(maSinhVien, maSinhVien), maSinhVien);
             } catch (Exception e) {
                 Console.WriteLine(e);
                 return false;
@@ -142,7 +143,7 @@ namespace studentManagement {
         /// <returns> true if username and password is correct </returns>
         public bool checkLogin(string username, string password) {
             var command = _connector.createAndExecuteCommand(@"
-                SELECT Password FROM DSUser WHERE Username = @username
+                SELECT Password, MaSinhVien FROM DSUser WHERE Username = @username
             ", username);
             var reader = command.ExecuteReader();
             if (!reader.Read()) {
@@ -150,7 +151,8 @@ namespace studentManagement {
             }
 
             var hashPassword = reader.GetString(0);
-            return hashPassword == _hashPassword(password);
+            var maSinhVien = reader.GetString(1);
+            return hashPassword == _hashPassword(password, maSinhVien);
         }
 
         /// <summary>
@@ -158,9 +160,12 @@ namespace studentManagement {
         /// </summary>
         /// <returns> true if username exists </returns>
         public bool updatePassword(string username, string password) {
+            var maSinhVien = _connector.createAndExecuteCommand(@"
+                SELECT MaSinhVien FROM DSUser WHERE Username = @username
+            ", username).ExecuteScalar().ToString();
             var command = _connector.createAndExecuteCommand(@"
                 UPDATE DSUser SET Password = @password WHERE Username = @username
-            ", _hashPassword(password), username);
+            ", _hashPassword(password, maSinhVien), username);
             return command.ExecuteNonQuery() > 0;
         }
 
