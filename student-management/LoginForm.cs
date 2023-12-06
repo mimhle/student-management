@@ -7,7 +7,7 @@ namespace studentManagement {
             InitializeComponent();
 
             // test code for Database.cs
-            var db = new Database("Data Source=ltwin_test.db");
+            var db = new Database(Program.dbLocation);
             db.insertStudent("SV01", "Nguyen Van A", "1999-01-01", "Nam", "CNTT", "48.CNTT.A");
             db.insertStudent("SV02", "Nguyen Van A", "1999-01-01", "Nam", "CNTT", "48.CNTT.A");
             db.insertStudent("SV03", "Nguyen Van B", "1999", "Nam", "CNTT", "48.CNTT.A", true);

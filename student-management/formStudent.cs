@@ -10,7 +10,7 @@ namespace studentManagement {
             createColumsListViewDisplay();
         }
 
-        private Database db = new Database("Data Source=ltwin_test.db");
+        private Database db = new Database(Program.dbLocation);
         private bool addStudentActive = true;
 
         private void AutoResizeListViewColumns(System.Windows.Forms.ListView listView) {

@@ -1,15 +1,5 @@
 ﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace studentManagement {
     public partial class subjectForm : Form {
@@ -20,7 +10,7 @@ namespace studentManagement {
             createColumsListViewDisplaySubject();
         }
 
-        private Database db = new Database("Data Source=ltwin_test.db");
+        private Database db = new Database(Program.dbLocation);
         private bool isEditing = false; // Add a class-level variable to keep track of the state
 
         private bool isSubject = true;
