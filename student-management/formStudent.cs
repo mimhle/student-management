@@ -49,8 +49,20 @@ namespace studentManagement {
         }
 
         private void btnEdit_Click(object sender, System.EventArgs e) {
-            groupBoxEdit_Show(true);
-            groupBoxFind_Show(false);
+            if(listViewDisplay.SelectedItems.Count == 1) {
+                groupBoxFind_Show(false);
+                groupBoxEdit_Show(true);
+                txtNameEdit.Text = listViewDisplay.SelectedItems[0].SubItems[1].Text;
+                /*String res = listViewDisplay.SelectedItems[0].SubItems[1].Text;
+                var classList = db.getAllClasses();
+                foreach (var item in classList) {
+                    if (item["MaKhoa"].ToString() == getFacultyID(res)) {
+                        comboBoxFacultyEdit.Text = item["TenKhoa"].ToString();
+                    }
+                }*/
+
+            }
+
         }
 
         private void btnReturnToFind_Click(object sender, System.EventArgs e) {
@@ -192,6 +204,7 @@ namespace studentManagement {
                         item.SubItems.Add(student["MaLop"].ToString());
                         listViewDisplay.Items.Add(item);
                     }
+                    AutoResizeListViewColumns(listViewDisplay);
                     return;
                 }
 
@@ -227,12 +240,34 @@ namespace studentManagement {
             if (listViewDisplay.SelectedItems.Count == 1) {
                 btnEdit.Enabled = true;
                 btnDelete.Enabled = true;
+            } else {
+                btnEdit.Enabled = false;
             }
         }
 
         private void comboBoxFacultyEdit_SelectedIndexChanged(object sender, EventArgs e) {
             if (comboBoxFacultyEdit.SelectedIndex != -1)
                 loadClassByFaculty(comboBoxFacultyEdit.SelectedItem.ToString());
+        }
+
+        private void radioButtonId_CheckedChanged(object sender, EventArgs e) {
+            if(radioButtonId.Checked) { 
+                comboBoxClass.Enabled = false;
+                comboLefFaculty.Enabled = false;
+                comboBoxClass.Text = string.Empty;
+                comboLefFaculty.Text = string.Empty;
+            }
+        }
+
+        private void radioButtonName_CheckedChanged(object sender, EventArgs e) {
+            if (radioButtonName.Checked) {
+                comboBoxClass.Enabled = true;
+                comboLefFaculty.Enabled = true;
+            }
+        }
+
+        private void btnUpdates_Click(object sender, EventArgs e) {
+            txtNameEdit.Text = listViewDisplay.SelectedItems[1].SubItems[1].ToString();
         }
     }
 }
