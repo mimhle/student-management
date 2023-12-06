@@ -11,6 +11,13 @@ namespace studentManagement {
         }
 
         private Database db = new Database("Data Source=ltwin_test.db");
+        private bool addStudentActive = true;
+
+        private void AutoResizeListViewColumns(System.Windows.Forms.ListView listView) {
+            foreach (System.Windows.Forms.ColumnHeader column in listView.Columns) {
+                column.AutoResize(System.Windows.Forms.ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+        }
 
         private void groupBoxFind_Show(bool check) {
             if (check) groupBoxFind.Show();
@@ -38,20 +45,7 @@ namespace studentManagement {
         }
 
         private void btnFind_Click(object sender, System.EventArgs e) {
-            if (isValidStudentID(txtIdFind.Text)) {
-                var student = db.getStudent(txtIdFind.Text);
-                if (student != null) {
-                    Console.WriteLine(student["HoTen"].ToString());
-                    Console.WriteLine(student["NgaySinh"]);
-                    Console.WriteLine(student["GioiTinh"]);
-                    Console.WriteLine(student["MaKhoa"]);
-                    Console.WriteLine(student["MaLop"]);
-                } else {
-                    MessageBox.Show("Student not found");
-                    clearAllSelectedComboBoxAndListView();
-                }
-                btnEdit.Enabled = true;
-            }
+            loadStudentListView();
         }
 
         private void btnEdit_Click(object sender, System.EventArgs e) {
@@ -68,18 +62,28 @@ namespace studentManagement {
             var facultyList = db.getAllFaculties();
             foreach (var faculty in facultyList) {
                 comboBoxFaculty.Items.Add(faculty["TenKhoa"].ToString());
+                comboBoxFacultyEdit.Items.Add(faculty["TenKhoa"].ToString());
+                comboLefFaculty.Items.Add(faculty["TenKhoa"].ToString());
             }
         }
-
-        private void clearAllSelectedComboBoxAndListView() {
-            comboBoxFaculty.SelectedItem = -1;
-        }
-
-        private void txtIdFind_Validating(object sender, System.ComponentModel.CancelEventArgs e) {
-            if (!isValidStudentID(txtIdFind.Text)) {
-                errorProviderTxtFind.SetError(txtIdFind, "Please enter a valid student ID");
-            } else {
-                errorProviderTxtFind.SetError(txtIdFind, null);
+        private void loadClassByFaculty(string facultyName) {
+            comboBoxClassId.Items.Clear();
+            comboBoxClassId.Text = "";
+            comboBoxClass.Items.Clear();
+            comboBoxClass.Text = "";
+            comboBoxClassIdEdit.Items.Clear();
+            comboBoxClassIdEdit.Text = "";
+            var classList = db.getAllClasses();
+            foreach (var item in classList) {
+                if (item["MaKhoa"].ToString() == getFacultyID(facultyName)) {
+                    if (comboBoxFaculty.SelectedIndex != -1)
+                        comboBoxClassId.Items.Add(item["TenLop"].ToString());
+                    if (comboBoxFacultyEdit.SelectedIndex != -1) {
+                        comboBoxClassIdEdit.Items.Add(item["TenLop"].ToString());
+                    }
+                    if (comboLefFaculty.SelectedIndex != -1)
+                        comboBoxClass.Items.Add(item["TenLop"].ToString());
+                }
             }
         }
 
@@ -101,10 +105,134 @@ namespace studentManagement {
             listViewDisplay.Columns.Add("Gioi Tinh", 100);
             listViewDisplay.Columns.Add("Ma Khoa", 100);
             listViewDisplay.Columns.Add("Ma Lop", 100);
+
+            AutoResizeListViewColumns(listViewDisplay);
         }
 
-        private void groupBoxFind_Enter(object sender, EventArgs e) {
+        private void comboBoxFaculty_SelectedIndexChanged(object sender, EventArgs e) {
+            if (comboBoxFaculty.SelectedIndex != -1)
+                loadClassByFaculty(comboBoxFaculty.SelectedItem.ToString());
+        }
 
+        private void clearAllSelected() {
+            comboBoxFaculty.SelectedIndex = -1;
+            comboBoxClassId.SelectedIndex = -1;
+            comboBoxClassId.Items.Clear();
+            comboLefFaculty.SelectedIndex = -1;
+            comboBoxClass.SelectedIndex = -1;
+            comboBoxClass.Items.Clear();
+            comboBoxFacultyEdit.SelectedIndex = -1;
+            comboBoxClassIdEdit.SelectedIndex = -1;
+            comboBoxClassIdEdit.Items.Clear();
+            listViewDisplay.Items.Clear();
+
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e) {
+            if (tabControl.SelectedIndex == 0 && !addStudentActive) {
+                clearAllSelected();
+                addStudentActive = true;
+            } else if (tabControl.SelectedIndex == 1 && addStudentActive) {
+                clearAllSelected();
+                addStudentActive = false;
+            }
+        }
+
+        private void comboLefFaculty_SelectedIndexChanged(object sender, EventArgs e) {
+            if (comboLefFaculty.SelectedIndex != -1)
+                loadClassByFaculty(comboLefFaculty.SelectedItem.ToString());
+        }
+
+        private string getFacultyID(string facultyName) {
+            var result = "";
+
+            var facultyList = db.getAllFaculties();
+            foreach (var faculty in facultyList) {
+                if (faculty["TenKhoa"].ToString() == facultyName) {
+                    result = faculty["MaKhoa"].ToString();
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        private string getClassID(string className) {
+            var result = "";
+
+            var classList = db.getAllClasses();
+            foreach (var classItem in classList) {
+                if (classItem["TenLop"].ToString() == className) {
+                    result = classItem["MaLop"].ToString();
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        private void loadStudentListView() {
+            listViewDisplay.Items.Clear();
+            var studentList = db.getAllStudents();
+
+            if (txtIdFind.Text != "")
+                if (radioButtonName.Checked) {
+                    for (int i = 0; i < studentList.Count;) {
+                        if (studentList[i]["HoTen"].ToString() != txtIdFind.Text) studentList.Remove(studentList[i]);
+                        else i++;
+                    }
+                } else if (radioButtonId.Checked) {
+                    var student = db.getStudent(txtIdFind.Text);
+                    if (student != null) {
+                        var item = new ListViewItem(student["MaSinhVien"].ToString());
+                        item.SubItems.Add(student["HoTen"].ToString());
+                        item.SubItems.Add(student["NgaySinh"].ToString());
+                        item.SubItems.Add(student["GioiTinh"].ToString());
+                        item.SubItems.Add(student["MaKhoa"].ToString());
+                        item.SubItems.Add(student["MaLop"].ToString());
+                        listViewDisplay.Items.Add(item);
+                    }
+                    return;
+                }
+
+            if (comboLefFaculty.SelectedIndex != -1) {
+                for (int i = 0; i < studentList.Count;) {
+                    if (studentList[i]["MaKhoa"].ToString() != getFacultyID(comboLefFaculty.SelectedItem.ToString())) studentList.Remove(studentList[i]);
+                    else i++;
+                }
+            }
+
+            if (comboBoxClass.SelectedIndex != -1) {
+                for (int i = 0; i < studentList.Count;) {
+                    if (studentList[i]["MaLop"].ToString() != getClassID(comboBoxClass.SelectedItem.ToString())) studentList.Remove(studentList[i]);
+                    else i++;
+
+                }
+            }
+
+            foreach (var student in studentList) {
+                var item = new ListViewItem(student["MaSinhVien"].ToString());
+                item.SubItems.Add(student["HoTen"].ToString());
+                item.SubItems.Add(student["NgaySinh"].ToString());
+                item.SubItems.Add(student["GioiTinh"].ToString());
+                item.SubItems.Add(student["MaKhoa"].ToString());
+                item.SubItems.Add(student["MaLop"].ToString());
+                listViewDisplay.Items.Add(item);
+            }
+
+            AutoResizeListViewColumns(listViewDisplay);
+        }
+
+        private void listViewDisplay_SelectedIndexChanged(object sender, EventArgs e) {
+            if (listViewDisplay.SelectedItems.Count == 1) {
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = true;
+            }
+        }
+
+        private void comboBoxFacultyEdit_SelectedIndexChanged(object sender, EventArgs e) {
+            if (comboBoxFacultyEdit.SelectedIndex != -1)
+                loadClassByFaculty(comboBoxFacultyEdit.SelectedItem.ToString());
         }
     }
 }
