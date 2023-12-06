@@ -47,6 +47,23 @@
             this.labelId = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPageFind = new System.Windows.Forms.TabPage();
+            this.groupBoxFind = new System.Windows.Forms.GroupBox();
+            this.radioButtonId = new System.Windows.Forms.RadioButton();
+            this.radioButtonName = new System.Windows.Forms.RadioButton();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBoxClass = new System.Windows.Forms.ComboBox();
+            this.comboLefFaculty = new System.Windows.Forms.ComboBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnFind = new System.Windows.Forms.Button();
+            this.listViewDisplay = new System.Windows.Forms.ListView();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtIdFind = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBoxEdit = new System.Windows.Forms.GroupBox();
             this.btnReturnToFind = new System.Windows.Forms.Button();
             this.btnUpdates = new System.Windows.Forms.Button();
@@ -65,32 +82,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.groupBoxFind = new System.Windows.Forms.GroupBox();
-            this.radioButtonId = new System.Windows.Forms.RadioButton();
-            this.radioButtonName = new System.Windows.Forms.RadioButton();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBoxClass = new System.Windows.Forms.ComboBox();
-            this.comboLefFaculty = new System.Windows.Forms.ComboBox();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnFind = new System.Windows.Forms.Button();
-            this.listViewDisplay = new System.Windows.Forms.ListView();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtIdFind = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl.SuspendLayout();
             this.tabPageAdd.SuspendLayout();
             this.groupBoxAddStudent.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPageFind.SuspendLayout();
+            this.groupBoxFind.SuspendLayout();
             this.groupBoxEdit.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.groupBoxFind.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -348,203 +348,6 @@
             this.tabPageFind.Text = "Tìm sinh viên";
             this.tabPageFind.UseVisualStyleBackColor = true;
             // 
-            // groupBoxEdit
-            // 
-            this.groupBoxEdit.Controls.Add(this.btnReturnToFind);
-            this.groupBoxEdit.Controls.Add(this.btnUpdates);
-            this.groupBoxEdit.Controls.Add(this.comboBoxClassIdEdit);
-            this.groupBoxEdit.Controls.Add(this.button2);
-            this.groupBoxEdit.Controls.Add(this.panel2);
-            this.groupBoxEdit.Controls.Add(this.comboBoxFacultyEdit);
-            this.groupBoxEdit.Controls.Add(this.birthEdit);
-            this.groupBoxEdit.Controls.Add(this.txtNameEdit);
-            this.groupBoxEdit.Controls.Add(this.checkBoxClassMonitorEdit);
-            this.groupBoxEdit.Controls.Add(this.label4);
-            this.groupBoxEdit.Controls.Add(this.label7);
-            this.groupBoxEdit.Controls.Add(this.label11);
-            this.groupBoxEdit.Controls.Add(this.label12);
-            this.groupBoxEdit.Controls.Add(this.label14);
-            this.groupBoxEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.groupBoxEdit.Location = new System.Drawing.Point(-4, -29);
-            this.groupBoxEdit.Name = "groupBoxEdit";
-            this.groupBoxEdit.Size = new System.Drawing.Size(1038, 738);
-            this.groupBoxEdit.TabIndex = 23;
-            this.groupBoxEdit.TabStop = false;
-            // 
-            // btnReturnToFind
-            // 
-            this.btnReturnToFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturnToFind.Location = new System.Drawing.Point(232, 618);
-            this.btnReturnToFind.Name = "btnReturnToFind";
-            this.btnReturnToFind.Size = new System.Drawing.Size(272, 50);
-            this.btnReturnToFind.TabIndex = 21;
-            this.btnReturnToFind.Text = "Quay lại tìm kiếm";
-            this.btnReturnToFind.UseVisualStyleBackColor = true;
-            this.btnReturnToFind.Click += new System.EventHandler(this.btnReturnToFind_Click);
-            // 
-            // btnUpdates
-            // 
-            this.btnUpdates.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdates.Location = new System.Drawing.Point(67, 620);
-            this.btnUpdates.Name = "btnUpdates";
-            this.btnUpdates.Size = new System.Drawing.Size(146, 47);
-            this.btnUpdates.TabIndex = 20;
-            this.btnUpdates.Text = "Cập nhật";
-            this.btnUpdates.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxClassIdEdit
-            // 
-            this.comboBoxClassIdEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxClassIdEdit.FormattingEnabled = true;
-            this.comboBoxClassIdEdit.Location = new System.Drawing.Point(585, 322);
-            this.comboBoxClassIdEdit.Name = "comboBoxClassIdEdit";
-            this.comboBoxClassIdEdit.Size = new System.Drawing.Size(366, 39);
-            this.comboBoxClassIdEdit.TabIndex = 19;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(836, 640);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(146, 38);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Menu";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnReturn_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.radioFemaleEdit);
-            this.panel2.Controls.Add(this.radioMaleEdit);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(67, 423);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(437, 135);
-            this.panel2.TabIndex = 17;
-            // 
-            // radioFemaleEdit
-            // 
-            this.radioFemaleEdit.AutoSize = true;
-            this.radioFemaleEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioFemaleEdit.Location = new System.Drawing.Point(130, 72);
-            this.radioFemaleEdit.Name = "radioFemaleEdit";
-            this.radioFemaleEdit.Size = new System.Drawing.Size(58, 29);
-            this.radioFemaleEdit.TabIndex = 10;
-            this.radioFemaleEdit.TabStop = true;
-            this.radioFemaleEdit.Text = "Nữ";
-            this.radioFemaleEdit.UseVisualStyleBackColor = true;
-            // 
-            // radioMaleEdit
-            // 
-            this.radioMaleEdit.AutoSize = true;
-            this.radioMaleEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioMaleEdit.Location = new System.Drawing.Point(27, 72);
-            this.radioMaleEdit.Name = "radioMaleEdit";
-            this.radioMaleEdit.Size = new System.Drawing.Size(74, 29);
-            this.radioMaleEdit.TabIndex = 9;
-            this.radioMaleEdit.TabStop = true;
-            this.radioMaleEdit.Text = "Nam";
-            this.radioMaleEdit.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label3.Location = new System.Drawing.Point(22, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 29);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Giới tính";
-            // 
-            // comboBoxFacultyEdit
-            // 
-            this.comboBoxFacultyEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxFacultyEdit.FormattingEnabled = true;
-            this.comboBoxFacultyEdit.Location = new System.Drawing.Point(585, 178);
-            this.comboBoxFacultyEdit.Name = "comboBoxFacultyEdit";
-            this.comboBoxFacultyEdit.Size = new System.Drawing.Size(366, 39);
-            this.comboBoxFacultyEdit.TabIndex = 16;
-            this.comboBoxFacultyEdit.SelectedIndexChanged += new System.EventHandler(this.comboBoxFacultyEdit_SelectedIndexChanged);
-            // 
-            // birthEdit
-            // 
-            this.birthEdit.CustomFormat = "";
-            this.birthEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.birthEdit.Location = new System.Drawing.Point(67, 322);
-            this.birthEdit.Name = "birthEdit";
-            this.birthEdit.Size = new System.Drawing.Size(405, 34);
-            this.birthEdit.TabIndex = 14;
-            // 
-            // txtNameEdit
-            // 
-            this.txtNameEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameEdit.Location = new System.Drawing.Point(67, 179);
-            this.txtNameEdit.Name = "txtNameEdit";
-            this.txtNameEdit.Size = new System.Drawing.Size(411, 38);
-            this.txtNameEdit.TabIndex = 13;
-            // 
-            // checkBoxClassMonitorEdit
-            // 
-            this.checkBoxClassMonitorEdit.AutoSize = true;
-            this.checkBoxClassMonitorEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxClassMonitorEdit.Location = new System.Drawing.Point(585, 399);
-            this.checkBoxClassMonitorEdit.Name = "checkBoxClassMonitorEdit";
-            this.checkBoxClassMonitorEdit.Size = new System.Drawing.Size(127, 29);
-            this.checkBoxClassMonitorEdit.TabIndex = 11;
-            this.checkBoxClassMonitorEdit.Text = "Lớp trưởng";
-            this.checkBoxClassMonitorEdit.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label4.Location = new System.Drawing.Point(580, 283);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 29);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Mã lớp";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label7.Location = new System.Drawing.Point(580, 119);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 29);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Mã Khoa";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label11.Location = new System.Drawing.Point(62, 132);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(121, 29);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Họ và tên";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label12.Location = new System.Drawing.Point(62, 280);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(126, 29);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Ngày sinh";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label14.Location = new System.Drawing.Point(264, 58);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(454, 39);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Chỉnh sửa thông tin sinh viên";
-            // 
             // groupBoxFind
             // 
             this.groupBoxFind.BackColor = System.Drawing.Color.Transparent;
@@ -582,6 +385,7 @@
             this.radioButtonId.TabStop = true;
             this.radioButtonId.Text = "Mã số sinh viên";
             this.radioButtonId.UseVisualStyleBackColor = true;
+            this.radioButtonId.CheckedChanged += new System.EventHandler(this.radioButtonId_CheckedChanged);
             // 
             // radioButtonName
             // 
@@ -594,6 +398,7 @@
             this.radioButtonName.TabStop = true;
             this.radioButtonName.Text = "Tên";
             this.radioButtonName.UseVisualStyleBackColor = true;
+            this.radioButtonName.CheckedChanged += new System.EventHandler(this.radioButtonName_CheckedChanged);
             // 
             // label13
             // 
@@ -738,6 +543,204 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "Thông tin sinh viên";
             // 
+            // groupBoxEdit
+            // 
+            this.groupBoxEdit.Controls.Add(this.btnReturnToFind);
+            this.groupBoxEdit.Controls.Add(this.btnUpdates);
+            this.groupBoxEdit.Controls.Add(this.comboBoxClassIdEdit);
+            this.groupBoxEdit.Controls.Add(this.button2);
+            this.groupBoxEdit.Controls.Add(this.panel2);
+            this.groupBoxEdit.Controls.Add(this.comboBoxFacultyEdit);
+            this.groupBoxEdit.Controls.Add(this.birthEdit);
+            this.groupBoxEdit.Controls.Add(this.txtNameEdit);
+            this.groupBoxEdit.Controls.Add(this.checkBoxClassMonitorEdit);
+            this.groupBoxEdit.Controls.Add(this.label4);
+            this.groupBoxEdit.Controls.Add(this.label7);
+            this.groupBoxEdit.Controls.Add(this.label11);
+            this.groupBoxEdit.Controls.Add(this.label12);
+            this.groupBoxEdit.Controls.Add(this.label14);
+            this.groupBoxEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.groupBoxEdit.Location = new System.Drawing.Point(-4, -29);
+            this.groupBoxEdit.Name = "groupBoxEdit";
+            this.groupBoxEdit.Size = new System.Drawing.Size(1038, 738);
+            this.groupBoxEdit.TabIndex = 23;
+            this.groupBoxEdit.TabStop = false;
+            // 
+            // btnReturnToFind
+            // 
+            this.btnReturnToFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturnToFind.Location = new System.Drawing.Point(232, 618);
+            this.btnReturnToFind.Name = "btnReturnToFind";
+            this.btnReturnToFind.Size = new System.Drawing.Size(272, 50);
+            this.btnReturnToFind.TabIndex = 21;
+            this.btnReturnToFind.Text = "Quay lại tìm kiếm";
+            this.btnReturnToFind.UseVisualStyleBackColor = true;
+            this.btnReturnToFind.Click += new System.EventHandler(this.btnReturnToFind_Click);
+            // 
+            // btnUpdates
+            // 
+            this.btnUpdates.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdates.Location = new System.Drawing.Point(67, 620);
+            this.btnUpdates.Name = "btnUpdates";
+            this.btnUpdates.Size = new System.Drawing.Size(146, 47);
+            this.btnUpdates.TabIndex = 20;
+            this.btnUpdates.Text = "Cập nhật";
+            this.btnUpdates.UseVisualStyleBackColor = true;
+            this.btnUpdates.Click += new System.EventHandler(this.btnUpdates_Click);
+            // 
+            // comboBoxClassIdEdit
+            // 
+            this.comboBoxClassIdEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxClassIdEdit.FormattingEnabled = true;
+            this.comboBoxClassIdEdit.Location = new System.Drawing.Point(585, 322);
+            this.comboBoxClassIdEdit.Name = "comboBoxClassIdEdit";
+            this.comboBoxClassIdEdit.Size = new System.Drawing.Size(366, 39);
+            this.comboBoxClassIdEdit.TabIndex = 19;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(836, 640);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(146, 38);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Menu";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.radioFemaleEdit);
+            this.panel2.Controls.Add(this.radioMaleEdit);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Location = new System.Drawing.Point(67, 423);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(437, 135);
+            this.panel2.TabIndex = 17;
+            // 
+            // radioFemaleEdit
+            // 
+            this.radioFemaleEdit.AutoSize = true;
+            this.radioFemaleEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioFemaleEdit.Location = new System.Drawing.Point(130, 72);
+            this.radioFemaleEdit.Name = "radioFemaleEdit";
+            this.radioFemaleEdit.Size = new System.Drawing.Size(58, 29);
+            this.radioFemaleEdit.TabIndex = 10;
+            this.radioFemaleEdit.TabStop = true;
+            this.radioFemaleEdit.Text = "Nữ";
+            this.radioFemaleEdit.UseVisualStyleBackColor = true;
+            // 
+            // radioMaleEdit
+            // 
+            this.radioMaleEdit.AutoSize = true;
+            this.radioMaleEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioMaleEdit.Location = new System.Drawing.Point(27, 72);
+            this.radioMaleEdit.Name = "radioMaleEdit";
+            this.radioMaleEdit.Size = new System.Drawing.Size(74, 29);
+            this.radioMaleEdit.TabIndex = 9;
+            this.radioMaleEdit.TabStop = true;
+            this.radioMaleEdit.Text = "Nam";
+            this.radioMaleEdit.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label3.Location = new System.Drawing.Point(22, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 29);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Giới tính";
+            // 
+            // comboBoxFacultyEdit
+            // 
+            this.comboBoxFacultyEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFacultyEdit.FormattingEnabled = true;
+            this.comboBoxFacultyEdit.Location = new System.Drawing.Point(585, 178);
+            this.comboBoxFacultyEdit.Name = "comboBoxFacultyEdit";
+            this.comboBoxFacultyEdit.Size = new System.Drawing.Size(366, 39);
+            this.comboBoxFacultyEdit.TabIndex = 16;
+            this.comboBoxFacultyEdit.SelectedIndexChanged += new System.EventHandler(this.comboBoxFacultyEdit_SelectedIndexChanged);
+            // 
+            // birthEdit
+            // 
+            this.birthEdit.CustomFormat = "";
+            this.birthEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.birthEdit.Location = new System.Drawing.Point(67, 322);
+            this.birthEdit.Name = "birthEdit";
+            this.birthEdit.Size = new System.Drawing.Size(405, 34);
+            this.birthEdit.TabIndex = 14;
+            // 
+            // txtNameEdit
+            // 
+            this.txtNameEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameEdit.Location = new System.Drawing.Point(67, 179);
+            this.txtNameEdit.Name = "txtNameEdit";
+            this.txtNameEdit.Size = new System.Drawing.Size(411, 38);
+            this.txtNameEdit.TabIndex = 13;
+            // 
+            // checkBoxClassMonitorEdit
+            // 
+            this.checkBoxClassMonitorEdit.AutoSize = true;
+            this.checkBoxClassMonitorEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxClassMonitorEdit.Location = new System.Drawing.Point(585, 399);
+            this.checkBoxClassMonitorEdit.Name = "checkBoxClassMonitorEdit";
+            this.checkBoxClassMonitorEdit.Size = new System.Drawing.Size(127, 29);
+            this.checkBoxClassMonitorEdit.TabIndex = 11;
+            this.checkBoxClassMonitorEdit.Text = "Lớp trưởng";
+            this.checkBoxClassMonitorEdit.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label4.Location = new System.Drawing.Point(580, 280);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 29);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Tên lớp";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label7.Location = new System.Drawing.Point(580, 132);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(122, 29);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Tên Khoa";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label11.Location = new System.Drawing.Point(62, 132);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(121, 29);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Họ và tên";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label12.Location = new System.Drawing.Point(62, 280);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(126, 29);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Ngày sinh";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label14.Location = new System.Drawing.Point(264, 58);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(454, 39);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Chỉnh sửa thông tin sinh viên";
+            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -757,12 +760,12 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPageFind.ResumeLayout(false);
+            this.groupBoxFind.ResumeLayout(false);
+            this.groupBoxFind.PerformLayout();
             this.groupBoxEdit.ResumeLayout(false);
             this.groupBoxEdit.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.groupBoxFind.ResumeLayout(false);
-            this.groupBoxFind.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
