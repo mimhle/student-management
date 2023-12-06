@@ -41,6 +41,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbAddScore = new System.Windows.Forms.GroupBox();
+            this.labelScore = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.labelMssvAddScore = new System.Windows.Forms.Label();
             this.txtMssvAddScore = new System.Windows.Forms.TextBox();
             this.btnAddScore = new System.Windows.Forms.Button();
@@ -58,6 +60,8 @@
             this.btnReturnMenuAddScore = new System.Windows.Forms.Button();
             this.btnAddSubjectAddScore = new System.Windows.Forms.Button();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
+            this.txtCredit = new System.Windows.Forms.TextBox();
+            this.labelCredit = new System.Windows.Forms.Label();
             this.gbAddSubject.SuspendLayout();
             this.gbOptionAddSubject.SuspendLayout();
             this.gbAddScore.SuspendLayout();
@@ -66,6 +70,8 @@
             // 
             // gbAddSubject
             // 
+            this.gbAddSubject.Controls.Add(this.labelCredit);
+            this.gbAddSubject.Controls.Add(this.txtCredit);
             this.gbAddSubject.Controls.Add(this.labelDeleteSubject);
             this.gbAddSubject.Controls.Add(this.labelFacultyDelete);
             this.gbAddSubject.Controls.Add(this.labelFaculty);
@@ -165,9 +171,9 @@
             // listViewDisplaySubject
             // 
             this.listViewDisplaySubject.HideSelection = false;
-            this.listViewDisplaySubject.Location = new System.Drawing.Point(13, 287);
+            this.listViewDisplaySubject.Location = new System.Drawing.Point(6, 287);
             this.listViewDisplaySubject.Name = "listViewDisplaySubject";
-            this.listViewDisplaySubject.Size = new System.Drawing.Size(705, 410);
+            this.listViewDisplaySubject.Size = new System.Drawing.Size(712, 410);
             this.listViewDisplaySubject.TabIndex = 6;
             this.listViewDisplaySubject.UseCompatibleStateImageBehavior = false;
             // 
@@ -184,9 +190,9 @@
             // 
             this.gbOptionAddSubject.Controls.Add(this.btnReturnMenuAddSubject);
             this.gbOptionAddSubject.Controls.Add(this.btnAddScoreAddSubject);
-            this.gbOptionAddSubject.Location = new System.Drawing.Point(724, 287);
+            this.gbOptionAddSubject.Location = new System.Drawing.Point(724, 281);
             this.gbOptionAddSubject.Name = "gbOptionAddSubject";
-            this.gbOptionAddSubject.Size = new System.Drawing.Size(288, 411);
+            this.gbOptionAddSubject.Size = new System.Drawing.Size(288, 417);
             this.gbOptionAddSubject.TabIndex = 3;
             this.gbOptionAddSubject.TabStop = false;
             this.gbOptionAddSubject.Text = "Các Chức Năng";
@@ -235,6 +241,8 @@
             // 
             // gbAddScore
             // 
+            this.gbAddScore.Controls.Add(this.labelScore);
+            this.gbAddScore.Controls.Add(this.textBox3);
             this.gbAddScore.Controls.Add(this.labelMssvAddScore);
             this.gbAddScore.Controls.Add(this.txtMssvAddScore);
             this.gbAddScore.Controls.Add(this.btnAddScore);
@@ -258,6 +266,22 @@
             this.gbAddScore.Text = "Thêm Điểm Môn Học";
             this.gbAddScore.Visible = false;
             // 
+            // labelScore
+            // 
+            this.labelScore.AutoSize = true;
+            this.labelScore.Location = new System.Drawing.Point(532, 183);
+            this.labelScore.Name = "labelScore";
+            this.labelScore.Size = new System.Drawing.Size(73, 29);
+            this.labelScore.TabIndex = 19;
+            this.labelScore.Text = "Điểm";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(537, 226);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(224, 36);
+            this.textBox3.TabIndex = 18;
+            // 
             // labelMssvAddScore
             // 
             this.labelMssvAddScore.AutoSize = true;
@@ -278,18 +302,18 @@
             // 
             // btnAddScore
             // 
-            this.btnAddScore.Location = new System.Drawing.Point(811, 29);
+            this.btnAddScore.Location = new System.Drawing.Point(794, 19);
             this.btnAddScore.Name = "btnAddScore";
-            this.btnAddScore.Size = new System.Drawing.Size(195, 145);
+            this.btnAddScore.Size = new System.Drawing.Size(218, 132);
             this.btnAddScore.TabIndex = 15;
             this.btnAddScore.Text = "Nhập Điểm";
             this.btnAddScore.UseVisualStyleBackColor = true;
             // 
             // btnConfirmStudent
             // 
-            this.btnConfirmStudent.Location = new System.Drawing.Point(515, 214);
+            this.btnConfirmStudent.Location = new System.Drawing.Point(794, 157);
             this.btnConfirmStudent.Name = "btnConfirmStudent";
-            this.btnConfirmStudent.Size = new System.Drawing.Size(195, 47);
+            this.btnConfirmStudent.Size = new System.Drawing.Size(218, 80);
             this.btnConfirmStudent.TabIndex = 14;
             this.btnConfirmStudent.Text = "Chọn";
             this.btnConfirmStudent.UseVisualStyleBackColor = true;
@@ -371,7 +395,7 @@
             this.listViewAddScore.HideSelection = false;
             this.listViewAddScore.Location = new System.Drawing.Point(8, 287);
             this.listViewAddScore.Name = "listViewAddScore";
-            this.listViewAddScore.Size = new System.Drawing.Size(703, 398);
+            this.listViewAddScore.Size = new System.Drawing.Size(710, 410);
             this.listViewAddScore.TabIndex = 5;
             this.listViewAddScore.UseCompatibleStateImageBehavior = false;
             this.listViewAddScore.SelectedIndexChanged += new System.EventHandler(this.listViewAddScore_SelectedIndexChanged);
@@ -380,7 +404,7 @@
             // 
             this.groupBox2.Controls.Add(this.btnReturnMenuAddScore);
             this.groupBox2.Controls.Add(this.btnAddSubjectAddScore);
-            this.groupBox2.Location = new System.Drawing.Point(718, 281);
+            this.groupBox2.Location = new System.Drawing.Point(724, 281);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(288, 411);
             this.groupBox2.TabIndex = 4;
@@ -411,15 +435,31 @@
             // 
             this.sqLiteCommand1.CommandText = null;
             // 
+            // txtCredit
+            // 
+            this.txtCredit.Location = new System.Drawing.Point(523, 150);
+            this.txtCredit.Name = "txtCredit";
+            this.txtCredit.Size = new System.Drawing.Size(247, 36);
+            this.txtCredit.TabIndex = 17;
+            // 
+            // labelCredit
+            // 
+            this.labelCredit.AutoSize = true;
+            this.labelCredit.Location = new System.Drawing.Point(410, 157);
+            this.labelCredit.Name = "labelCredit";
+            this.labelCredit.Size = new System.Drawing.Size(107, 29);
+            this.labelCredit.TabIndex = 18;
+            this.labelCredit.Text = "Tính Chỉ";
+            // 
             // subjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 728);
-            this.Controls.Add(this.gbAddSubject);
             this.Controls.Add(this.gbAddScore);
+            this.Controls.Add(this.gbAddSubject);
             this.Name = "subjectForm";
-            this.Text = "subjectForm";
+            this.Text = "Điểm";
             this.gbAddSubject.ResumeLayout(false);
             this.gbAddSubject.PerformLayout();
             this.gbOptionAddSubject.ResumeLayout(false);
@@ -467,5 +507,9 @@
         private System.Windows.Forms.Label labelMssvAddScore;
         private System.Windows.Forms.TextBox txtMssvAddScore;
         private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
+        private System.Windows.Forms.Label labelScore;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label labelCredit;
+        private System.Windows.Forms.TextBox txtCredit;
     }
 }
