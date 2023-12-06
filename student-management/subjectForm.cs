@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -103,7 +104,7 @@ namespace studentManagement {
             var subject = db.getAllSubject();
 
             foreach (var row in subject) {
-                var temp = db.getFacultyID(row["MaKhoa"].ToString()); ;
+                var temp = db.getFaculty(row["MaKhoa"].ToString()); ;
                 if (temp != null) {
                     if (comboBoxFaculty.SelectedIndex != -1 && comboBoxFaculty.SelectedItem.ToString() == temp["TenKhoa"].ToString()) {
                         comboBoxSubject.Items.Add(row["TenMonHoc"]);
@@ -150,6 +151,7 @@ namespace studentManagement {
             listViewDisplaySubject.GridLines = true;
             listViewDisplaySubject.Columns.Add("Mã Môn Học", 100);
             listViewDisplaySubject.Columns.Add("Tên Môn Học", 100);
+            listViewDisplaySubject.Columns.Add("Số Tín Chỉ", 100);
 
             AutoResizeListViewColumns(listViewDisplaySubject);
         }
@@ -157,23 +159,96 @@ namespace studentManagement {
         private void loadListViewAddScore() {
             listViewAddScore.Items.Clear();
 
-            var students = db.getAllStudents();
-            foreach (var row in students) {
-                var maLop = db.getSubjectClass(row["MaLopHocPhan"].ToString());
-                var diem = db.getScore(row["MaSinhVien"].ToString(), maLop["MaMonHoc"].ToString());
-                if (comboBoxClass.SelectedItem.ToString() == maLop["TenLopHocPhan"].ToString()) {
-                    var item = new ListViewItem(row["MaSinhVien"].ToString());
+            var maLop = getSubjectClassID(comboBoxClass.SelectedItem.ToString());
+
+            var subClass = db.getSubjectClass(getSubjectClassID(maLop));
+
+            var subjectClassStudentList = db.getAllSubjectClassStudents(); 
+
+            foreach(var row in subjectClassStudentList) {
+                if (row["MaLopHocPhan"].ToString() == maLop) {
                     var student = db.getStudent(row["MaSinhVien"].ToString());
+                    var item = new ListViewItem(student["MaSinhVien"].ToString());
                     item.SubItems.Add(student["HoTen"].ToString());
-                    item.SubItems.Add(student["MaLop"].ToString());
-                    if (diem != null) item.SubItems.Add(diem["Diem"].ToString());
-                    else item.SubItems.Add("");
+                    item.SubItems.Add(row["MaLopHocPhan"].ToString());
+                    //item.SubItems.Add(row["Diem"].ToString());
                     listViewAddScore.Items.Add(item);
                 }
             }
 
             AutoResizeListViewColumns(listViewAddScore);
         }
+
+        private string getFacultyID(string facultyName) {
+            var result = "";
+
+            var faculties = db.getAllFaculties();
+            foreach (var faculty in faculties) {
+                if (facultyName == faculty["TenKhoa"].ToString()) {
+                    result = faculty["MaKhoa"].ToString();
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        private string getSubjectID(string subjectName) {
+            var result = "";
+
+            var subjects = db.getAllSubject();
+            foreach (var subject in subjects) {
+                if (subjectName == subject["TenMonHoc"].ToString()) {
+                    result = subject["MaMonHoc"].ToString();
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        private string getClassID(string className) {
+            var result = "";
+
+            var classes = db.getAllClasses();
+            foreach (var _class in classes) {
+                if (className == _class["TenLop"].ToString()) {
+                    result = _class["MaLop"].ToString();
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        private string getSubjectClassID(string subjectClassName) {
+            var result = "";
+
+            var subjectClasses = db.getAllSubjectClass();
+            foreach (var subjectClass in subjectClasses) {
+                if (subjectClassName == subjectClass["TenLopHocPhan"].ToString()) {
+                    result = subjectClass["MaLopHocPhan"].ToString();
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        private string getStudentID(string studentName) {
+            var result = "";
+
+            var students = db.getAllStudents();
+            foreach (var student in students) {
+                if (studentName == student["HoTen"].ToString()) {
+                    result = student["MaSinhVien"].ToString();
+                    break;
+                }
+            }
+
+            return result;
+        }
+
 
         private void loadListViewDisplaySubject(string MaKhoa) {
             listViewDisplaySubject.Items.Clear();
@@ -183,6 +258,7 @@ namespace studentManagement {
                 if (row["MaKhoa"].ToString() == MaKhoa) {
                     var item = new ListViewItem(row["MaMonHoc"].ToString());
                     item.SubItems.Add(row["TenMonHoc"].ToString());
+                    item.SubItems.Add(row["SoTinChi"].ToString());
                     listViewDisplaySubject.Items.Add(item);
                 }
             }
@@ -199,7 +275,8 @@ namespace studentManagement {
         }
 
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e) {
-            loadListViewAddScore();
+            if (comboBoxClass.SelectedIndex != -1)
+                loadListViewAddScore();
         }
 
         private void listViewAddScore_SelectedIndexChanged(object sender, EventArgs e) {
@@ -232,6 +309,9 @@ namespace studentManagement {
             listViewDisplaySubject.Items.Clear();
             txtMssvAddScore.Clear();
             txtStudentName.Clear();
+            txtCredit.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
         }
 
         private void btnDeleteSubject_Click(object sender, EventArgs e) {
@@ -242,6 +322,7 @@ namespace studentManagement {
                 textBox1.Text = listViewDisplaySubject.SelectedItems[0].SubItems[1].Text;
                 textBox1.Focus();
                 textBox2.Text = listViewDisplaySubject.SelectedItems[0].SubItems[0].Text;
+                txtCredit.Text = listViewDisplaySubject.SelectedItems[0].SubItems[2].Text;
                 comboBox1.SelectedIndex = comboBox2.SelectedIndex;
             }
         }

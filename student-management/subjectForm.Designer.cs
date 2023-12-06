@@ -24,6 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.gbAddSubject = new System.Windows.Forms.GroupBox();
+            this.labelCredit = new System.Windows.Forms.Label();
+            this.txtCredit = new System.Windows.Forms.TextBox();
             this.labelDeleteSubject = new System.Windows.Forms.Label();
             this.labelFacultyDelete = new System.Windows.Forms.Label();
             this.labelFaculty = new System.Windows.Forms.Label();
@@ -60,8 +62,6 @@
             this.btnReturnMenuAddScore = new System.Windows.Forms.Button();
             this.btnAddSubjectAddScore = new System.Windows.Forms.Button();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
-            this.txtCredit = new System.Windows.Forms.TextBox();
-            this.labelCredit = new System.Windows.Forms.Label();
             this.gbAddSubject.SuspendLayout();
             this.gbOptionAddSubject.SuspendLayout();
             this.gbAddScore.SuspendLayout();
@@ -93,6 +93,22 @@
             this.gbAddSubject.TabIndex = 0;
             this.gbAddSubject.TabStop = false;
             this.gbAddSubject.Text = "Thêm Môn Học";
+            // 
+            // labelCredit
+            // 
+            this.labelCredit.AutoSize = true;
+            this.labelCredit.Location = new System.Drawing.Point(410, 157);
+            this.labelCredit.Name = "labelCredit";
+            this.labelCredit.Size = new System.Drawing.Size(107, 29);
+            this.labelCredit.TabIndex = 18;
+            this.labelCredit.Text = "Tính Chỉ";
+            // 
+            // txtCredit
+            // 
+            this.txtCredit.Location = new System.Drawing.Point(523, 150);
+            this.txtCredit.Name = "txtCredit";
+            this.txtCredit.Size = new System.Drawing.Size(247, 36);
+            this.txtCredit.TabIndex = 17;
             // 
             // labelDeleteSubject
             // 
@@ -434,22 +450,6 @@
             // sqLiteCommand1
             // 
             this.sqLiteCommand1.CommandText = null;
-            // 
-            // txtCredit
-            // 
-            this.txtCredit.Location = new System.Drawing.Point(523, 150);
-            this.txtCredit.Name = "txtCredit";
-            this.txtCredit.Size = new System.Drawing.Size(247, 36);
-            this.txtCredit.TabIndex = 17;
-            // 
-            // labelCredit
-            // 
-            this.labelCredit.AutoSize = true;
-            this.labelCredit.Location = new System.Drawing.Point(410, 157);
-            this.labelCredit.Name = "labelCredit";
-            this.labelCredit.Size = new System.Drawing.Size(107, 29);
-            this.labelCredit.TabIndex = 18;
-            this.labelCredit.Text = "Tính Chỉ";
             // 
             // subjectForm
             // 
