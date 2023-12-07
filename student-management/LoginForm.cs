@@ -7,7 +7,8 @@ namespace studentManagement {
             InitializeComponent();
 
             // test code for Database.cs
-            var db = new Database(Program.dbLocation);
+            //var db = new Database(Program.dbLocation);
+            Database db = Program.db;
             db.insertStudent("SV01", "Nguyen Van A", "1999-01-01", "Nam", "CNTT", "48.CNTT.A");
             db.insertStudent("SV02", "Nguyen Van A", "1999-01-01", "Nam", "CNTT", "48.CNTT.A");
             db.insertStudent("SV03", "Nguyen Van B", "1999", "Nam", "CNTT", "48.CNTT.A", true);
@@ -23,11 +24,12 @@ namespace studentManagement {
             db.insertSubjectClass("XSTK001", "HCMUE_XSTK_HK1.2023-2024_701", "CNTT", "XSTK");
             db.insertSubject("LTWIN", "Lap trinh Windows", "CNTT", 2);
             db.insertSubject("XSTK", "Xac suat thong ke", "CNTT", 3);
+            db.insertSubjectClassStudent("SV01", "LTWIN001");
             db.insertSubjectClassStudent("SV02", "LTWIN001");
             db.insertSubjectClassStudent("SV03", "XSTK001");
             db.insertScore("SV02", "LTWIN", 10);
             db.insertScore("SV03", "XSTK", 9);
-
+            
             //db.removeStudent("SV01");
             //db.removeStudent("SV04");
             Console.WriteLine(db.updatePassword("SV02", "123456"));

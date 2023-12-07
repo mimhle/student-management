@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.gbAddSubject = new System.Windows.Forms.GroupBox();
             this.labelCredit = new System.Windows.Forms.Label();
             this.txtCredit = new System.Windows.Forms.TextBox();
@@ -62,10 +63,18 @@
             this.btnReturnMenuAddScore = new System.Windows.Forms.Button();
             this.btnAddSubjectAddScore = new System.Windows.Forms.Button();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
+            this.errorProviderSubjectID = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderSubjectName = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderCredit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderFacultySelected = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbAddSubject.SuspendLayout();
             this.gbOptionAddSubject.SuspendLayout();
             this.gbAddScore.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSubjectID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSubjectName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCredit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderFacultySelected)).BeginInit();
             this.SuspendLayout();
             // 
             // gbAddSubject
@@ -109,6 +118,7 @@
             this.txtCredit.Name = "txtCredit";
             this.txtCredit.Size = new System.Drawing.Size(247, 36);
             this.txtCredit.TabIndex = 17;
+            this.txtCredit.Validating += new System.ComponentModel.CancelEventHandler(this.TxtCredit_Validating);
             // 
             // labelDeleteSubject
             // 
@@ -162,7 +172,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(355, 37);
             this.comboBox2.TabIndex = 9;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.ComboBox2_SelectedIndexChanged);
             // 
             // btnEditSubject
             // 
@@ -182,7 +192,7 @@
             this.btnDeleteSubject.TabIndex = 7;
             this.btnDeleteSubject.Text = "Xóa";
             this.btnDeleteSubject.UseVisualStyleBackColor = true;
-            this.btnDeleteSubject.Click += new System.EventHandler(this.btnDeleteSubject_Click);
+            this.btnDeleteSubject.Click += new System.EventHandler(this.BtnDeleteSubject_Click);
             // 
             // listViewDisplaySubject
             // 
@@ -201,6 +211,7 @@
             this.btnAddSubject.TabIndex = 4;
             this.btnAddSubject.Text = "Thêm";
             this.btnAddSubject.UseVisualStyleBackColor = true;
+            this.btnAddSubject.Click += new System.EventHandler(this.BtnAddSubject_Click);
             // 
             // gbOptionAddSubject
             // 
@@ -240,6 +251,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(248, 37);
             this.comboBox1.TabIndex = 2;
+            this.comboBox1.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBox1_Validating);
             // 
             // textBox2
             // 
@@ -247,6 +259,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(249, 36);
             this.textBox2.TabIndex = 1;
+            this.textBox2.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox2_Validating);
             // 
             // textBox1
             // 
@@ -254,6 +267,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(249, 36);
             this.textBox1.TabIndex = 0;
+            this.textBox1.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox1_Validating);
             // 
             // gbAddScore
             // 
@@ -324,6 +338,7 @@
             this.btnAddScore.TabIndex = 15;
             this.btnAddScore.Text = "Nhập Điểm";
             this.btnAddScore.UseVisualStyleBackColor = true;
+            this.btnAddScore.Click += new System.EventHandler(this.BtnAddScore_Click_1);
             // 
             // btnConfirmStudent
             // 
@@ -333,6 +348,7 @@
             this.btnConfirmStudent.TabIndex = 14;
             this.btnConfirmStudent.Text = "Chọn";
             this.btnConfirmStudent.UseVisualStyleBackColor = true;
+            this.btnConfirmStudent.Click += new System.EventHandler(this.BtnConfirmStudent_Click);
             // 
             // comboBoxClass
             // 
@@ -341,7 +357,7 @@
             this.comboBoxClass.Name = "comboBoxClass";
             this.comboBoxClass.Size = new System.Drawing.Size(224, 37);
             this.comboBoxClass.TabIndex = 13;
-            this.comboBoxClass.SelectedIndexChanged += new System.EventHandler(this.comboBoxClass_SelectedIndexChanged);
+            this.comboBoxClass.SelectedIndexChanged += new System.EventHandler(this.ComboBoxClass_SelectedIndexChanged);
             // 
             // comboBoxSubject
             // 
@@ -350,7 +366,7 @@
             this.comboBoxSubject.Name = "comboBoxSubject";
             this.comboBoxSubject.Size = new System.Drawing.Size(224, 37);
             this.comboBoxSubject.TabIndex = 12;
-            this.comboBoxSubject.SelectedIndexChanged += new System.EventHandler(this.comboBoxSubject_SelectedIndexChanged);
+            this.comboBoxSubject.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSubject_SelectedIndexChanged);
             // 
             // comboBoxFaculty
             // 
@@ -359,7 +375,7 @@
             this.comboBoxFaculty.Name = "comboBoxFaculty";
             this.comboBoxFaculty.Size = new System.Drawing.Size(224, 37);
             this.comboBoxFaculty.TabIndex = 11;
-            this.comboBoxFaculty.SelectedIndexChanged += new System.EventHandler(this.comboBoxFaculty_SelectedIndexChanged);
+            this.comboBoxFaculty.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFaculty_SelectedIndexChanged);
             // 
             // labelClassAddScore
             // 
@@ -414,7 +430,6 @@
             this.listViewAddScore.Size = new System.Drawing.Size(710, 410);
             this.listViewAddScore.TabIndex = 5;
             this.listViewAddScore.UseCompatibleStateImageBehavior = false;
-            this.listViewAddScore.SelectedIndexChanged += new System.EventHandler(this.listViewAddScore_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -451,6 +466,22 @@
             // 
             this.sqLiteCommand1.CommandText = null;
             // 
+            // errorProviderSubjectID
+            // 
+            this.errorProviderSubjectID.ContainerControl = this;
+            // 
+            // errorProviderSubjectName
+            // 
+            this.errorProviderSubjectName.ContainerControl = this;
+            // 
+            // errorProviderCredit
+            // 
+            this.errorProviderCredit.ContainerControl = this;
+            // 
+            // errorProviderFacultySelected
+            // 
+            this.errorProviderFacultySelected.ContainerControl = this;
+            // 
             // subjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -466,6 +497,10 @@
             this.gbAddScore.ResumeLayout(false);
             this.gbAddScore.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSubjectID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderSubjectName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCredit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderFacultySelected)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -511,5 +546,9 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label labelCredit;
         private System.Windows.Forms.TextBox txtCredit;
+        private System.Windows.Forms.ErrorProvider errorProviderSubjectID;
+        private System.Windows.Forms.ErrorProvider errorProviderSubjectName;
+        private System.Windows.Forms.ErrorProvider errorProviderCredit;
+        private System.Windows.Forms.ErrorProvider errorProviderFacultySelected;
     }
 }
