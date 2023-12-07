@@ -27,7 +27,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageAdd = new System.Windows.Forms.TabPage();
             this.groupBoxAddStudent = new System.Windows.Forms.GroupBox();
-            this.comboBoxClassId = new System.Windows.Forms.ComboBox();
+            this.comboBoxClass = new System.Windows.Forms.ComboBox();
             this.btnInput = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,7 +52,7 @@
             this.radioButtonName = new System.Windows.Forms.RadioButton();
             this.label13 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBoxClass = new System.Windows.Forms.ComboBox();
+            this.comboLefBoxClass = new System.Windows.Forms.ComboBox();
             this.comboLefFaculty = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,7 +67,7 @@
             this.groupBoxEdit = new System.Windows.Forms.GroupBox();
             this.btnReturnToFind = new System.Windows.Forms.Button();
             this.btnUpdates = new System.Windows.Forms.Button();
-            this.comboBoxClassIdEdit = new System.Windows.Forms.ComboBox();
+            this.comboBoxClassEdit = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioFemaleEdit = new System.Windows.Forms.RadioButton();
@@ -121,7 +121,7 @@
             // 
             // groupBoxAddStudent
             // 
-            this.groupBoxAddStudent.Controls.Add(this.comboBoxClassId);
+            this.groupBoxAddStudent.Controls.Add(this.comboBoxClass);
             this.groupBoxAddStudent.Controls.Add(this.btnInput);
             this.groupBoxAddStudent.Controls.Add(this.btnReturn);
             this.groupBoxAddStudent.Controls.Add(this.panel1);
@@ -144,14 +144,15 @@
             this.groupBoxAddStudent.TabIndex = 1;
             this.groupBoxAddStudent.TabStop = false;
             // 
-            // comboBoxClassId
+            // comboBoxClass
             // 
-            this.comboBoxClassId.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxClassId.FormattingEnabled = true;
-            this.comboBoxClassId.Location = new System.Drawing.Point(46, 514);
-            this.comboBoxClassId.Name = "comboBoxClassId";
-            this.comboBoxClassId.Size = new System.Drawing.Size(366, 39);
-            this.comboBoxClassId.TabIndex = 20;
+            this.comboBoxClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxClass.FormattingEnabled = true;
+            this.comboBoxClass.Location = new System.Drawing.Point(46, 514);
+            this.comboBoxClass.Name = "comboBoxClass";
+            this.comboBoxClass.Size = new System.Drawing.Size(366, 39);
+            this.comboBoxClass.TabIndex = 20;
+            this.comboBoxClass.SelectedIndexChanged += new System.EventHandler(this.comboBoxClass_SelectedIndexChanged);
             // 
             // btnInput
             // 
@@ -162,6 +163,7 @@
             this.btnInput.TabIndex = 19;
             this.btnInput.Text = "Nhập";
             this.btnInput.UseVisualStyleBackColor = true;
+            this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
             // 
             // btnReturn
             // 
@@ -231,12 +233,14 @@
             // 
             // birth
             // 
-            this.birth.CustomFormat = "";
+            this.birth.CustomFormat = "MM/dd/yyyy";
             this.birth.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.birth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.birth.Location = new System.Drawing.Point(575, 321);
             this.birth.Name = "birth";
             this.birth.Size = new System.Drawing.Size(405, 34);
             this.birth.TabIndex = 14;
+            this.birth.Value = new System.DateTime(2023, 12, 6, 20, 53, 0, 0);
             // 
             // txtName
             // 
@@ -272,9 +276,9 @@
             this.labelClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.labelClass.Location = new System.Drawing.Point(41, 456);
             this.labelClass.Name = "labelClass";
-            this.labelClass.Size = new System.Drawing.Size(89, 29);
+            this.labelClass.Size = new System.Drawing.Size(55, 29);
             this.labelClass.TabIndex = 7;
-            this.labelClass.Text = "Mã lớp";
+            this.labelClass.Text = "Lớp";
             // 
             // labelFaculty
             // 
@@ -282,9 +286,9 @@
             this.labelFaculty.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.labelFaculty.Location = new System.Drawing.Point(41, 262);
             this.labelFaculty.Name = "labelFaculty";
-            this.labelFaculty.Size = new System.Drawing.Size(114, 29);
+            this.labelFaculty.Size = new System.Drawing.Size(72, 29);
             this.labelFaculty.TabIndex = 6;
-            this.labelFaculty.Text = "Mã Khoa";
+            this.labelFaculty.Text = "Khoa";
             // 
             // label6
             // 
@@ -355,7 +359,7 @@
             this.groupBoxFind.Controls.Add(this.radioButtonName);
             this.groupBoxFind.Controls.Add(this.label13);
             this.groupBoxFind.Controls.Add(this.label8);
-            this.groupBoxFind.Controls.Add(this.comboBoxClass);
+            this.groupBoxFind.Controls.Add(this.comboLefBoxClass);
             this.groupBoxFind.Controls.Add(this.comboLefFaculty);
             this.groupBoxFind.Controls.Add(this.btnDelete);
             this.groupBoxFind.Controls.Add(this.label2);
@@ -404,7 +408,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label13.Location = new System.Drawing.Point(770, 194);
+            this.label13.Location = new System.Drawing.Point(723, 194);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(55, 29);
             this.label13.TabIndex = 27;
@@ -414,29 +418,29 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label8.Location = new System.Drawing.Point(546, 194);
+            this.label8.Location = new System.Drawing.Point(458, 193);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 29);
             this.label8.TabIndex = 26;
             this.label8.Text = "Khoa";
             // 
-            // comboBoxClass
+            // comboLefBoxClass
             // 
-            this.comboBoxClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxClass.FormattingEnabled = true;
-            this.comboBoxClass.Location = new System.Drawing.Point(775, 240);
-            this.comboBoxClass.Name = "comboBoxClass";
-            this.comboBoxClass.Size = new System.Drawing.Size(198, 37);
-            this.comboBoxClass.TabIndex = 25;
+            this.comboLefBoxClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboLefBoxClass.FormattingEnabled = true;
+            this.comboLefBoxClass.Location = new System.Drawing.Point(728, 239);
+            this.comboLefBoxClass.Name = "comboLefBoxClass";
+            this.comboLefBoxClass.Size = new System.Drawing.Size(245, 37);
+            this.comboLefBoxClass.TabIndex = 25;
             // 
             // comboLefFaculty
             // 
             this.comboLefFaculty.BackColor = System.Drawing.SystemColors.Window;
             this.comboLefFaculty.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboLefFaculty.FormattingEnabled = true;
-            this.comboLefFaculty.Location = new System.Drawing.Point(551, 240);
+            this.comboLefFaculty.Location = new System.Drawing.Point(463, 239);
             this.comboLefFaculty.Name = "comboLefFaculty";
-            this.comboLefFaculty.Size = new System.Drawing.Size(198, 37);
+            this.comboLefFaculty.Size = new System.Drawing.Size(245, 37);
             this.comboLefFaculty.TabIndex = 24;
             this.comboLefFaculty.SelectedIndexChanged += new System.EventHandler(this.comboLefFaculty_SelectedIndexChanged);
             // 
@@ -450,6 +454,7 @@
             this.btnDelete.TabIndex = 23;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // label2
             // 
@@ -508,6 +513,7 @@
             // 
             // txtIdFind
             // 
+            this.txtIdFind.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIdFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdFind.Location = new System.Drawing.Point(44, 239);
             this.txtIdFind.Name = "txtIdFind";
@@ -547,7 +553,7 @@
             // 
             this.groupBoxEdit.Controls.Add(this.btnReturnToFind);
             this.groupBoxEdit.Controls.Add(this.btnUpdates);
-            this.groupBoxEdit.Controls.Add(this.comboBoxClassIdEdit);
+            this.groupBoxEdit.Controls.Add(this.comboBoxClassEdit);
             this.groupBoxEdit.Controls.Add(this.button2);
             this.groupBoxEdit.Controls.Add(this.panel2);
             this.groupBoxEdit.Controls.Add(this.comboBoxFacultyEdit);
@@ -588,14 +594,15 @@
             this.btnUpdates.UseVisualStyleBackColor = true;
             this.btnUpdates.Click += new System.EventHandler(this.btnUpdates_Click);
             // 
-            // comboBoxClassIdEdit
+            // comboBoxClassEdit
             // 
-            this.comboBoxClassIdEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxClassIdEdit.FormattingEnabled = true;
-            this.comboBoxClassIdEdit.Location = new System.Drawing.Point(585, 322);
-            this.comboBoxClassIdEdit.Name = "comboBoxClassIdEdit";
-            this.comboBoxClassIdEdit.Size = new System.Drawing.Size(366, 39);
-            this.comboBoxClassIdEdit.TabIndex = 19;
+            this.comboBoxClassEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxClassEdit.FormattingEnabled = true;
+            this.comboBoxClassEdit.Location = new System.Drawing.Point(573, 322);
+            this.comboBoxClassEdit.Name = "comboBoxClassEdit";
+            this.comboBoxClassEdit.Size = new System.Drawing.Size(366, 39);
+            this.comboBoxClassEdit.TabIndex = 19;
+            this.comboBoxClassEdit.SelectedIndexChanged += new System.EventHandler(this.comboBoxClassEdit_SelectedIndexChanged);
             // 
             // button2
             // 
@@ -657,7 +664,7 @@
             // 
             this.comboBoxFacultyEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxFacultyEdit.FormattingEnabled = true;
-            this.comboBoxFacultyEdit.Location = new System.Drawing.Point(585, 178);
+            this.comboBoxFacultyEdit.Location = new System.Drawing.Point(573, 178);
             this.comboBoxFacultyEdit.Name = "comboBoxFacultyEdit";
             this.comboBoxFacultyEdit.Size = new System.Drawing.Size(366, 39);
             this.comboBoxFacultyEdit.TabIndex = 16;
@@ -665,8 +672,9 @@
             // 
             // birthEdit
             // 
-            this.birthEdit.CustomFormat = "";
+            this.birthEdit.CustomFormat = "MM/dd/yyyy";
             this.birthEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.birthEdit.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.birthEdit.Location = new System.Drawing.Point(67, 322);
             this.birthEdit.Name = "birthEdit";
             this.birthEdit.Size = new System.Drawing.Size(405, 34);
@@ -684,7 +692,7 @@
             // 
             this.checkBoxClassMonitorEdit.AutoSize = true;
             this.checkBoxClassMonitorEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxClassMonitorEdit.Location = new System.Drawing.Point(585, 399);
+            this.checkBoxClassMonitorEdit.Location = new System.Drawing.Point(573, 399);
             this.checkBoxClassMonitorEdit.Name = "checkBoxClassMonitorEdit";
             this.checkBoxClassMonitorEdit.Size = new System.Drawing.Size(127, 29);
             this.checkBoxClassMonitorEdit.TabIndex = 11;
@@ -695,7 +703,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label4.Location = new System.Drawing.Point(580, 280);
+            this.label4.Location = new System.Drawing.Point(568, 280);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 29);
             this.label4.TabIndex = 7;
@@ -705,7 +713,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label7.Location = new System.Drawing.Point(580, 132);
+            this.label7.Location = new System.Drawing.Point(568, 132);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(122, 29);
             this.label7.TabIndex = 6;
@@ -715,7 +723,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label11.Location = new System.Drawing.Point(62, 132);
+            this.label11.Location = new System.Drawing.Point(70, 132);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(121, 29);
             this.label11.TabIndex = 3;
@@ -725,7 +733,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label12.Location = new System.Drawing.Point(62, 280);
+            this.label12.Location = new System.Drawing.Point(65, 271);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(126, 29);
             this.label12.TabIndex = 2;
@@ -808,7 +816,7 @@
         private System.Windows.Forms.GroupBox groupBoxEdit;
         private System.Windows.Forms.Button btnReturnToFind;
         private System.Windows.Forms.Button btnUpdates;
-        private System.Windows.Forms.ComboBox comboBoxClassIdEdit;
+        private System.Windows.Forms.ComboBox comboBoxClassEdit;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton radioFemaleEdit;
@@ -824,11 +832,11 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.ComboBox comboBoxClassId;
+        private System.Windows.Forms.ComboBox comboBoxClass;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBoxClass;
+        private System.Windows.Forms.ComboBox comboLefBoxClass;
         private System.Windows.Forms.ComboBox comboLefFaculty;
         private System.Windows.Forms.RadioButton radioButtonId;
         private System.Windows.Forms.RadioButton radioButtonName;

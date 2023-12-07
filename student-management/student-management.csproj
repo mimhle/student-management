@@ -76,6 +76,12 @@
     <Compile Include="subjectForm.Designer.cs">
       <DependentUpon>subjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="viewInformationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="viewInformationForm.Designer.cs">
+      <DependentUpon>viewInformationForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="classForm.resx">
       <DependentUpon>classForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +102,9 @@
     </Compile>
     <EmbeddedResource Include="subjectForm.resx">
       <DependentUpon>subjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="viewInformationForm.resx">
+      <DependentUpon>viewInformationForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
