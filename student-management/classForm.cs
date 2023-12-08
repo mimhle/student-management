@@ -32,9 +32,6 @@ namespace studentManagement {
         }
 
         private void classForm_Load(object sender, EventArgs e) {
-
         }
-
-       
     }
 }

@@ -61,6 +61,7 @@ namespace studentManagement {
             if (iNum == 0) gbAddScore.Show();
             else gbAddScore.Hide();
         }
+
         private void btnReturnMenu_Click(object sender, EventArgs e) {
             Close();
         }
@@ -104,14 +105,18 @@ namespace studentManagement {
             var subject = _db.getAllSubject();
 
             foreach (var row in subject) {
-                var temp = _db.getFaculty(row["MaKhoa"]); ;
+                var temp = _db.getFaculty(row["MaKhoa"]);
+                ;
                 if (temp != null) {
-                    if (comboBoxFaculty.SelectedIndex != -1 && comboBoxFaculty.SelectedItem.ToString() == temp["TenKhoa"]) {
+                    if (comboBoxFaculty.SelectedIndex != -1 &&
+                        comboBoxFaculty.SelectedItem.ToString() == temp["TenKhoa"]) {
                         comboBoxSubject.Items.Add(row["TenMonHoc"]);
                     }
                 }
+
                 _autoResizeListViewColumns(listViewDisplaySubject);
             }
+
             comboBoxClass.Items.Clear();
             comboBoxClass.SelectedIndex = -1;
             comboBoxClass.Text = "";
@@ -181,6 +186,7 @@ namespace studentManagement {
                     } else {
                         item.SubItems.Add("");
                     }
+
                     listViewAddScore.Items.Add(item);
                 }
             }
@@ -299,14 +305,14 @@ namespace studentManagement {
                 textBox2.Text = listViewDisplaySubject.SelectedItems[0].SubItems[0].Text;
                 txtCredit.Text = listViewDisplaySubject.SelectedItems[0].SubItems[2].Text;
                 comboBox1.SelectedIndex = comboBox2.SelectedIndex;
-            } else if(!_isEditing) {
-                if(listViewDisplaySubject.SelectedItems.Count == 1) {
+            } else if (!_isEditing) {
+                if (listViewDisplaySubject.SelectedItems.Count == 1) {
                     var subject = _db.removeSubject(listViewDisplaySubject.SelectedItems[0].SubItems[0].Text);
                     var subjectList = _db.getAllSubject();
                     Console.WriteLine(subject);
                     Console.WriteLine(subjectList.Count);
                     _loadListViewDisplaySubject(_getFacultyID(comboBox2.SelectedItem.ToString()));
-                } else if(listViewDisplaySubject.SelectedItems.Count > 1) {
+                } else if (listViewDisplaySubject.SelectedItems.Count > 1) {
                     for (var i = 0; i < listViewDisplaySubject.SelectedItems.Count; i++) {
                         _db.removeSubject(_getSubjectID(listViewDisplaySubject.SelectedItems[i].SubItems[0].Text));
                     }
@@ -333,15 +339,18 @@ namespace studentManagement {
                 Console.WriteLine(txtMssvAddScore.Text);
                 Console.WriteLine(_getSubjectID(comboBoxSubject.SelectedItem.ToString()));
                 Console.WriteLine(float.Parse(textBox3.Text));
-                var insertScore = _db.insertScore(txtMssvAddScore.Text, _getSubjectID(comboBoxSubject.SelectedItem.ToString()), float.Parse(textBox3.Text));
+                var insertScore = _db.insertScore(txtMssvAddScore.Text,
+                    _getSubjectID(comboBoxSubject.SelectedItem.ToString()), float.Parse(textBox3.Text));
                 Console.WriteLine(insertScore);
                 _loadListViewAddScore();
             }
         }
 
         private void btnAddSubject_Click(object sender, EventArgs e) {
-            if (comboBox1.SelectedIndex != -1 && _isValidID(textBox2.Text) && textBox1.Text != "" && txtCredit.Text.All(char.IsDigit)) {
-                var subject = _db.insertSubject(textBox2.Text, textBox1.Text, _getFacultyID(comboBox1.SelectedItem.ToString()), int.Parse(txtCredit.Text));
+            if (comboBox1.SelectedIndex != -1 && _isValidID(textBox2.Text) && textBox1.Text != "" &&
+                txtCredit.Text.All(char.IsDigit)) {
+                var subject = _db.insertSubject(textBox2.Text, textBox1.Text,
+                    _getFacultyID(comboBox1.SelectedItem.ToString()), int.Parse(txtCredit.Text));
                 _loadListViewDisplaySubject(_getFacultyID(comboBox1.SelectedItem.ToString()));
                 if (subject) {
                     textBox1.Text = "";
@@ -353,7 +362,7 @@ namespace studentManagement {
         }
 
         private void textBox1_Validating(object sender, CancelEventArgs e) {
-            if(textBox1.Text == "") {
+            if (textBox1.Text == "") {
                 errorProviderSubjectName.SetError(textBox1, "Không được để trống");
             } else {
                 errorProviderSubjectName.SetError(textBox1, null);
@@ -361,9 +370,9 @@ namespace studentManagement {
         }
 
         private void textBox2_Validating(object sender, CancelEventArgs e) {
-            if(textBox2.Text == "") {
+            if (textBox2.Text == "") {
                 errorProviderSubjectID.SetError(textBox2, "Không được để trống");
-            } else if(!_isValidID(textBox2.Text)) {
+            } else if (!_isValidID(textBox2.Text)) {
                 errorProviderSubjectID.SetError(textBox2, "Mã môn học không hợp lệ");
             } else {
                 errorProviderSubjectID.SetError(textBox2, null);
@@ -371,7 +380,7 @@ namespace studentManagement {
         }
 
         private void comboBox1_Validating(object sender, CancelEventArgs e) {
-            if(comboBox1.SelectedIndex == -1) {
+            if (comboBox1.SelectedIndex == -1) {
                 errorProviderFacultySelected.SetError(comboBox1, "Không được để trống");
             } else {
                 errorProviderFacultySelected.SetError(comboBox1, null);
@@ -379,9 +388,9 @@ namespace studentManagement {
         }
 
         private void txtCredit_Validating(object sender, CancelEventArgs e) {
-            if(txtCredit.Text == "") {
+            if (txtCredit.Text == "") {
                 errorProviderCredit.SetError(txtCredit, "Không được để trống");
-            } else if(!txtCredit.Text.All(char.IsDigit)) {
+            } else if (!txtCredit.Text.All(char.IsDigit)) {
                 errorProviderCredit.SetError(txtCredit, "Số tín chỉ phải là số");
             } else {
                 errorProviderCredit.SetError(txtCredit, null);
