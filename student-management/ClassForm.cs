@@ -11,14 +11,14 @@ namespace studentManagement {
             _createColumsListViewClassList();
             _createColumsListViewStudentList();
             _createColumsListViewSubjectClassList();
-            _createColumsListViewSubjectClassListFSC();
+            _createColumnsListViewSubjectClassListFSC();
             _loadListViewClassList(_db.getAllClasses());
         }
 
         private readonly Database _db = Program.db;
 
 
-        private void _autoResizeListViewColumns(ListView listView) {
+        private static void _autoResizeListViewColumns(ListView listView) {
             foreach (ColumnHeader column in listView.Columns) {
                 column.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
@@ -60,8 +60,6 @@ namespace studentManagement {
             listViewStudentList.GridLines = true;
             listViewStudentList.Columns.Add("Mã sinh viên", 100);
             listViewStudentList.Columns.Add("Họ tên", 200);
-            //listViewStudentList.Columns.Add("Giới tính", 100);
-            //listViewStudentList.Columns.Add("Ngày sinh", 100);
             listViewStudentList.Columns.Add("Mã Khoa", 200);
             listViewStudentList.Columns.Add("Mã lớp", 100);
 
@@ -82,7 +80,7 @@ namespace studentManagement {
             _autoResizeListViewColumns(listViewSubjectClassList);
         }
 
-        private void _createColumsListViewSubjectClassListFSC() {
+        private void _createColumnsListViewSubjectClassListFSC() {
             listViewSubjectClassListFSC.View = View.Details;
             listViewSubjectClassListFSC.FullRowSelect = true;
             listViewSubjectClassListFSC.GridLines = true;
@@ -95,60 +93,60 @@ namespace studentManagement {
             _autoResizeListViewColumns(listViewSubjectClassListFSC);
         }
 
-        private void _loadListViewStudentList(List<Dictionary<String, String>> StudentList) {
+        private void _loadListViewStudentList(List<Dictionary<string, string>> studentList) {
             listViewStudentList.Items.Clear();
 
-            foreach (var Student in StudentList) {
-                var item = new ListViewItem(Student["MaSinhVien"]);
-                item.SubItems.Add(Student["HoTen"]);
+            foreach (var student in studentList) {
+                var item = new ListViewItem(student["MaSinhVien"]);
+                item.SubItems.Add(student["HoTen"]);
                 //item.SubItems.Add(Student["GioiTinh"]);
                 //item.SubItems.Add(Student["NgaySinh"]);
-                item.SubItems.Add(Student["MaKhoa"]);
-                item.SubItems.Add(Student["MaLop"]);
+                item.SubItems.Add(student["MaKhoa"]);
+                item.SubItems.Add(student["MaLop"]);
                 listViewStudentList.Items.Add(item);
             }
 
             _autoResizeListViewColumns(listViewStudentList);
         }
 
-        private void _loadListViewClassList(List<Dictionary<String, String>> ClassList) {
+        private void _loadListViewClassList(List<Dictionary<string, string>> classList) {
             listViewClassList.Items.Clear();
 
-            foreach (var Class in ClassList) {
-                var item = new ListViewItem(Class["MaLop"]);
-                item.SubItems.Add(Class["TenLop"]);
-                item.SubItems.Add(Class["MaKhoa"]);
+            foreach (var class_ in classList) {
+                var item = new ListViewItem(class_["MaLop"]);
+                item.SubItems.Add(class_["TenLop"]);
+                item.SubItems.Add(class_["MaKhoa"]);
                 listViewClassList.Items.Add(item);
             }
 
             _autoResizeListViewColumns(listViewClassList);
         }
 
-        private void _loadListViewSubjectClassList(List<Dictionary<String, String>> SubjectClassList) {
+        private void _loadListViewSubjectClassList(List<Dictionary<string, string>> subjectClassList) {
             listViewSubjectClassList.Items.Clear();
 
-            foreach (var SubjectClass in SubjectClassList) {
-                var item = new ListViewItem(SubjectClass["MaLopHocPhan"]);
-                item.SubItems.Add(SubjectClass["TenLopHocPhan"]);
-                item.SubItems.Add(SubjectClass["MaKhoa"]);
-                item.SubItems.Add(SubjectClass["MaMonHoc"]);
-                item.SubItems.Add(_db.getSubject(SubjectClass["MaMonHoc"])["TenMonHoc"]);
-                item.SubItems.Add(_getCountStudentSubjectClass(SubjectClass["MaLopHocPhan"]));
+            foreach (var subjectClass in subjectClassList) {
+                var item = new ListViewItem(subjectClass["MaLopHocPhan"]);
+                item.SubItems.Add(subjectClass["TenLopHocPhan"]);
+                item.SubItems.Add(subjectClass["MaKhoa"]);
+                item.SubItems.Add(subjectClass["MaMonHoc"]);
+                item.SubItems.Add(_db.getSubject(subjectClass["MaMonHoc"])["TenMonHoc"]);
+                item.SubItems.Add(_getCountStudentSubjectClass(subjectClass["MaLopHocPhan"]));
                 listViewSubjectClassList.Items.Add(item);
             }
 
             _autoResizeListViewColumns(listViewSubjectClassList);
         }
 
-        private void _loadListViewSubjectClassListFSC(List<Dictionary<String, String>> SubjectClassListFSC) {
+        private void _loadListViewSubjectClassListFSC(List<Dictionary<string, string>> subjectClassListFsc) {
             listViewSubjectClassListFSC.Items.Clear();
 
-            foreach (var SubjectClassFSC in SubjectClassListFSC) {
-                var item = new ListViewItem(SubjectClassFSC["MaLopHocPhan"]);
-                item.SubItems.Add(SubjectClassFSC["TenLopHocPhan"]);
-                item.SubItems.Add(SubjectClassFSC["MaMonHoc"]);
-                item.SubItems.Add(_db.getSubject(SubjectClassFSC["MaMonHoc"])["TenMonHoc"]);
-                item.SubItems.Add(_getCountStudentSubjectClass(SubjectClassFSC["MaLopHocPhan"]));
+            foreach (var subjectClassFsc in subjectClassListFsc) {
+                var item = new ListViewItem(subjectClassFsc["MaLopHocPhan"]);
+                item.SubItems.Add(subjectClassFsc["TenLopHocPhan"]);
+                item.SubItems.Add(subjectClassFsc["MaMonHoc"]);
+                item.SubItems.Add(_db.getSubject(subjectClassFsc["MaMonHoc"])["TenMonHoc"]);
+                item.SubItems.Add(_getCountStudentSubjectClass(subjectClassFsc["MaLopHocPhan"]));
                 listViewSubjectClassListFSC.Items.Add(item);
             }
 
@@ -179,9 +177,9 @@ namespace studentManagement {
 
         private string _getClassID(string className) {
             var classList = _db.getAllClasses();
-            foreach (var Class in classList) {
-                if (Class["TenLop"] == className) {
-                    return Class["MaLop"];
+            foreach (var class_ in classList) {
+                if (class_["TenLop"] == className) {
+                    return class_["MaLop"];
                 }
             }
 
@@ -190,9 +188,9 @@ namespace studentManagement {
 
         private string _getSubjectClassID(string subjectClassName) {
             var subjectClassList = _db.getAllSubjectClass();
-            foreach (var SubjectClass in subjectClassList) {
-                if (SubjectClass["TenLopHocPhan"] == subjectClassName) {
-                    return SubjectClass["MaLopHocPhan"];
+            foreach (var subjectClass in subjectClassList) {
+                if (subjectClass["TenLopHocPhan"] == subjectClassName) {
+                    return subjectClass["MaLopHocPhan"];
                 }
             }
 
@@ -201,8 +199,8 @@ namespace studentManagement {
 
         private string _getCountStudentClass(string classID) {
             var count = 0;
-            foreach (var Student in _db.getAllStudents()) {
-                if (Student["MaLop"] == classID) {
+            foreach (var student in _db.getAllStudents()) {
+                if (student["MaLop"] == classID) {
                     count++;
                 }
             }
@@ -210,11 +208,11 @@ namespace studentManagement {
             return count.ToString();
         }
 
-        private string _getCountStudentSubjectClass(string subjectClassID) {
+        private string _getCountStudentSubjectClass(string subjectClassId) {
             var count = 0;
 
-            foreach (var SubjectClass in _db.getAllSubjectClassStudents()) {
-                if (SubjectClass["MaLopHocPhan"] == subjectClassID) {
+            foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
+                if (subjectClass["MaLopHocPhan"] == subjectClassId) {
                     count++;
                 }
             }
@@ -242,7 +240,7 @@ namespace studentManagement {
         private void comboBoxFindFacultyFSC_SelectedIndexChanged(object sender, EventArgs e) {
             var subjectClassList = _db.getAllSubjectClass();
 
-            var result = new List<Dictionary<String, String>>();
+            var result = new List<Dictionary<string, string>>();
 
             foreach (var subjectClass in subjectClassList) {
                 if (subjectClass["MaKhoa"] == _getFacultyID(comboBoxFindFacultyFSC.Text)) {
@@ -347,7 +345,7 @@ namespace studentManagement {
 
         private void comboBoxFindFaculty_SelectedIndexChanged(object sender, EventArgs e) {
 
-            var result = new List<Dictionary<String, String>>();
+            var result = new List<Dictionary<string, string>>();
             foreach (var subjectClass in _db.getAllSubjectClass()) {
                 if (subjectClass["MaKhoa"] == _getFacultyID(comboBoxFindFaculty.Text)) {
                     result.Add(subjectClass);
@@ -359,7 +357,7 @@ namespace studentManagement {
 
         private void listViewSubjectClassList_SelectedIndexChanged(object sender, EventArgs e) {
             if (listViewSubjectClassList.SelectedItems.Count == 1) {
-                var result = new List<Dictionary<String, String>>();
+                var result = new List<Dictionary<string, string>>();
                 foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
                     if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
                         result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
@@ -378,7 +376,7 @@ namespace studentManagement {
                 }
             }
 
-            var result = new List<Dictionary<String, String>>();
+            var result = new List<Dictionary<string, string>>();
             foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
                 if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
                     result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
@@ -399,7 +397,7 @@ namespace studentManagement {
                 }
             }
 
-            var result = new List<Dictionary<String, String>>();
+            var result = new List<Dictionary<string, string>>();
             foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
                 if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
                     result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
@@ -417,7 +415,7 @@ namespace studentManagement {
                 }
             }
 
-            var result = new List<Dictionary<String, String>>();
+            var result = new List<Dictionary<string, string>>();
             foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
                 if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
                     result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
@@ -440,7 +438,7 @@ namespace studentManagement {
         }
 
         private void cbbTimTheoKhoa_SelectedIndexChanged(object sender, EventArgs e) {
-            var result = new List<Dictionary<String, String>>();
+            var result = new List<Dictionary<string, string>>();
 
             foreach (var itemClass in _db.getAllClasses()) {
                 if (itemClass["MaKhoa"] == _getFacultyID(cbbTimTheoKhoa.Text)) {
@@ -457,7 +455,7 @@ namespace studentManagement {
 
 
                 //Lay danh sach sinh vin trong lop hoc phan
-                var result = new List<Dictionary<String, String>>();
+                var result = new List<Dictionary<string, string>>();
                 foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
                     if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
                         result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
