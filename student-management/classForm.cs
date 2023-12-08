@@ -365,21 +365,37 @@ namespace studentManagement {
         }
 
         private void btnDeleteStudentID_Click(object sender, EventArgs e) {
-            if(txtFindStudentID.Text != "") {
-                _ = _db.removeStudent(txtFindStudentID.Text);
+            if(txtFindStudentID.Text != "" && listViewStudentList.SelectedItems.Count == 1) {
+                _ = _db.removeSubjectClassStudent(txtFindStudentID.Text, listViewSubjectClassList.SelectedItems[0].SubItems[0].Text);
             }
         }
 
         private void btnAddAllStudent_Click(object sender, EventArgs e) {
             if(txtFindClassID.Text != "") {
-                var result = new List<Dictionary<String, String>>();
+               
+            }
+        }
+
+        private void btnDeleteAllStudentID_Click(object sender, EventArgs e) {
+            if(txtFindClassID.Text != "") {
                 foreach (var student in _db.getAllStudents()) {
                     if (student["MaLop"] == txtFindClassID.Text) {
-                        result.Add(student);
+                        _ = _db.removeStudent(student["MaSinhVien"]);
                     }
                 }
-                _loadListViewStudentList(result);
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e) {
+            _loadListViewClassList(_db.getAllClasses());
+        }
+
+        private void btnReturnMenu_Click(object sender, EventArgs e) {
+            this.Close();
+        }
+
+        private void btnRefreshFSC_Click(object sender, EventArgs e) {
+            _loadListViewSubjectClassListFSC(_db.getAllSubjectClass());
         }
     }
 }

@@ -147,6 +147,7 @@ namespace studentManagement {
             this.btnReturnMenu.TabIndex = 9;
             this.btnReturnMenu.Text = "Trở về menu";
             this.btnReturnMenu.UseVisualStyleBackColor = true;
+            this.btnReturnMenu.Click += new System.EventHandler(this.btnReturnMenu_Click);
             // 
             // listViewClassList
             // 
@@ -297,6 +298,7 @@ namespace studentManagement {
             this.btnRefresh.TabIndex = 27;
             this.btnRefresh.Text = "Làm Mới";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // comboBoxFacultyFClass
             // 
@@ -622,6 +624,7 @@ namespace studentManagement {
             this.btnRefreshFSC.TabIndex = 27;
             this.btnRefreshFSC.Text = "Làm Mới";
             this.btnRefreshFSC.UseVisualStyleBackColor = true;
+            this.btnRefreshFSC.Click += new System.EventHandler(this.btnRefreshFSC_Click);
             // 
             // comboBoxFacultyFSC
             // 
@@ -776,6 +779,7 @@ namespace studentManagement {
             this.btnDeleteAllStudentID.TabIndex = 7;
             this.btnDeleteAllStudentID.Text = "Xóa Tất cả";
             this.btnDeleteAllStudentID.UseVisualStyleBackColor = true;
+            this.btnDeleteAllStudentID.Click += new System.EventHandler(this.btnDeleteAllStudentID_Click);
             // 
             // label20
             // 
