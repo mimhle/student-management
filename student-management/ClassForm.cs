@@ -4,13 +4,12 @@ using System.Windows.Forms;
 
 namespace studentManagement {
     public partial class ClassForm : Form {
-
         public ClassForm() {
             InitializeComponent();
             _loadAllFaculty();
-            _createColumsListViewClassList();
-            _createColumsListViewStudentList();
-            _createColumsListViewSubjectClassList();
+            _createColumnsListViewClassList();
+            _createColumnsListViewStudentList();
+            _createColumnsListViewSubjectClassList();
             _createColumnsListViewSubjectClassListFSC();
             _loadListViewClassList(_db.getAllClasses());
         }
@@ -43,7 +42,7 @@ namespace studentManagement {
         }
 
 
-        private void _createColumsListViewClassList() {
+        private void _createColumnsListViewClassList() {
             listViewClassList.View = View.Details;
             listViewClassList.FullRowSelect = true;
             listViewClassList.GridLines = true;
@@ -54,7 +53,7 @@ namespace studentManagement {
             _autoResizeListViewColumns(listViewClassList);
         }
 
-        private void _createColumsListViewStudentList() {
+        private void _createColumnsListViewStudentList() {
             listViewStudentList.View = View.Details;
             listViewStudentList.FullRowSelect = true;
             listViewStudentList.GridLines = true;
@@ -66,7 +65,7 @@ namespace studentManagement {
             _autoResizeListViewColumns(listViewStudentList);
         }
 
-        private void _createColumsListViewSubjectClassList() {
+        private void _createColumnsListViewSubjectClassList() {
             listViewSubjectClassList.View = View.Details;
             listViewSubjectClassList.FullRowSelect = true;
             listViewSubjectClassList.GridLines = true;
@@ -156,9 +155,7 @@ namespace studentManagement {
         private string _getFacultyID(string facultyName) {
             var facultyList = _db.getAllFaculties();
             foreach (var faculty in facultyList) {
-                if (faculty["TenKhoa"] == facultyName) {
-                    return faculty["MaKhoa"];
-                }
+                if (faculty["TenKhoa"] == facultyName) return faculty["MaKhoa"];
             }
 
             return "";
@@ -167,9 +164,7 @@ namespace studentManagement {
         private string _getSubjectID(string subjectName) {
             var subjectList = _db.getAllSubject();
             foreach (var subject in subjectList) {
-                if (subject["TenMonHoc"] == subjectName) {
-                    return subject["MaMonHoc"];
-                }
+                if (subject["TenMonHoc"] == subjectName) return subject["MaMonHoc"];
             }
 
             return "";
@@ -178,9 +173,7 @@ namespace studentManagement {
         private string _getClassID(string className) {
             var classList = _db.getAllClasses();
             foreach (var class_ in classList) {
-                if (class_["TenLop"] == className) {
-                    return class_["MaLop"];
-                }
+                if (class_["TenLop"] == className) return class_["MaLop"];
             }
 
             return "";
@@ -189,9 +182,7 @@ namespace studentManagement {
         private string _getSubjectClassID(string subjectClassName) {
             var subjectClassList = _db.getAllSubjectClass();
             foreach (var subjectClass in subjectClassList) {
-                if (subjectClass["TenLopHocPhan"] == subjectClassName) {
-                    return subjectClass["MaLopHocPhan"];
-                }
+                if (subjectClass["TenLopHocPhan"] == subjectClassName) return subjectClass["MaLopHocPhan"];
             }
 
             return "";
@@ -200,9 +191,8 @@ namespace studentManagement {
         private string _getCountStudentClass(string classID) {
             var count = 0;
             foreach (var student in _db.getAllStudents()) {
-                if (student["MaLop"] == classID) {
-                    count++;
-                }
+                if (student["MaLop"] != classID) continue;
+                count++;
             }
 
             return count.ToString();
@@ -212,19 +202,17 @@ namespace studentManagement {
             var count = 0;
 
             foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
-                if (subjectClass["MaLopHocPhan"] == subjectClassId) {
-                    count++;
-                }
+                if (subjectClass["MaLopHocPhan"] != subjectClassId) continue;
+                count++;
             }
 
             return count.ToString();
         }
 
         private void btnAddClass_Click(object sender, EventArgs e) {
-            if (txtClassID.Text != "" && txtClassName.Text != "" && comboBoxFacultyFClass.SelectedIndex != -1) {
-                if (_db.getClass(txtClassID.Text) == null)
-                    _ = _db.insertClass(txtClassID.Text, txtClassName.Text, _getFacultyID(comboBoxFacultyFClass.Text));
-            }
+            if (txtClassID.Text == "" || txtClassName.Text == "" || comboBoxFacultyFClass.SelectedIndex == -1) return;
+            if (_db.getClass(txtClassID.Text) != null) return;
+            _db.insertClass(txtClassID.Text, txtClassName.Text, _getFacultyID(comboBoxFacultyFClass.Text));
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
@@ -243,52 +231,56 @@ namespace studentManagement {
             var result = new List<Dictionary<string, string>>();
 
             foreach (var subjectClass in subjectClassList) {
-                if (subjectClass["MaKhoa"] == _getFacultyID(comboBoxFindFacultyFSC.Text)) {
-                    result.Add(subjectClass);
-                }
+                if (subjectClass["MaKhoa"] != _getFacultyID(comboBoxFindFacultyFSC.Text)) continue;
+                result.Add(subjectClass);
             }
 
             _loadListViewSubjectClassListFSC(result);
         }
 
         private void comboBoxFacultyFSC_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxFacultyFSC.SelectedIndex != -1) {
-                _loadComboBoxSubjectClass();
-            }
+            if (comboBoxFacultyFSC.SelectedIndex == -1) return;
+            _loadComboBoxSubjectClass();
         }
 
         private void btnAddSubjectClass_Click(object sender, EventArgs e) {
-            if (txtSubjectClassID.Text != "" && comboBoxSubjectClassFSC.SelectedIndex != -1) {
-                if (_db.getSubjectClass(txtSubjectClassID.Text) == null)
-                    _ = _db.insertSubjectClass(txtSubjectClassID.Text, txtNameSubjectClass.Text, _getFacultyID(comboBoxFacultyFSC.Text), _getSubjectID(comboBoxSubjectClassFSC.Text));
-            }
+            if (txtSubjectClassID.Text == "" || comboBoxSubjectClassFSC.SelectedIndex == -1) return;
+            if (_db.getSubjectClass(txtSubjectClassID.Text) == null)
+                _db.insertSubjectClass(txtSubjectClassID.Text, txtNameSubjectClass.Text,
+                    _getFacultyID(comboBoxFacultyFSC.Text), _getSubjectID(comboBoxSubjectClassFSC.Text));
         }
 
         private void listViewSubjectClassListFSC_SelectedIndexChanged(object sender, EventArgs e) {
             btnDeleteSubjectClass.Enabled = true;
-            if (listViewSubjectClassListFSC.SelectedItems.Count == 1) {
+            if (listViewSubjectClassListFSC.SelectedItems.Count != 1) {
                 btnEditSubjectClassFSB.Enabled = true;
-                txtSubjectClassID.Text = listViewSubjectClassListFSC.SelectedItems[0].SubItems[0].Text;
-                txtNameSubjectClass.Text = listViewSubjectClassListFSC.SelectedItems[0].SubItems[1].Text;
-                foreach (var faculty in comboBoxFacultyFSC.Items) {
-                    if (faculty.ToString() == _db.getFaculty(_db.getSubject(listViewSubjectClassListFSC.SelectedItems[0].SubItems[2].Text)["MaKhoa"])["TenKhoa"]) {
-                        comboBoxFacultyFSC.SelectedItem = faculty;
-                    }
-                }
-                foreach (var subject in comboBoxSubjectClassFSC.Items) {
-                    if (subject.ToString() == _db.getSubject(listViewSubjectClassListFSC.SelectedItems[0].SubItems[2].Text)["TenMonHoc"]) {
-                        comboBoxSubjectClassFSC.SelectedItem = subject;
-                    }
-                }
-            } else {
-                btnEditSubjectClassFSB.Enabled = true;
+                return;
+            }
 
+            btnEditSubjectClassFSB.Enabled = true;
+            txtSubjectClassID.Text = listViewSubjectClassListFSC.SelectedItems[0].SubItems[0].Text;
+            txtNameSubjectClass.Text = listViewSubjectClassListFSC.SelectedItems[0].SubItems[1].Text;
+            foreach (var faculty in comboBoxFacultyFSC.Items) {
+                if (faculty.ToString() ==
+                    _db.getFaculty(
+                        _db.getSubject(listViewSubjectClassListFSC.SelectedItems[0].SubItems[2].Text)["MaKhoa"])[
+                        "TenKhoa"]) {
+                    comboBoxFacultyFSC.SelectedItem = faculty;
+                }
+            }
+
+            foreach (var subject in comboBoxSubjectClassFSC.Items) {
+                if (subject.ToString() ==
+                    _db.getSubject(listViewSubjectClassListFSC.SelectedItems[0].SubItems[2].Text)["TenMonHoc"]) {
+                    comboBoxSubjectClassFSC.SelectedItem = subject;
+                }
             }
         }
 
         private void btnEditSubjectClassFSB_Click(object sender, EventArgs e) {
             if (txtSubjectClassID.Text != "" && comboBoxSubjectClassFSC.SelectedIndex != -1) {
-                _ = _db.insertSubjectClass(txtSubjectClassID.Text, txtNameSubjectClass.Text, _getFacultyID(comboBoxFacultyFSC.Text), _getSubjectID(comboBoxSubjectClassFSC.Text));
+                _db.insertSubjectClass(txtSubjectClassID.Text, txtNameSubjectClass.Text,
+                    _getFacultyID(comboBoxFacultyFSC.Text), _getSubjectID(comboBoxSubjectClassFSC.Text));
             }
 
             txtSubjectClassID.Text = "";
@@ -299,17 +291,17 @@ namespace studentManagement {
 
         private void btnDeleteSubjectClass_Click(object sender, EventArgs e) {
             if (listViewSubjectClassListFSC.SelectedItems.Count == 1) {
-                _ = _db.removeSubjectClass(listViewSubjectClassListFSC.SelectedItems[0].SubItems[0].Text);
+                _db.removeSubjectClass(listViewSubjectClassListFSC.SelectedItems[0].SubItems[0].Text);
             } else if (listViewSubjectClassListFSC.SelectedItems.Count > 1) {
                 foreach (ListViewItem item in listViewSubjectClassListFSC.SelectedItems) {
-                    _ = _db.removeSubjectClass(listViewSubjectClassListFSC.SelectedItems[0].SubItems[0].Text);
+                    _db.removeSubjectClass(listViewSubjectClassListFSC.SelectedItems[0].SubItems[0].Text);
                 }
             }
         }
 
         private void btnEditClass_Click(object sender, EventArgs e) {
             if (txtClassID.Text != "" && txtClassName.Text != "" && comboBoxFacultyFClass.SelectedIndex != -1) {
-                _ = _db.insertClass(txtClassID.Text, txtClassName.Text, _getFacultyID(comboBoxFacultyFClass.Text));
+                _db.insertClass(txtClassID.Text, txtClassName.Text, _getFacultyID(comboBoxFacultyFClass.Text));
             }
 
             txtClassID.Text = "";
@@ -321,35 +313,35 @@ namespace studentManagement {
             if (listViewClassList.SelectedItems.Count == 1) {
                 _ = _db.removeClass(listViewClassList.SelectedItems[0].SubItems[0].Text);
             } else if (listViewClassList.SelectedItems.Count > 1) {
-                foreach (ListViewItem item in listViewClassList.SelectedItems) {
-                    _ = _db.removeClass(listViewClassList.SelectedItems[0].SubItems[0].Text);
+                foreach (ListViewItem _ in listViewClassList.SelectedItems) {
+                    _db.removeClass(listViewClassList.SelectedItems[0].SubItems[0].Text);
                 }
             }
         }
 
         private void listViewClassList_SelectedIndexChanged(object sender, EventArgs e) {
             btnDeleteClass.Enabled = true;
-            if (listViewClassList.SelectedItems.Count == 1) {
-                btnEditClass.Enabled = true;
-                txtClassID.Text = listViewClassList.SelectedItems[0].SubItems[0].Text;
-                txtClassName.Text = listViewClassList.SelectedItems[0].SubItems[1].Text;
-                foreach (var faculty in comboBoxFacultyFClass.Items) {
-                    if (faculty.ToString() == _db.getFaculty(listViewClassList.SelectedItems[0].SubItems[2].Text)["TenKhoa"]) {
-                        comboBoxFacultyFClass.SelectedItem = faculty;
-                    }
-                }
-            } else {
+            if (listViewClassList.SelectedItems.Count != 1) {
                 btnEditClass.Enabled = false;
+                return;
+            }
+
+            btnEditClass.Enabled = true;
+            txtClassID.Text = listViewClassList.SelectedItems[0].SubItems[0].Text;
+            txtClassName.Text = listViewClassList.SelectedItems[0].SubItems[1].Text;
+            foreach (var faculty in comboBoxFacultyFClass.Items) {
+                if (faculty.ToString() ==
+                    _db.getFaculty(listViewClassList.SelectedItems[0].SubItems[2].Text)["TenKhoa"]) {
+                    comboBoxFacultyFClass.SelectedItem = faculty;
+                }
             }
         }
 
         private void comboBoxFindFaculty_SelectedIndexChanged(object sender, EventArgs e) {
-
             var result = new List<Dictionary<string, string>>();
             foreach (var subjectClass in _db.getAllSubjectClass()) {
-                if (subjectClass["MaKhoa"] == _getFacultyID(comboBoxFindFaculty.Text)) {
-                    result.Add(subjectClass);
-                }
+                if (subjectClass["MaKhoa"] != _getFacultyID(comboBoxFindFaculty.Text)) continue;
+                result.Add(subjectClass);
             }
 
             _loadListViewSubjectClassList(result);
@@ -359,9 +351,9 @@ namespace studentManagement {
             if (listViewSubjectClassList.SelectedItems.Count == 1) {
                 var result = new List<Dictionary<string, string>>();
                 foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
-                    if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
-                        result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
-                    }
+                    if (subjectClass["MaLopHocPhan"] !=
+                        listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) continue;
+                    result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
                 }
 
 
@@ -372,54 +364,56 @@ namespace studentManagement {
         private void btnAddStudentID_Click(object sender, EventArgs e) {
             if (txtFindStudentID.Text != "" && listViewSubjectClassList.SelectedItems.Count == 1) {
                 if (_db.getStudent(txtFindStudentID.Text) != null) {
-                    _ = _db.insertSubjectClassStudent(txtFindStudentID.Text, listViewSubjectClassList.SelectedItems[0].Text);
+                    _ = _db.insertSubjectClassStudent(txtFindStudentID.Text,
+                        listViewSubjectClassList.SelectedItems[0].Text);
                 }
             }
 
             var result = new List<Dictionary<string, string>>();
             foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
-                if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
-                    result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
-                }
+                if (subjectClass["MaLopHocPhan"] !=
+                    listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) continue;
+                result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
             }
 
             _loadListViewStudentList(result);
-
         }
 
         private void btnAddAllStudent_Click(object sender, EventArgs e) {
             if (txtFindClassID.Text != "") {
                 //them tat ca sinh vien vao lop hoc phan
                 foreach (var student in _db.getAllStudents()) {
-                    if (student["MaLop"] == txtFindClassID.Text) {
-                        _ = _db.insertSubjectClassStudent(student["MaSinhVien"], listViewSubjectClassList.SelectedItems[0].Text);
-                    }
+                    if (student["MaLop"] != txtFindClassID.Text) continue;
+                    _ = _db.insertSubjectClassStudent(student["MaSinhVien"],
+                        listViewSubjectClassList.SelectedItems[0].Text);
                 }
             }
 
             var result = new List<Dictionary<string, string>>();
             foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
-                if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
-                    result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
-                }
+                if (subjectClass["MaLopHocPhan"] !=
+                    listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) continue;
+                result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
             }
+
             _loadListViewStudentList(result);
         }
 
         private void btnDeleteAllStudentID_Click(object sender, EventArgs e) {
             if (txtFindClassID.Text != "") {
-                foreach(var subjectClassStudent in _db.getAllSubjectClassStudents()) {
-                    if (subjectClassStudent["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
-                        _ = _db.removeSubjectClassStudent(subjectClassStudent["MaSinhVien"], subjectClassStudent["MaLopHocPhan"]);
-                    }
+                foreach (var subjectClassStudent in _db.getAllSubjectClassStudents()) {
+                    if (subjectClassStudent["MaLopHocPhan"] !=
+                        listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) continue;
+                    _ = _db.removeSubjectClassStudent(subjectClassStudent["MaSinhVien"],
+                        subjectClassStudent["MaLopHocPhan"]);
                 }
             }
 
             var result = new List<Dictionary<string, string>>();
             foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
-                if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
-                    result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
-                }
+                if (subjectClass["MaLopHocPhan"] !=
+                    listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) continue;
+                result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
             }
 
             _loadListViewStudentList(result);
@@ -441,29 +435,37 @@ namespace studentManagement {
             var result = new List<Dictionary<string, string>>();
 
             foreach (var itemClass in _db.getAllClasses()) {
-                if (itemClass["MaKhoa"] == _getFacultyID(cbbTimTheoKhoa.Text)) {
-                    result.Add(itemClass);
-                }
+                if (itemClass["MaKhoa"] != _getFacultyID(cbbTimTheoKhoa.Text)) continue;
+                result.Add(itemClass);
             }
 
             _loadListViewClassList(result);
         }
 
         private void btnDelete_Click(object sender, EventArgs e) {
-            if (listViewStudentList.SelectedItems.Count == 1) {
-                _ = _db.removeSubjectClassStudent(txtFindStudentID.Text, listViewSubjectClassList.SelectedItems[0].Text);
+            if (listViewStudentList.SelectedItems.Count != 1) return;
+            _ = _db.removeSubjectClassStudent(txtFindStudentID.Text, listViewSubjectClassList.SelectedItems[0].Text);
 
-
-                //Lay danh sach sinh vin trong lop hoc phan
-                var result = new List<Dictionary<string, string>>();
-                foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
-                    if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
-                        result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
-                    }
+            //Lay danh sach sinh vin trong lop hoc phan
+            var result = new List<Dictionary<string, string>>();
+            foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
+                if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
+                    result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
                 }
-
-                _loadListViewStudentList(result);
             }
+
+            _loadListViewStudentList(result);
+        }
+
+        private void txtFindClassSubject_TextChanged(object sender, EventArgs e) {
+            var result = new List<Dictionary<string, string>>();
+            foreach (var subjectClass in _db.getAllSubjectClass()) {
+                if (subjectClass["MaMonHoc"] == _getSubjectID(txtFindClassSubject.Text)) {
+                    result.Add(subjectClass);
+                }
+            }
+
+            _loadListViewSubjectClassList(result);
         }
     }
 }
