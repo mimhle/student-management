@@ -183,8 +183,10 @@ namespace studentManagement {
         }
 
         private void comboLefFaculty_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboLefFaculty.SelectedIndex != -1)
+            if (comboLefFaculty.SelectedIndex != -1) {
                 loadClassByFaculty(comboLefFaculty.SelectedItem.ToString());
+                btnFind.Enabled = true;
+            }
         }
 
         private string getFacultyId(string facultyName) {
@@ -274,14 +276,11 @@ namespace studentManagement {
             if (listViewDisplay.SelectedItems.Count == 1) {
                 btnEdit.Enabled = true;
                 btnDelete.Enabled = true;
-            } else {
-                btnEdit.Enabled = false;
-            }
+            } else btnEdit.Enabled = false;
         }
 
         private void comboBoxFacultyEdit_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxFacultyEdit.SelectedIndex != -1)
-                loadClassByFaculty(comboBoxFacultyEdit.SelectedItem.ToString());
+            if (comboBoxFacultyEdit.SelectedIndex != -1) loadClassByFaculty(comboBoxFacultyEdit.SelectedItem.ToString());
         }
 
         private void radioButtonId_CheckedChanged(object sender, EventArgs e) {
@@ -291,6 +290,8 @@ namespace studentManagement {
                 comboLefBoxClass.Text = string.Empty;
                 comboLefFaculty.Text = string.Empty;
                 txtIdFind.Enabled = true;
+                if (txtIdFind.Text != string.Empty) btnFind.Enabled = true;
+                else btnFind.Enabled = false;
             }
         }
 
@@ -299,6 +300,8 @@ namespace studentManagement {
                 comboLefBoxClass.Enabled = true;
                 comboLefFaculty.Enabled = true;
                 txtIdFind.Enabled = true;
+                if(txtIdFind.Text != string.Empty) btnFind.Enabled = true;
+                else btnFind.Enabled = false;
             }
         }
 
@@ -306,15 +309,11 @@ namespace studentManagement {
             string gender;
             bool classMonitor;
 
-            if (radioFemaleEdit.Checked)
-                gender = "Nữ";
-            else
-                gender = "Nam";
+            if (radioFemaleEdit.Checked) gender = "Nữ";
+            else gender = "Nam";
 
-            if (checkBoxClassMonitorEdit.Checked)
-                classMonitor = true;
-            else
-                classMonitor = false;
+            if (checkBoxClassMonitorEdit.Checked) classMonitor = true;
+            else classMonitor = false;
 
             var studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
             var classId = getClassId(comboBoxClassEdit.Text);
@@ -324,16 +323,13 @@ namespace studentManagement {
                         classMonitor)) {
                     MessageBox.Show(@"Thành công!");
                 }
-            } else
-                MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin!");
+            } else MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin!");
         }
 
         private bool checkAvaluableStudentId(string studentId) {
             var studentList = _db.getAllStudents();
             foreach (var item in studentList) {
-                if (item["MaSinhVien"] == studentId) {
-                    return false;
-                }
+                if (item["MaSinhVien"] == studentId) return false;
             }
 
             return true;
@@ -342,11 +338,9 @@ namespace studentManagement {
         private void btnInput_Click(object sender, EventArgs e) {
             string gender;
             var classMonitor = false;
-
             gender = radioBtnFemale.Checked ? "Nữ" : "Nam";
 
-            if (checkBoxClassMonitor.Checked)
-                classMonitor = true;
+            if (checkBoxClassMonitor.Checked) classMonitor = true;
 
             var classId = getClassId(comboBoxClass.Text);
             var facultyId = getFacultyId(comboBoxFaculty.Text);
@@ -357,10 +351,8 @@ namespace studentManagement {
                             classMonitor)) {
                         MessageBox.Show(@"Thành công!");
                     }
-                } else
-                    MessageBox.Show(@"Mã sinh viên đã tồn tại!");
-            } else
-                MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin");
+                } else MessageBox.Show(@"Mã sinh viên đã tồn tại!");
+            } else MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin");
         }
 
         private void btnDelete_Click(object sender, EventArgs e) {
@@ -373,8 +365,7 @@ namespace studentManagement {
                         MessageBox.Show(@"Thành công!");
                         loadStudentListView();
                     }
-                } else 
-                    MessageBox.Show(@"vui lòng chọn sinh viên để xóa!");
+                } else MessageBox.Show(@"vui lòng chọn sinh viên để xóa!");
             } catch {
                 MessageBox.Show(@"Thất bại");
             }
@@ -383,8 +374,7 @@ namespace studentManagement {
         private bool checkClassMonitor(string classId) {
             var classList = _db.getAllStudents();
             foreach (var item in classList) {
-                if (item["MaLop"] == classId && item["LopTruong"] == "1")
-                    return true;
+                if (item["MaLop"] == classId && item["LopTruong"] == "1") return true;
             }
 
             return false;
@@ -392,36 +382,23 @@ namespace studentManagement {
 
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e) {
             if (comboBoxFaculty.SelectedIndex != -1) {
-                if (!checkClassMonitor(getClassId(comboBoxClass.SelectedItem.ToString())))
-                    checkBoxClassMonitor.Enabled = true;
-                else
-                    checkBoxClassMonitor.Enabled = false;
+                if (!checkClassMonitor(getClassId(comboBoxClass.SelectedItem.ToString()))) checkBoxClassMonitor.Enabled = true;
+                else checkBoxClassMonitor.Enabled = false;
             }
         }
 
         private void comboBoxClassEdit_SelectedIndexChanged(object sender, EventArgs e) {
             if (comboBoxFacultyEdit.SelectedIndex != -1) {
-                if (!checkClassMonitor(getClassId(comboBoxClassEdit.SelectedItem.ToString())))
-                    checkBoxClassMonitorEdit.Enabled = true;
-                else
-                    checkBoxClassMonitorEdit.Enabled = false;
-                if (checkBoxClassMonitorEdit.Checked)
-                    checkBoxClassMonitorEdit.Enabled = true;
+                if (!checkClassMonitor(getClassId(comboBoxClassEdit.SelectedItem.ToString()))) checkBoxClassMonitorEdit.Enabled = true;
+                else checkBoxClassMonitorEdit.Enabled = false;
+                if (checkBoxClassMonitorEdit.Checked) checkBoxClassMonitorEdit.Enabled = true;
             }
         }
 
         private void txtIdFind_TextChanged(object sender, EventArgs e) {
-            if(txtIdFind.Text != string.Empty && radioButtonId.Checked) btnFind.Enabled = true;
-            else if (radioButtonName.Checked) {
-                if(txtIdFind.Text == string.Empty && (comboBoxClass.SelectedIndex != -1 || comboBoxClass.SelectedIndex != -1))
-                    btnFind.Enabled = true;
-                else if(txtIdFind.Text != string.Empty)
-                    btnFind.Enabled = true;
-                else
-                    btnFind.Enabled = false;
-            }
-            else 
-                btnFind.Enabled = false;
+            if (radioButtonId.Checked && txtIdFind.Text != string.Empty) btnFind.Enabled = true;
+            else if(radioButtonName.Checked && txtName.Text == string.Empty) btnFind.Enabled = true;
+            else btnFind.Enabled = false;
         }
     }
 }
