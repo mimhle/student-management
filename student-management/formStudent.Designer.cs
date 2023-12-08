@@ -468,6 +468,7 @@
             // 
             // btnFind
             // 
+            this.btnFind.Enabled = false;
             this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFind.Location = new System.Drawing.Point(826, 300);
             this.btnFind.Name = "btnFind";
@@ -514,11 +515,13 @@
             // txtIdFind
             // 
             this.txtIdFind.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtIdFind.Enabled = false;
             this.txtIdFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdFind.Location = new System.Drawing.Point(44, 239);
             this.txtIdFind.Name = "txtIdFind";
             this.txtIdFind.Size = new System.Drawing.Size(341, 38);
             this.txtIdFind.TabIndex = 12;
+            this.txtIdFind.TextChanged += new System.EventHandler(this.txtIdFind_TextChanged);
             // 
             // label5
             // 
