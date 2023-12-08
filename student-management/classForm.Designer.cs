@@ -1,5 +1,5 @@
 ﻿namespace studentManagement {
-    partial class classForm {
+    partial class ClassForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -502,7 +502,7 @@
             this.ClientSize = new System.Drawing.Size(1042, 728);
             this.Controls.Add(this.gbChangeClass);
             this.Controls.Add(this.gbAddClass);
-            this.Name = "classForm";
+            this.Name = "ClassForm";
             this.Text = "classForm";
             this.Load += new System.EventHandler(this.classForm_Load);
             this.gbAddClass.ResumeLayout(false);

@@ -87,7 +87,7 @@ namespace studentManagement {
         }
 
         private void btnAddClass_Click(object sender, EventArgs e) {
-            var start = new classForm();
+            var start = new ClassForm();
             start.ShowDialog();
             start.Close();
             Show();

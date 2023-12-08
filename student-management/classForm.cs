@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace studentManagement {
-    public partial class classForm : Form {
-        public classForm() {
+    public partial class ClassForm : Form {
+        public ClassForm() {
             InitializeComponent();
         }
 
-        public void formAdd(int iNum) {
+        private void formAdd(int iNum) {
             if (iNum == 0) gbAddClass.Show();
             else gbAddClass.Hide();
         }
 
-        public void formChange(int iNum) {
+        private void formChange(int iNum) {
             if (iNum == 0) gbChangeClass.Show();
             else gbChangeClass.Hide();
         }
