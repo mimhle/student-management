@@ -1,5 +1,5 @@
 ﻿namespace studentManagement {
-    partial class subjectForm {
+    partial class SubjectForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -489,7 +489,7 @@
             this.ClientSize = new System.Drawing.Size(1042, 728);
             this.Controls.Add(this.gbAddScore);
             this.Controls.Add(this.gbAddSubject);
-            this.Name = "subjectForm";
+            this.Name = "SubjectForm";
             this.Text = "Điểm";
             this.gbAddSubject.ResumeLayout(false);
             this.gbAddSubject.PerformLayout();

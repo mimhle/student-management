@@ -94,7 +94,7 @@ namespace studentManagement {
         }
 
         private void btnSubject_Click(object sender, EventArgs e) {
-            var start = new subjectForm();
+            var start = new SubjectForm();
             start.ShowDialog();
             start.Close();
             Show();
