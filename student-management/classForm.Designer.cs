@@ -1,4 +1,5 @@
-﻿namespace studentManagement {
+﻿using System.Data;
+namespace studentManagement {
     partial class ClassForm {
         /// <summary>
         /// Required designer variable.
@@ -23,7 +24,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnReturnMenu = new System.Windows.Forms.Button();
@@ -106,14 +106,7 @@
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // entityCommand1
-            // 
-            this.entityCommand1.CommandTimeout = 0;
-            this.entityCommand1.CommandTree = null;
-            this.entityCommand1.Connection = null;
-            this.entityCommand1.EnablePlanCaching = true;
-            this.entityCommand1.Transaction = null;
+
             // 
             // tabControl1
             // 
@@ -907,7 +900,6 @@
         }
 
         #endregion
-        private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label2;
