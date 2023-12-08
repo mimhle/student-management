@@ -7,36 +7,5 @@ namespace studentManagement {
             InitializeComponent();
         }
 
-        private void formAdd(int iNum) {
-            if (iNum == 0) gbAddClass.Show();
-            else gbAddClass.Hide();
-        }
-
-        private void formChange(int iNum) {
-            if (iNum == 0) gbChangeClass.Show();
-            else gbChangeClass.Hide();
-        }
-
-        private void btnDeleteClassAdd_Click(object sender, EventArgs e) {
-            formChange(0);
-            formAdd(1);
-        }
-
-        private void btnReturnMenuAdd_Click(object sender, EventArgs e) {
-            Close();
-        }
-
-        private void btnAddClassChange_Click(object sender, EventArgs e) {
-            formAdd(0);
-            formChange(1);
-        }
-
-        private void classForm_Load(object sender, EventArgs e) {
-
-        }
-
-        private void btnAddClass_Click(object sender, EventArgs e) {
-            _db.insertClass(txtIdClassAdd.Text(), txtNameClassAdd.Text(), "CNTT");
-        }
     }
 }

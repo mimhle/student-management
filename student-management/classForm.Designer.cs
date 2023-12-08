@@ -29,34 +29,34 @@ namespace studentManagement {
             this.btnReturnMenu = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDisplayAll = new System.Windows.Forms.Button();
-            this.btnFind = new System.Windows.Forms.Button();
+            this.btnDisplayAllClass = new System.Windows.Forms.Button();
+            this.btnFindClass = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cbbTimTheoKhoa = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbTimKiemTheoTen = new System.Windows.Forms.TextBox();
+            this.txtFindClassSubject = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDeleteClass = new System.Windows.Forms.Button();
             this.btnAddClass = new System.Windows.Forms.Button();
             this.btnEditClass = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.cbbMaKhoa = new System.Windows.Forms.ComboBox();
+            this.comboBoxFacultyFClass = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tbMaLop = new System.Windows.Forms.TextBox();
+            this.txtClassID = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReturnMenuSubjectClass = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnFindAllSubjecClass = new System.Windows.Forms.Button();
+            this.btnFindSubjecClass = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBoxFindFacultyFSC = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtFindSubjectClassFSC = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -65,31 +65,31 @@ namespace studentManagement {
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBoxSubjectClassFSC = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.btnDeletaSubjectClass = new System.Windows.Forms.Button();
+            this.btnAddSubjectClass = new System.Windows.Forms.Button();
+            this.btnEditSubjectClassFSB = new System.Windows.Forms.Button();
+            this.btnRefreshFSC = new System.Windows.Forms.Button();
+            this.comboBoxFacultyFSC = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtSubjectClassID = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtFindStudentID = new System.Windows.Forms.TextBox();
             this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtFindClassID = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBoxFindFaculty = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtFindSubjectClass = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.listView4 = new System.Windows.Forms.ListView();
@@ -106,7 +106,6 @@ namespace studentManagement {
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
-
             // 
             // tabControl1
             // 
@@ -155,35 +154,35 @@ namespace studentManagement {
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnDisplayAll);
-            this.panel1.Controls.Add(this.btnFind);
+            this.panel1.Controls.Add(this.btnDisplayAllClass);
+            this.panel1.Controls.Add(this.btnFindClass);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cbbTimTheoKhoa);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.tbTimKiemTheoTen);
+            this.panel1.Controls.Add(this.txtFindClassSubject);
             this.panel1.Location = new System.Drawing.Point(235, 42);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(799, 71);
             this.panel1.TabIndex = 8;
             // 
-            // btnDisplayAll
+            // btnDisplayAllClass
             // 
-            this.btnDisplayAll.Location = new System.Drawing.Point(676, 16);
-            this.btnDisplayAll.Name = "btnDisplayAll";
-            this.btnDisplayAll.Size = new System.Drawing.Size(114, 45);
-            this.btnDisplayAll.TabIndex = 8;
-            this.btnDisplayAll.Text = "Tất cả";
-            this.btnDisplayAll.UseVisualStyleBackColor = true;
+            this.btnDisplayAllClass.Location = new System.Drawing.Point(676, 16);
+            this.btnDisplayAllClass.Name = "btnDisplayAllClass";
+            this.btnDisplayAllClass.Size = new System.Drawing.Size(114, 45);
+            this.btnDisplayAllClass.TabIndex = 8;
+            this.btnDisplayAllClass.Text = "Tất cả";
+            this.btnDisplayAllClass.UseVisualStyleBackColor = true;
             // 
-            // btnFind
+            // btnFindClass
             // 
-            this.btnFind.Location = new System.Drawing.Point(551, 17);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(119, 45);
-            this.btnFind.TabIndex = 7;
-            this.btnFind.Text = "Tìm";
-            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFindClass.Location = new System.Drawing.Point(551, 17);
+            this.btnFindClass.Name = "btnFindClass";
+            this.btnFindClass.Size = new System.Drawing.Size(119, 45);
+            this.btnFindClass.TabIndex = 7;
+            this.btnFindClass.Text = "Tìm";
+            this.btnFindClass.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -217,16 +216,16 @@ namespace studentManagement {
             this.label3.TabIndex = 1;
             this.label3.Text = "Khoa:";
             // 
-            // tbTimKiemTheoTen
+            // txtFindClassSubject
             // 
-            this.tbTimKiemTheoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTimKiemTheoTen.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.tbTimKiemTheoTen.Location = new System.Drawing.Point(37, 28);
-            this.tbTimKiemTheoTen.Margin = new System.Windows.Forms.Padding(4);
-            this.tbTimKiemTheoTen.Name = "tbTimKiemTheoTen";
-            this.tbTimKiemTheoTen.Size = new System.Drawing.Size(198, 26);
-            this.tbTimKiemTheoTen.TabIndex = 0;
-            this.tbTimKiemTheoTen.Text = "nhập mã lớp";
+            this.txtFindClassSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFindClassSubject.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFindClassSubject.Location = new System.Drawing.Point(37, 28);
+            this.txtFindClassSubject.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFindClassSubject.Name = "txtFindClassSubject";
+            this.txtFindClassSubject.Size = new System.Drawing.Size(198, 26);
+            this.txtFindClassSubject.TabIndex = 0;
+            this.txtFindClassSubject.Text = "nhập mã lớp";
             // 
             // label1
             // 
@@ -247,11 +246,11 @@ namespace studentManagement {
             this.panel2.Controls.Add(this.btnAddClass);
             this.panel2.Controls.Add(this.btnEditClass);
             this.panel2.Controls.Add(this.btnRefresh);
-            this.panel2.Controls.Add(this.cbbMaKhoa);
+            this.panel2.Controls.Add(this.comboBoxFacultyFClass);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.tbMaLop);
+            this.panel2.Controls.Add(this.txtClassID);
             this.panel2.Location = new System.Drawing.Point(4, 110);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
@@ -294,15 +293,15 @@ namespace studentManagement {
             this.btnRefresh.Text = "Làm Mới";
             this.btnRefresh.UseVisualStyleBackColor = true;
             // 
-            // cbbMaKhoa
+            // comboBoxFacultyFClass
             // 
-            this.cbbMaKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbMaKhoa.FormattingEnabled = true;
-            this.cbbMaKhoa.Location = new System.Drawing.Point(59, 73);
-            this.cbbMaKhoa.Margin = new System.Windows.Forms.Padding(4);
-            this.cbbMaKhoa.Name = "cbbMaKhoa";
-            this.cbbMaKhoa.Size = new System.Drawing.Size(168, 28);
-            this.cbbMaKhoa.TabIndex = 26;
+            this.comboBoxFacultyFClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFacultyFClass.FormattingEnabled = true;
+            this.comboBoxFacultyFClass.Location = new System.Drawing.Point(59, 73);
+            this.comboBoxFacultyFClass.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxFacultyFClass.Name = "comboBoxFacultyFClass";
+            this.comboBoxFacultyFClass.Size = new System.Drawing.Size(168, 28);
+            this.comboBoxFacultyFClass.TabIndex = 26;
             // 
             // label16
             // 
@@ -336,18 +335,18 @@ namespace studentManagement {
             this.label5.TabIndex = 2;
             this.label5.Text = "Mã Lớp:";
             // 
-            // tbMaLop
+            // txtClassID
             // 
-            this.tbMaLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMaLop.Location = new System.Drawing.Point(70, 20);
-            this.tbMaLop.Margin = new System.Windows.Forms.Padding(4);
-            this.tbMaLop.Name = "tbMaLop";
-            this.tbMaLop.Size = new System.Drawing.Size(157, 26);
-            this.tbMaLop.TabIndex = 3;
+            this.txtClassID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClassID.Location = new System.Drawing.Point(70, 20);
+            this.txtClassID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtClassID.Name = "txtClassID";
+            this.txtClassID.Size = new System.Drawing.Size(157, 26);
+            this.txtClassID.TabIndex = 3;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.btnReturnMenuSubjectClass);
             this.tabPage2.Controls.Add(this.listView2);
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Controls.Add(this.label7);
@@ -359,14 +358,14 @@ namespace studentManagement {
             this.tabPage2.Text = "Thêm Lớp Học Phần";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnReturnMenuSubjectClass
             // 
-            this.button1.Location = new System.Drawing.Point(2, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 37);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Trở về menu";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnReturnMenuSubjectClass.Location = new System.Drawing.Point(2, 47);
+            this.btnReturnMenuSubjectClass.Name = "btnReturnMenuSubjectClass";
+            this.btnReturnMenuSubjectClass.Size = new System.Drawing.Size(114, 37);
+            this.btnReturnMenuSubjectClass.TabIndex = 13;
+            this.btnReturnMenuSubjectClass.Text = "Trở về menu";
+            this.btnReturnMenuSubjectClass.UseVisualStyleBackColor = true;
             // 
             // listView2
             // 
@@ -396,35 +395,35 @@ namespace studentManagement {
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.button8);
-            this.panel5.Controls.Add(this.button9);
+            this.panel5.Controls.Add(this.btnFindAllSubjecClass);
+            this.panel5.Controls.Add(this.btnFindSubjecClass);
             this.panel5.Controls.Add(this.label15);
-            this.panel5.Controls.Add(this.comboBox4);
+            this.panel5.Controls.Add(this.comboBoxFindFacultyFSC);
             this.panel5.Controls.Add(this.label17);
-            this.panel5.Controls.Add(this.textBox3);
+            this.panel5.Controls.Add(this.txtFindSubjectClassFSC);
             this.panel5.Location = new System.Drawing.Point(-1, -1);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(799, 71);
             this.panel5.TabIndex = 13;
             // 
-            // button8
+            // btnFindAllSubjecClass
             // 
-            this.button8.Location = new System.Drawing.Point(676, 16);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(114, 45);
-            this.button8.TabIndex = 8;
-            this.button8.Text = "Tất Cả";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnFindAllSubjecClass.Location = new System.Drawing.Point(676, 16);
+            this.btnFindAllSubjecClass.Name = "btnFindAllSubjecClass";
+            this.btnFindAllSubjecClass.Size = new System.Drawing.Size(114, 45);
+            this.btnFindAllSubjecClass.TabIndex = 8;
+            this.btnFindAllSubjecClass.Text = "Tất Cả";
+            this.btnFindAllSubjecClass.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // btnFindSubjecClass
             // 
-            this.button9.Location = new System.Drawing.Point(551, 17);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(119, 45);
-            this.button9.TabIndex = 7;
-            this.button9.Text = "Tìm";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnFindSubjecClass.Location = new System.Drawing.Point(551, 17);
+            this.btnFindSubjecClass.Name = "btnFindSubjecClass";
+            this.btnFindSubjecClass.Size = new System.Drawing.Size(119, 45);
+            this.btnFindSubjecClass.TabIndex = 7;
+            this.btnFindSubjecClass.Text = "Tìm";
+            this.btnFindSubjecClass.UseVisualStyleBackColor = true;
             // 
             // label15
             // 
@@ -437,15 +436,15 @@ namespace studentManagement {
             this.label15.TabIndex = 6;
             this.label15.Text = "Tìm kiếm";
             // 
-            // comboBox4
+            // comboBoxFindFacultyFSC
             // 
-            this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(342, 25);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(175, 28);
-            this.comboBox4.TabIndex = 4;
+            this.comboBoxFindFacultyFSC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFindFacultyFSC.FormattingEnabled = true;
+            this.comboBoxFindFacultyFSC.Location = new System.Drawing.Point(342, 25);
+            this.comboBoxFindFacultyFSC.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxFindFacultyFSC.Name = "comboBoxFindFacultyFSC";
+            this.comboBoxFindFacultyFSC.Size = new System.Drawing.Size(175, 28);
+            this.comboBoxFindFacultyFSC.TabIndex = 4;
             // 
             // label17
             // 
@@ -458,16 +457,16 @@ namespace studentManagement {
             this.label17.TabIndex = 1;
             this.label17.Text = "Khoa:";
             // 
-            // textBox3
+            // txtFindSubjectClassFSC
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox3.Location = new System.Drawing.Point(37, 28);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(198, 26);
-            this.textBox3.TabIndex = 0;
-            this.textBox3.Text = "nhập mã lớp";
+            this.txtFindSubjectClassFSC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFindSubjectClassFSC.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFindSubjectClassFSC.Location = new System.Drawing.Point(37, 28);
+            this.txtFindSubjectClassFSC.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFindSubjectClassFSC.Name = "txtFindSubjectClassFSC";
+            this.txtFindSubjectClassFSC.Size = new System.Drawing.Size(198, 26);
+            this.txtFindSubjectClassFSC.TabIndex = 0;
+            this.txtFindSubjectClassFSC.Text = "nhập mã lớp";
             // 
             // button2
             // 
@@ -545,32 +544,32 @@ namespace studentManagement {
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.comboBox3);
+            this.panel4.Controls.Add(this.comboBoxSubjectClassFSC);
             this.panel4.Controls.Add(this.label11);
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.button5);
-            this.panel4.Controls.Add(this.button6);
-            this.panel4.Controls.Add(this.button7);
-            this.panel4.Controls.Add(this.comboBox2);
+            this.panel4.Controls.Add(this.btnDeletaSubjectClass);
+            this.panel4.Controls.Add(this.btnAddSubjectClass);
+            this.panel4.Controls.Add(this.btnEditSubjectClassFSB);
+            this.panel4.Controls.Add(this.btnRefreshFSC);
+            this.panel4.Controls.Add(this.comboBoxFacultyFSC);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.label10);
-            this.panel4.Controls.Add(this.textBox2);
+            this.panel4.Controls.Add(this.txtSubjectClassID);
             this.panel4.Location = new System.Drawing.Point(2, 114);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(233, 581);
             this.panel4.TabIndex = 10;
             // 
-            // comboBox3
+            // comboBoxSubjectClassFSC
             // 
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(61, 116);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(166, 28);
-            this.comboBox3.TabIndex = 32;
+            this.comboBoxSubjectClassFSC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSubjectClassFSC.FormattingEnabled = true;
+            this.comboBoxSubjectClassFSC.Location = new System.Drawing.Point(61, 116);
+            this.comboBoxSubjectClassFSC.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxSubjectClassFSC.Name = "comboBoxSubjectClassFSC";
+            this.comboBoxSubjectClassFSC.Size = new System.Drawing.Size(166, 28);
+            this.comboBoxSubjectClassFSC.TabIndex = 32;
             // 
             // label11
             // 
@@ -583,51 +582,51 @@ namespace studentManagement {
             this.label11.TabIndex = 31;
             this.label11.Text = "Môn:";
             // 
-            // button4
+            // btnDeletaSubjectClass
             // 
-            this.button4.Location = new System.Drawing.Point(113, 317);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(114, 45);
-            this.button4.TabIndex = 30;
-            this.button4.Text = "Xóa";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnDeletaSubjectClass.Location = new System.Drawing.Point(113, 317);
+            this.btnDeletaSubjectClass.Name = "btnDeletaSubjectClass";
+            this.btnDeletaSubjectClass.Size = new System.Drawing.Size(114, 45);
+            this.btnDeletaSubjectClass.TabIndex = 30;
+            this.btnDeletaSubjectClass.Text = "Xóa";
+            this.btnDeletaSubjectClass.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnAddSubjectClass
             // 
-            this.button5.Location = new System.Drawing.Point(-2, 317);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(114, 45);
-            this.button5.TabIndex = 29;
-            this.button5.Text = "Thêm";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnAddSubjectClass.Location = new System.Drawing.Point(-2, 317);
+            this.btnAddSubjectClass.Name = "btnAddSubjectClass";
+            this.btnAddSubjectClass.Size = new System.Drawing.Size(114, 45);
+            this.btnAddSubjectClass.TabIndex = 29;
+            this.btnAddSubjectClass.Text = "Thêm";
+            this.btnAddSubjectClass.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnEditSubjectClassFSB
             // 
-            this.button6.Location = new System.Drawing.Point(113, 266);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(114, 45);
-            this.button6.TabIndex = 28;
-            this.button6.Text = "Sửa";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnEditSubjectClassFSB.Location = new System.Drawing.Point(113, 266);
+            this.btnEditSubjectClassFSB.Name = "btnEditSubjectClassFSB";
+            this.btnEditSubjectClassFSB.Size = new System.Drawing.Size(114, 45);
+            this.btnEditSubjectClassFSB.TabIndex = 28;
+            this.btnEditSubjectClassFSB.Text = "Sửa";
+            this.btnEditSubjectClassFSB.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // btnRefreshFSC
             // 
-            this.button7.Location = new System.Drawing.Point(-2, 266);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(114, 45);
-            this.button7.TabIndex = 27;
-            this.button7.Text = "Làm Mới";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnRefreshFSC.Location = new System.Drawing.Point(-2, 266);
+            this.btnRefreshFSC.Name = "btnRefreshFSC";
+            this.btnRefreshFSC.Size = new System.Drawing.Size(114, 45);
+            this.btnRefreshFSC.TabIndex = 27;
+            this.btnRefreshFSC.Text = "Làm Mới";
+            this.btnRefreshFSC.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // comboBoxFacultyFSC
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(59, 73);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(168, 28);
-            this.comboBox2.TabIndex = 26;
+            this.comboBoxFacultyFSC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFacultyFSC.FormattingEnabled = true;
+            this.comboBoxFacultyFSC.Location = new System.Drawing.Point(59, 73);
+            this.comboBoxFacultyFSC.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxFacultyFSC.Name = "comboBoxFacultyFSC";
+            this.comboBoxFacultyFSC.Size = new System.Drawing.Size(168, 28);
+            this.comboBoxFacultyFSC.TabIndex = 26;
             // 
             // label8
             // 
@@ -661,14 +660,14 @@ namespace studentManagement {
             this.label10.TabIndex = 2;
             this.label10.Text = "Mã Lớp:";
             // 
-            // textBox2
+            // txtSubjectClassID
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(70, 20);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(157, 26);
-            this.textBox2.TabIndex = 3;
+            this.txtSubjectClassID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubjectClassID.Location = new System.Drawing.Point(70, 20);
+            this.txtSubjectClassID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSubjectClassID.Name = "txtSubjectClassID";
+            this.txtSubjectClassID.Size = new System.Drawing.Size(157, 26);
+            this.txtSubjectClassID.TabIndex = 3;
             // 
             // tabPage3
             // 
@@ -689,29 +688,29 @@ namespace studentManagement {
             // panel7
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.textBox6);
+            this.panel7.Controls.Add(this.txtFindStudentID);
             this.panel7.Controls.Add(this.button14);
-            this.panel7.Controls.Add(this.button15);
+            this.panel7.Controls.Add(this.btnDelete);
             this.panel7.Controls.Add(this.button12);
             this.panel7.Controls.Add(this.button13);
             this.panel7.Controls.Add(this.label20);
-            this.panel7.Controls.Add(this.textBox5);
+            this.panel7.Controls.Add(this.txtFindClassID);
             this.panel7.Location = new System.Drawing.Point(524, 17);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(506, 127);
             this.panel7.TabIndex = 15;
             // 
-            // textBox6
+            // txtFindStudentID
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox6.Location = new System.Drawing.Point(9, 82);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(239, 26);
-            this.textBox6.TabIndex = 11;
-            this.textBox6.Text = "nhập mssv";
+            this.txtFindStudentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFindStudentID.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFindStudentID.Location = new System.Drawing.Point(9, 82);
+            this.txtFindStudentID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFindStudentID.Name = "txtFindStudentID";
+            this.txtFindStudentID.Size = new System.Drawing.Size(239, 26);
+            this.txtFindStudentID.TabIndex = 11;
+            this.txtFindStudentID.Text = "nhập mssv";
             // 
             // button14
             // 
@@ -722,14 +721,14 @@ namespace studentManagement {
             this.button14.Text = "Thêm sinh viên";
             this.button14.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // btnDelete
             // 
-            this.button15.Location = new System.Drawing.Point(267, 15);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(114, 45);
-            this.button15.TabIndex = 9;
-            this.button15.Text = "Xóa";
-            this.button15.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(267, 15);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(114, 45);
+            this.btnDelete.TabIndex = 9;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // button12
             // 
@@ -760,24 +759,24 @@ namespace studentManagement {
             this.label20.TabIndex = 6;
             this.label20.Text = "Chọn Sinh Viên";
             // 
-            // textBox5
+            // txtFindClassID
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox5.Location = new System.Drawing.Point(9, 30);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(239, 26);
-            this.textBox5.TabIndex = 0;
-            this.textBox5.Text = "nhập mã lớp";
+            this.txtFindClassID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFindClassID.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFindClassID.Location = new System.Drawing.Point(9, 30);
+            this.txtFindClassID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFindClassID.Name = "txtFindClassID";
+            this.txtFindClassID.Size = new System.Drawing.Size(239, 26);
+            this.txtFindClassID.TabIndex = 0;
+            this.txtFindClassID.Text = "nhập mã lớp";
             // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.label18);
-            this.panel6.Controls.Add(this.comboBox5);
+            this.panel6.Controls.Add(this.comboBoxFindFaculty);
             this.panel6.Controls.Add(this.label19);
-            this.panel6.Controls.Add(this.textBox4);
+            this.panel6.Controls.Add(this.txtFindSubjectClass);
             this.panel6.Location = new System.Drawing.Point(9, 16);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
@@ -795,15 +794,15 @@ namespace studentManagement {
             this.label18.TabIndex = 6;
             this.label18.Text = "Tìm kiếm";
             // 
-            // comboBox5
+            // comboBoxFindFaculty
             // 
-            this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(73, 77);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(175, 28);
-            this.comboBox5.TabIndex = 4;
+            this.comboBoxFindFaculty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFindFaculty.FormattingEnabled = true;
+            this.comboBoxFindFaculty.Location = new System.Drawing.Point(73, 77);
+            this.comboBoxFindFaculty.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxFindFaculty.Name = "comboBoxFindFaculty";
+            this.comboBoxFindFaculty.Size = new System.Drawing.Size(175, 28);
+            this.comboBoxFindFaculty.TabIndex = 4;
             // 
             // label19
             // 
@@ -816,16 +815,16 @@ namespace studentManagement {
             this.label19.TabIndex = 1;
             this.label19.Text = "Khoa:";
             // 
-            // textBox4
+            // txtFindSubjectClass
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBox4.Location = new System.Drawing.Point(9, 37);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(239, 26);
-            this.textBox4.TabIndex = 0;
-            this.textBox4.Text = "nhập mã lớp";
+            this.txtFindSubjectClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFindSubjectClass.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFindSubjectClass.Location = new System.Drawing.Point(9, 37);
+            this.txtFindSubjectClass.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFindSubjectClass.Name = "txtFindSubjectClass";
+            this.txtFindSubjectClass.Size = new System.Drawing.Size(239, 26);
+            this.txtFindSubjectClass.TabIndex = 0;
+            this.txtFindSubjectClass.Text = "nhập mã lớp";
             // 
             // label14
             // 
@@ -873,7 +872,6 @@ namespace studentManagement {
             this.Controls.Add(this.tabControl1);
             this.Name = "ClassForm";
             this.Text = "classForm";
-            this.Load += new System.EventHandler(this.classForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -906,24 +904,24 @@ namespace studentManagement {
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbbTimTheoKhoa;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbTimKiemTheoTen;
+        private System.Windows.Forms.TextBox txtFindClassSubject;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox cbbMaKhoa;
+        private System.Windows.Forms.ComboBox comboBoxFacultyFClass;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbMaLop;
+        private System.Windows.Forms.TextBox txtClassID;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button btnReturnMenu;
-        private System.Windows.Forms.Button btnDisplayAll;
-        private System.Windows.Forms.Button btnFind;
+        private System.Windows.Forms.Button btnDisplayAllClass;
+        private System.Windows.Forms.Button btnFindClass;
         private System.Windows.Forms.Button btnDeleteClass;
         private System.Windows.Forms.Button btnAddClass;
         private System.Windows.Forms.Button btnEditClass;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReturnMenuSubjectClass;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button2;
@@ -934,16 +932,16 @@ namespace studentManagement {
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button btnDeletaSubjectClass;
+        private System.Windows.Forms.Button btnAddSubjectClass;
+        private System.Windows.Forms.Button btnEditSubjectClassFSB;
+        private System.Windows.Forms.Button btnRefreshFSC;
+        private System.Windows.Forms.ComboBox comboBoxFacultyFSC;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox txtSubjectClassID;
+        private System.Windows.Forms.ComboBox comboBoxSubjectClassFSC;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label13;
@@ -951,24 +949,24 @@ namespace studentManagement {
         private System.Windows.Forms.ListView listView3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnFindAllSubjecClass;
+        private System.Windows.Forms.Button btnFindSubjecClass;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox comboBoxFindFacultyFSC;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtFindSubjectClassFSC;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox comboBoxFindFaculty;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtFindSubjectClass;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtFindClassID;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.TextBox txtFindStudentID;
     }
 }
