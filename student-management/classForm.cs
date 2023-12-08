@@ -294,6 +294,11 @@ namespace studentManagement {
             if (txtSubjectClassID.Text != "" && comboBoxSubjectClassFSC.SelectedIndex != -1) {
                 _ = _db.insertSubjectClass(txtSubjectClassID.Text, txtNameSubjectClass.Text, _getFacultyID(comboBoxFacultyFSC.Text), _getSubjectID(comboBoxSubjectClassFSC.Text));
             }
+
+            txtSubjectClassID.Text = "";
+            txtNameSubjectClass.Text = "";
+            comboBoxFacultyFSC.SelectedIndex = -1;
+            comboBoxSubjectClassFSC.SelectedIndex = -1;
         }
 
         private void btnDeleteSubjectClass_Click(object sender, EventArgs e) {
@@ -310,6 +315,10 @@ namespace studentManagement {
             if (txtClassID.Text != "" && txtClassName.Text != "" && comboBoxFacultyFClass.SelectedIndex != -1) {
                 _ = _db.insertClass(txtClassID.Text, txtClassName.Text, _getFacultyID(comboBoxFacultyFClass.Text));
             }
+
+            txtClassID.Text = "";
+            txtClassName.Text = "";
+            comboBoxFacultyFClass.SelectedIndex = -1;
         }
 
         private void btnDeleteClass_Click(object sender, EventArgs e) {
@@ -403,12 +412,21 @@ namespace studentManagement {
 
         private void btnDeleteAllStudentID_Click(object sender, EventArgs e) {
             if (txtFindClassID.Text != "") {
-                foreach (var student in _db.getAllStudents()) {
-                    if (student["MaLop"] == txtFindClassID.Text) {
-                        _ = _db.removeStudent(student["MaSinhVien"]);
+                foreach(var subjectClassStudent in _db.getAllSubjectClassStudents()) {
+                    if (subjectClassStudent["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
+                        _ = _db.removeSubjectClassStudent(subjectClassStudent["MaSinhVien"], subjectClassStudent["MaLopHocPhan"]);
                     }
                 }
             }
+
+            var result = new List<Dictionary<String, String>>();
+            foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
+                if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
+                    result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
+                }
+            }
+
+            _loadListViewStudentList(result);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e) {
