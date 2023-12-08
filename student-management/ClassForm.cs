@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace studentManagement {
@@ -188,10 +189,10 @@ namespace studentManagement {
             return "";
         }
 
-        private string _getCountStudentClass(string classID) {
+        private string _getCountStudentClass(string classId) {
             var count = 0;
             foreach (var student in _db.getAllStudents()) {
-                if (student["MaLop"] != classID) continue;
+                if (student["MaLop"] != classId) continue;
                 count++;
             }
 
@@ -293,7 +294,7 @@ namespace studentManagement {
             if (listViewSubjectClassListFSC.SelectedItems.Count == 1) {
                 _db.removeSubjectClass(listViewSubjectClassListFSC.SelectedItems[0].SubItems[0].Text);
             } else if (listViewSubjectClassListFSC.SelectedItems.Count > 1) {
-                foreach (ListViewItem item in listViewSubjectClassListFSC.SelectedItems) {
+                foreach (var _ in listViewSubjectClassListFSC.SelectedItems) {
                     _db.removeSubjectClass(listViewSubjectClassListFSC.SelectedItems[0].SubItems[0].Text);
                 }
             }
@@ -459,10 +460,32 @@ namespace studentManagement {
 
         private void txtFindClassSubject_TextChanged(object sender, EventArgs e) {
             var result = new List<Dictionary<string, string>>();
+            var pattern = "(?i)" + Regex.Escape(txtFindClassSubject.Text) + "(?-i)";
+            foreach (var class_ in _db.getAllClasses()) {
+                if (!Regex.IsMatch(class_["MaLop"], pattern)) continue;
+                result.Add(class_);
+            }
+
+            _loadListViewClassList(result);
+        }
+
+        private void txtFindSubjectClassFSC_TextChanged(object sender, EventArgs e) {
+            var result = new List<Dictionary<string, string>>();
+            var pattern = "(?i)" + Regex.Escape(txtFindSubjectClassFSC.Text) + "(?-i)";
             foreach (var subjectClass in _db.getAllSubjectClass()) {
-                if (subjectClass["MaMonHoc"] == _getSubjectID(txtFindClassSubject.Text)) {
-                    result.Add(subjectClass);
-                }
+                if (!Regex.IsMatch(subjectClass["MaLopHocPhan"], pattern)) continue;
+                result.Add(subjectClass);
+            }
+
+            _loadListViewSubjectClassListFSC(result);
+        }
+
+        private void txtFindSubjectClass_TextChanged(object sender, EventArgs e) {
+            var result = new List<Dictionary<string, string>>();
+            var pattern = "(?i)" + Regex.Escape(txtFindSubjectClass.Text) + "(?-i)";
+            foreach (var subjectClass in _db.getAllSubjectClass()) {
+                if (!Regex.IsMatch(subjectClass["MaLopHocPhan"], pattern)) continue;
+                result.Add(subjectClass);
             }
 
             _loadListViewSubjectClassList(result);

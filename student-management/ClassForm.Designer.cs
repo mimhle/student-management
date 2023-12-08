@@ -496,12 +496,13 @@ namespace studentManagement {
             // txtFindSubjectClassFSC
             //
             this.txtFindSubjectClassFSC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFindSubjectClassFSC.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFindSubjectClassFSC.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtFindSubjectClassFSC.Location = new System.Drawing.Point(190, 35);
             this.txtFindSubjectClassFSC.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFindSubjectClassFSC.Name = "txtFindSubjectClassFSC";
             this.txtFindSubjectClassFSC.Size = new System.Drawing.Size(222, 30);
             this.txtFindSubjectClassFSC.TabIndex = 0;
+            this.txtFindSubjectClassFSC.TextChanged += new System.EventHandler(this.txtFindSubjectClassFSC_TextChanged);
             //
             // button2
             //
@@ -932,12 +933,13 @@ namespace studentManagement {
             // txtFindSubjectClass
             //
             this.txtFindSubjectClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFindSubjectClass.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtFindSubjectClass.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtFindSubjectClass.Location = new System.Drawing.Point(82, 44);
             this.txtFindSubjectClass.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFindSubjectClass.Name = "txtFindSubjectClass";
             this.txtFindSubjectClass.Size = new System.Drawing.Size(268, 30);
             this.txtFindSubjectClass.TabIndex = 0;
+            this.txtFindSubjectClass.TextChanged += new System.EventHandler(this.txtFindSubjectClass_TextChanged);
             //
             // label14
             //
@@ -1014,11 +1016,11 @@ namespace studentManagement {
         }
 
         #endregion
-        private TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl1;
         private TabPage tabPage1;
         private Label label2;
         private Panel panel1;
-        private ComboBox cbbTimTheoKhoa;
+        private System.Windows.Forms.ComboBox cbbTimTheoKhoa;
         private Label label3;
         private System.Windows.Forms.TextBox txtFindClassSubject;
         private Label label1;
@@ -1028,7 +1030,7 @@ namespace studentManagement {
         private Label label12;
         private Label label5;
         private TextBox txtClassID;
-        private TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListView listViewClassList;
         private Button btnReturnMenu;
         private Button btnDeleteClass;
@@ -1036,7 +1038,7 @@ namespace studentManagement {
         private Button btnEditClass;
         private Button btnRefresh;
         private Button btnReturnMenuSubjectClass;
-        private ListView listViewSubjectClassListFSC;
+        private System.Windows.Forms.ListView listViewSubjectClassListFSC;
         private Panel panel3;
         private Button button2;
         private Button button3;
@@ -1066,12 +1068,12 @@ namespace studentManagement {
         private Label label15;
         private ComboBox comboBoxFindFacultyFSC;
         private Label label17;
-        private TextBox txtFindSubjectClassFSC;
+        private System.Windows.Forms.TextBox txtFindSubjectClassFSC;
         private Panel panel6;
         private Label label18;
         private ComboBox comboBoxFindFaculty;
         private Label label19;
-        private TextBox txtFindSubjectClass;
+        private System.Windows.Forms.TextBox txtFindSubjectClass;
         private Panel panel7;
         private Button btnAddAllStudent;
         private Button btnDeleteAllStudentID;
