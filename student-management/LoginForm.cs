@@ -74,7 +74,7 @@ namespace studentManagement {
                 loginForm(0);
             }
             else {
-                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu", "Lỗi đăng nhập", MessageBoxButtons.OK,
+                MessageBox.Show(@"Sai tên đăng nhập hoặc mật khẩu", @"Lỗi đăng nhập", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
