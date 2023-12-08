@@ -1,5 +1,5 @@
 ﻿namespace student_management {
-    partial class viewInformationForm {
+    partial class ViewInformationForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -277,7 +277,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.listViewDisplayScore);
-            this.Name = "viewInformationForm";
+            this.Name = "ViewInformationForm";
             this.Text = "viewInformationForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
