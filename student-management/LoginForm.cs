@@ -3,12 +3,12 @@ using System.Windows.Forms;
 
 namespace studentManagement {
     public partial class LoginForm : Form {
+        private readonly Database db = Program.db;
         public LoginForm() {
             InitializeComponent();
 
             // test code for Database.cs
             //var db = new Database(Program.dbLocation);
-            Database db = Program.db;
             db.insertStudent("SV01", "Nguyen Van A", "1999-01-01", "Nam", "CNTT", "48.CNTT.A");
             db.insertStudent("SV02", "Nguyen Van A", "1999-01-01", "Nam", "CNTT", "48.CNTT.A");
             db.insertStudent("SV03", "Nguyen Van B", "1999", "Nam", "CNTT", "48.CNTT.A", true);
@@ -67,8 +67,16 @@ namespace studentManagement {
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
-            menuForm(1);
-            loginForm(0);
+            // menuForm(1);
+            // loginForm(0);
+            if (db.checkLogin(txtUserName.Text, txtPassWord.Text)) {
+                menuForm(1);
+                loginForm(0);
+            }
+            else {
+                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu", "Lỗi đăng nhập", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void btnAddStudent_Click(object sender, EventArgs e) {
