@@ -1,9 +1,12 @@
-﻿namespace studentManagement {
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace studentManagement {
     partial class StudentForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -784,64 +787,64 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPageAdd;
-        private System.Windows.Forms.GroupBox groupBoxAddStudent;
-        private System.Windows.Forms.Button btnInput;
-        private System.Windows.Forms.Button btnReturn;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioBtnFemale;
-        private System.Windows.Forms.RadioButton radioBtnMale;
-        private System.Windows.Forms.Label labelSex;
-        private System.Windows.Forms.ComboBox comboBoxFaculty;
-        private System.Windows.Forms.DateTimePicker birth;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.CheckBox checkBoxClassMonitor;
-        private System.Windows.Forms.Label labelClass;
-        private System.Windows.Forms.Label labelFaculty;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.Label labelDateOfBirth;
-        private System.Windows.Forms.Label labelId;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPageFind;
-        private System.Windows.Forms.GroupBox groupBoxFind;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnFind;
-        private System.Windows.Forms.ListView listViewDisplay;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtIdFind;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.GroupBox groupBoxEdit;
-        private System.Windows.Forms.Button btnReturnToFind;
-        private System.Windows.Forms.Button btnUpdates;
-        private System.Windows.Forms.ComboBox comboBoxClassEdit;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.RadioButton radioFemaleEdit;
-        private System.Windows.Forms.RadioButton radioMaleEdit;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxFacultyEdit;
-        private System.Windows.Forms.DateTimePicker birthEdit;
-        private System.Windows.Forms.TextBox txtNameEdit;
-        private System.Windows.Forms.CheckBox checkBoxClassMonitorEdit;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.ComboBox comboBoxClass;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboLefBoxClass;
-        private System.Windows.Forms.ComboBox comboLefFaculty;
-        private System.Windows.Forms.RadioButton radioButtonId;
-        private System.Windows.Forms.RadioButton radioButtonName;
+        private TabControl tabControl;
+        private TabPage tabPageAdd;
+        private GroupBox groupBoxAddStudent;
+        private Button btnInput;
+        private Button btnReturn;
+        private Panel panel1;
+        private RadioButton radioBtnFemale;
+        private RadioButton radioBtnMale;
+        private Label labelSex;
+        private ComboBox comboBoxFaculty;
+        private DateTimePicker birth;
+        private TextBox txtName;
+        private TextBox txtId;
+        private CheckBox checkBoxClassMonitor;
+        private Label labelClass;
+        private Label labelFaculty;
+        private Label label6;
+        private Label labelName;
+        private Label labelDateOfBirth;
+        private Label labelId;
+        private Label label1;
+        private TabPage tabPageFind;
+        private GroupBox groupBoxFind;
+        private Label label2;
+        private Button btnFind;
+        private ListView listViewDisplay;
+        private Button btnEdit;
+        private Button button1;
+        private TextBox txtIdFind;
+        private Label label5;
+        private Label label9;
+        private Label label10;
+        private GroupBox groupBoxEdit;
+        private Button btnReturnToFind;
+        private Button btnUpdates;
+        private ComboBox comboBoxClassEdit;
+        private Button button2;
+        private Panel panel2;
+        private RadioButton radioFemaleEdit;
+        private RadioButton radioMaleEdit;
+        private Label label3;
+        private ComboBox comboBoxFacultyEdit;
+        private DateTimePicker birthEdit;
+        private TextBox txtNameEdit;
+        private CheckBox checkBoxClassMonitorEdit;
+        private Label label4;
+        private Label label7;
+        private Label label11;
+        private Label label12;
+        private Label label14;
+        private ErrorProvider errorProvider1;
+        private ComboBox comboBoxClass;
+        private Button btnDelete;
+        private Label label13;
+        private Label label8;
+        private ComboBox comboLefBoxClass;
+        private ComboBox comboLefFaculty;
+        private RadioButton radioButtonId;
+        private RadioButton radioButtonName;
     }
 }

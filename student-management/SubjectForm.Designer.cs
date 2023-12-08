@@ -1,9 +1,13 @@
-﻿namespace studentManagement {
+﻿using System.ComponentModel;
+using System.Data.SQLite;
+using System.Windows.Forms;
+
+namespace studentManagement {
     partial class SubjectForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -507,48 +511,48 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbAddSubject;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ListView listViewDisplaySubject;
-        private System.Windows.Forms.Button btnAddSubject;
-        private System.Windows.Forms.GroupBox gbOptionAddSubject;
-        private System.Windows.Forms.Button btnDeleteSubject;
-        private System.Windows.Forms.Button btnEditSubject;
-        private System.Windows.Forms.Button btnReturnMenuAddSubject;
-        private System.Windows.Forms.Button btnAddScoreAddSubject;
-        private System.Windows.Forms.Label labelDeleteSubject;
-        private System.Windows.Forms.Label labelFacultyDelete;
-        private System.Windows.Forms.Label labelFaculty;
-        private System.Windows.Forms.Label labelIdSubject;
-        private System.Windows.Forms.Label labelNameSubject;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.GroupBox gbAddScore;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnReturnMenuAddScore;
-        private System.Windows.Forms.Button btnAddSubjectAddScore;
-        private System.Windows.Forms.ListView listViewAddScore;
-        private System.Windows.Forms.TextBox txtStudentName;
-        private System.Windows.Forms.Label labelClassAddScore;
-        private System.Windows.Forms.Label labelSubjectAddScore;
-        private System.Windows.Forms.Label labelFacultyAddScore;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAddScore;
-        private System.Windows.Forms.Button btnConfirmStudent;
-        private System.Windows.Forms.ComboBox comboBoxClass;
-        private System.Windows.Forms.ComboBox comboBoxSubject;
-        private System.Windows.Forms.ComboBox comboBoxFaculty;
-        private System.Windows.Forms.Label labelMssvAddScore;
-        private System.Windows.Forms.TextBox txtMssvAddScore;
-        private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
-        private System.Windows.Forms.Label labelScore;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label labelCredit;
-        private System.Windows.Forms.TextBox txtCredit;
-        private System.Windows.Forms.ErrorProvider errorProviderSubjectID;
-        private System.Windows.Forms.ErrorProvider errorProviderSubjectName;
-        private System.Windows.Forms.ErrorProvider errorProviderCredit;
-        private System.Windows.Forms.ErrorProvider errorProviderFacultySelected;
+        private GroupBox gbAddSubject;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private ComboBox comboBox1;
+        private ListView listViewDisplaySubject;
+        private Button btnAddSubject;
+        private GroupBox gbOptionAddSubject;
+        private Button btnDeleteSubject;
+        private Button btnEditSubject;
+        private Button btnReturnMenuAddSubject;
+        private Button btnAddScoreAddSubject;
+        private Label labelDeleteSubject;
+        private Label labelFacultyDelete;
+        private Label labelFaculty;
+        private Label labelIdSubject;
+        private Label labelNameSubject;
+        private ComboBox comboBox2;
+        private GroupBox gbAddScore;
+        private GroupBox groupBox2;
+        private Button btnReturnMenuAddScore;
+        private Button btnAddSubjectAddScore;
+        private ListView listViewAddScore;
+        private TextBox txtStudentName;
+        private Label labelClassAddScore;
+        private Label labelSubjectAddScore;
+        private Label labelFacultyAddScore;
+        private Label label1;
+        private Button btnAddScore;
+        private Button btnConfirmStudent;
+        private ComboBox comboBoxClass;
+        private ComboBox comboBoxSubject;
+        private ComboBox comboBoxFaculty;
+        private Label labelMssvAddScore;
+        private TextBox txtMssvAddScore;
+        private SQLiteCommand sqLiteCommand1;
+        private Label labelScore;
+        private TextBox textBox3;
+        private Label labelCredit;
+        private TextBox txtCredit;
+        private ErrorProvider errorProviderSubjectID;
+        private ErrorProvider errorProviderSubjectName;
+        private ErrorProvider errorProviderCredit;
+        private ErrorProvider errorProviderFacultySelected;
     }
 }

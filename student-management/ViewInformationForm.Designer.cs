@@ -1,9 +1,12 @@
-﻿namespace student_management {
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace student_management {
     partial class ViewInformationForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -288,26 +291,26 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listViewDisplayScore;
-        private System.Windows.Forms.DateTimePicker birth;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtFaculty;
-        private System.Windows.Forms.TextBox txtClass;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioBtnFemale;
-        private System.Windows.Forms.RadioButton radioBtnMale;
-        private System.Windows.Forms.Label labelSex;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label labelId;
-        private System.Windows.Forms.Button btnDisplayScore;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.ComboBox comboBoxSubjectID;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnEdit;
+        private ListView listViewDisplayScore;
+        private DateTimePicker birth;
+        private TextBox txtName;
+        private Label label4;
+        private Label label7;
+        private Label label11;
+        private Label label12;
+        private TextBox txtFaculty;
+        private TextBox txtClass;
+        private Panel panel1;
+        private RadioButton radioBtnFemale;
+        private RadioButton radioBtnMale;
+        private Label labelSex;
+        private Label label6;
+        private TextBox txtId;
+        private Label labelId;
+        private Button btnDisplayScore;
+        private Button btnExit;
+        private ComboBox comboBoxSubjectID;
+        private Label label1;
+        private Button btnEdit;
     }
 }

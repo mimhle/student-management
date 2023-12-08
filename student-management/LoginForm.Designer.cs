@@ -1,9 +1,12 @@
-﻿namespace studentManagement {
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace studentManagement {
     partial class LoginForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -202,19 +205,19 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbLogin;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.TextBox txtPassWord;
-        private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.GroupBox gbMenu;
-        private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.GroupBox gbClass;
-        private System.Windows.Forms.GroupBox gbStudent;
-        private System.Windows.Forms.GroupBox gbSubject;
-        private System.Windows.Forms.Button btnClass;
-        private System.Windows.Forms.Button btnStudent;
-        private System.Windows.Forms.Button btnSubject;
+        private GroupBox gbLogin;
+        private BackgroundWorker backgroundWorker1;
+        private Button btnExit;
+        private Button btnLogin;
+        private TextBox txtPassWord;
+        private TextBox txtUserName;
+        private GroupBox gbMenu;
+        private Button btnLogout;
+        private GroupBox gbClass;
+        private GroupBox gbStudent;
+        private GroupBox gbSubject;
+        private Button btnClass;
+        private Button btnStudent;
+        private Button btnSubject;
     }
 }

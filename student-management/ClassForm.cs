@@ -18,7 +18,7 @@ namespace studentManagement {
         private readonly Database _db = Program.db;
 
 
-        private void _autoResizeListViewColumns(System.Windows.Forms.ListView listView) {
+        private void _autoResizeListViewColumns(ListView listView) {
             foreach (ColumnHeader column in listView.Columns) {
                 column.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
@@ -432,7 +432,7 @@ namespace studentManagement {
         }
 
         private void btnReturnMenu_Click(object sender, EventArgs e) {
-            this.Close();
+            Close();
         }
 
         private void btnRefreshFSC_Click(object sender, EventArgs e) {
