@@ -43,7 +43,9 @@ namespace studentManagement {
             this.comboBoxFacultyFClass = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtClassName = new System.Windows.Forms.TextBox();
             this.txtClassID = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnReturnMenuSubjectClass = new System.Windows.Forms.Button();
@@ -79,7 +81,9 @@ namespace studentManagement {
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
             this.txtFindStudentID = new System.Windows.Forms.TextBox();
-            this.btnDeleteStudentID = new System.Windows.Forms.Button();
+            this.btnAddStudentID = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddAllStudent = new System.Windows.Forms.Button();
             this.btnDeleteAllStudentID = new System.Windows.Forms.Button();
@@ -88,17 +92,13 @@ namespace studentManagement {
             this.panel6 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.comboBoxFindFaculty = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.txtFindSubjectClass = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.listViewSubjectClassList = new System.Windows.Forms.ListView();
             this.listViewStudentList = new System.Windows.Forms.ListView();
-            this.txtClassName = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -193,6 +193,7 @@ namespace studentManagement {
             this.cbbTimTheoKhoa.Name = "cbbTimTheoKhoa";
             this.cbbTimTheoKhoa.Size = new System.Drawing.Size(175, 28);
             this.cbbTimTheoKhoa.TabIndex = 4;
+            this.cbbTimTheoKhoa.SelectedIndexChanged += new System.EventHandler(this.cbbTimTheoKhoa_SelectedIndexChanged);
             // 
             // label21
             // 
@@ -331,6 +332,17 @@ namespace studentManagement {
             this.label12.Size = new System.Drawing.Size(0, 20);
             this.label12.TabIndex = 14;
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(1, 68);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(75, 20);
+            this.label24.TabIndex = 2;
+            this.label24.Text = "Tên Lớp:";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -341,6 +353,15 @@ namespace studentManagement {
             this.label5.Size = new System.Drawing.Size(70, 20);
             this.label5.TabIndex = 2;
             this.label5.Text = "Mã Lớp:";
+            // 
+            // txtClassName
+            // 
+            this.txtClassName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClassName.Location = new System.Drawing.Point(79, 65);
+            this.txtClassName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtClassName.Name = "txtClassName";
+            this.txtClassName.Size = new System.Drawing.Size(148, 26);
+            this.txtClassName.TabIndex = 3;
             // 
             // txtClassID
             // 
@@ -718,7 +739,7 @@ namespace studentManagement {
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.txtFindStudentID);
-            this.panel7.Controls.Add(this.btnDeleteStudentID);
+            this.panel7.Controls.Add(this.btnAddStudentID);
             this.panel7.Controls.Add(this.label27);
             this.panel7.Controls.Add(this.label26);
             this.panel7.Controls.Add(this.btnDelete);
@@ -742,15 +763,37 @@ namespace studentManagement {
             this.txtFindStudentID.Size = new System.Drawing.Size(191, 26);
             this.txtFindStudentID.TabIndex = 11;
             // 
-            // btnDeleteStudentID
+            // btnAddStudentID
             // 
-            this.btnDeleteStudentID.Location = new System.Drawing.Point(378, 66);
-            this.btnDeleteStudentID.Name = "btnDeleteStudentID";
-            this.btnDeleteStudentID.Size = new System.Drawing.Size(92, 45);
-            this.btnDeleteStudentID.TabIndex = 10;
-            this.btnDeleteStudentID.Text = "Thêm sinh viên";
-            this.btnDeleteStudentID.UseVisualStyleBackColor = true;
-            this.btnDeleteStudentID.Click += new System.EventHandler(this.btnDeleteStudentID_Click);
+            this.btnAddStudentID.Location = new System.Drawing.Point(378, 66);
+            this.btnAddStudentID.Name = "btnAddStudentID";
+            this.btnAddStudentID.Size = new System.Drawing.Size(92, 45);
+            this.btnAddStudentID.TabIndex = 10;
+            this.btnAddStudentID.Text = "Thêm sinh viên";
+            this.btnAddStudentID.UseVisualStyleBackColor = true;
+            this.btnAddStudentID.Click += new System.EventHandler(this.btnAddStudentID_Click);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(21, 77);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(108, 20);
+            this.label27.TabIndex = 1;
+            this.label27.Text = "Mã Sinh Viên";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(21, 33);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(59, 20);
+            this.label26.TabIndex = 1;
+            this.label26.Text = "Mã lớp";
             // 
             // btnDelete
             // 
@@ -760,6 +803,7 @@ namespace studentManagement {
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAddAllStudent
             // 
@@ -838,6 +882,17 @@ namespace studentManagement {
             this.comboBoxFindFaculty.TabIndex = 4;
             this.comboBoxFindFaculty.SelectedIndexChanged += new System.EventHandler(this.comboBoxFindFaculty_SelectedIndexChanged);
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(5, 41);
+            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(70, 20);
+            this.label25.TabIndex = 1;
+            this.label25.Text = "Mã Lớp:";
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -897,59 +952,6 @@ namespace studentManagement {
             this.listViewStudentList.Size = new System.Drawing.Size(587, 520);
             this.listViewStudentList.TabIndex = 10;
             this.listViewStudentList.UseCompatibleStateImageBehavior = false;
-            // 
-            // txtClassName
-            // 
-            this.txtClassName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClassName.Location = new System.Drawing.Point(79, 65);
-            this.txtClassName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtClassName.Name = "txtClassName";
-            this.txtClassName.Size = new System.Drawing.Size(148, 26);
-            this.txtClassName.TabIndex = 3;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(1, 68);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(75, 20);
-            this.label24.TabIndex = 2;
-            this.label24.Text = "Tên Lớp:";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(5, 41);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(70, 20);
-            this.label25.TabIndex = 1;
-            this.label25.Text = "Mã Lớp:";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(21, 33);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(59, 20);
-            this.label26.TabIndex = 1;
-            this.label26.Text = "Mã lớp";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(21, 77);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(108, 20);
-            this.label27.TabIndex = 1;
-            this.label27.Text = "Mã Sinh Viên";
             // 
             // ClassForm
             // 
@@ -1048,7 +1050,7 @@ namespace studentManagement {
         private System.Windows.Forms.Button btnDeleteAllStudentID;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtFindClassID;
-        private System.Windows.Forms.Button btnDeleteStudentID;
+        private System.Windows.Forms.Button btnAddStudentID;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox txtFindStudentID;
         private System.Windows.Forms.Label label21;

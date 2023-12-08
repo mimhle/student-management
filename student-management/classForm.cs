@@ -351,33 +351,58 @@ namespace studentManagement {
         }
 
         private void listViewSubjectClassList_SelectedIndexChanged(object sender, EventArgs e) {
-            if(listViewSubjectClassList.SelectedItems.Count == 1) {
+            if (listViewSubjectClassList.SelectedItems.Count == 1) {
                 var result = new List<Dictionary<String, String>>();
-                foreach(var subjectClass in _db.getAllSubjectClassStudents()) {
+                foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
                     if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
                         result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
                     }
                 }
-                
-                
+
+
                 _loadListViewStudentList(result);
             }
         }
 
-        private void btnDeleteStudentID_Click(object sender, EventArgs e) {
-            if(txtFindStudentID.Text != "" && listViewStudentList.SelectedItems.Count == 1) {
-                _ = _db.removeSubjectClassStudent(txtFindStudentID.Text, listViewSubjectClassList.SelectedItems[0].SubItems[0].Text);
+        private void btnAddStudentID_Click(object sender, EventArgs e) {
+            if (txtFindStudentID.Text != "" && listViewSubjectClassList.SelectedItems.Count == 1) {
+                if (_db.getStudent(txtFindStudentID.Text) != null) {
+                    _ = _db.insertSubjectClassStudent(txtFindStudentID.Text, listViewSubjectClassList.SelectedItems[0].Text);
+                }
             }
+
+            var result = new List<Dictionary<String, String>>();
+            foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
+                if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
+                    result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
+                }
+            }
+
+            _loadListViewStudentList(result);
+
         }
 
         private void btnAddAllStudent_Click(object sender, EventArgs e) {
-            if(txtFindClassID.Text != "") {
-               
+            if (txtFindClassID.Text != "") {
+                //them tat ca sinh vien vao lop hoc phan
+                foreach (var student in _db.getAllStudents()) {
+                    if (student["MaLop"] == txtFindClassID.Text) {
+                        _ = _db.insertSubjectClassStudent(student["MaSinhVien"], listViewSubjectClassList.SelectedItems[0].Text);
+                    }
+                }
             }
+
+            var result = new List<Dictionary<String, String>>();
+            foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
+                if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
+                    result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
+                }
+            }
+            _loadListViewStudentList(result);
         }
 
         private void btnDeleteAllStudentID_Click(object sender, EventArgs e) {
-            if(txtFindClassID.Text != "") {
+            if (txtFindClassID.Text != "") {
                 foreach (var student in _db.getAllStudents()) {
                     if (student["MaLop"] == txtFindClassID.Text) {
                         _ = _db.removeStudent(student["MaSinhVien"]);
@@ -396,6 +421,35 @@ namespace studentManagement {
 
         private void btnRefreshFSC_Click(object sender, EventArgs e) {
             _loadListViewSubjectClassListFSC(_db.getAllSubjectClass());
+        }
+
+        private void cbbTimTheoKhoa_SelectedIndexChanged(object sender, EventArgs e) {
+            var result = new List<Dictionary<String, String>>();
+
+            foreach (var itemClass in _db.getAllClasses()) {
+                if (itemClass["MaKhoa"] == _getFacultyID(cbbTimTheoKhoa.Text)) {
+                    result.Add(itemClass);
+                }
+            }
+
+            _loadListViewClassList(result);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e) {
+            if (listViewStudentList.SelectedItems.Count == 1) {
+                _ = _db.removeSubjectClassStudent(txtFindStudentID.Text, listViewSubjectClassList.SelectedItems[0].Text);
+
+
+                //Lay danh sach sinh vin trong lop hoc phan
+                var result = new List<Dictionary<String, String>>();
+                foreach (var subjectClass in _db.getAllSubjectClassStudents()) {
+                    if (subjectClass["MaLopHocPhan"] == listViewSubjectClassList.SelectedItems[0].SubItems[0].Text) {
+                        result.Add(_db.getStudent(subjectClass["MaSinhVien"]));
+                    }
+                }
+
+                _loadListViewStudentList(result);
+            }
         }
     }
 }
