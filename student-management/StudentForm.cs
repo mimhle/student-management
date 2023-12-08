@@ -7,13 +7,13 @@ namespace studentManagement {
         public StudentForm() {
             InitializeComponent();
             loadAllFaculty();
-            createColumsListViewDisplay();
+            createColumnsListViewDisplay();
         }
 
         private readonly Database _db = Program.db;
         private bool _addStudentActive = true;
 
-        private void AutoResizeListViewColumns(ListView listView) {
+        private static void autoResizeListViewColumns(ListView listView) {
             foreach (ColumnHeader column in listView.Columns) {
                 column.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
@@ -33,13 +33,11 @@ namespace studentManagement {
             Close();
         }
 
-        private bool isValidStudentId(string studentId) {
+        private static bool isValidStudentId(string studentId) {
             if (studentId == "") return false;
 
-            for (var i = 0; i < studentId.Length; i++) {
-                if (studentId[i] == ' ') {
-                    return false;
-                }
+            foreach (var c in studentId) {
+                if (c == ' ') return false;
             }
 
             return true;
@@ -71,15 +69,13 @@ namespace studentManagement {
             var facultyName = listViewDisplay.SelectedItems[0].SubItems[4].Text;
             var facultyList = _db.getAllFaculties();
             foreach (var item in facultyList) {
-                if (item["MaKhoa"] == facultyName)
-                    comboBoxFacultyEdit.Text = item["TenKhoa"];
+                if (item["MaKhoa"] == facultyName) comboBoxFacultyEdit.Text = item["TenKhoa"];
             }
 
             var className = listViewDisplay.SelectedItems[0].SubItems[5].Text;
             var classList = _db.getAllClasses();
             foreach (var item in classList) {
-                if (item["MaLop"] == className)
-                    comboBoxClassEdit.Text = item["TenLop"];
+                if (item["MaLop"] == className) comboBoxClassEdit.Text = item["TenLop"];
             }
 
             var gender = listViewDisplay.SelectedItems[0].SubItems[3].Text;
@@ -114,28 +110,23 @@ namespace studentManagement {
             comboBoxClassEdit.Text = "";
             var classList = _db.getAllClasses();
             foreach (var item in classList) {
-                if (item["MaKhoa"] == getFacultyId(facultyName)) {
-                    if (comboBoxFaculty.SelectedIndex != -1)
-                        comboBoxClass.Items.Add(item["TenLop"]);
-                    if (comboBoxFacultyEdit.SelectedIndex != -1) {
-                        comboBoxClassEdit.Items.Add(item["TenLop"]);
-                    }
-
-                    if (comboLefFaculty.SelectedIndex != -1)
-                        comboLefBoxClass.Items.Add(item["TenLop"]);
+                if (item["MaKhoa"] != getFacultyId(facultyName)) continue;
+                if (comboBoxFaculty.SelectedIndex != -1)
+                    comboBoxClass.Items.Add(item["TenLop"]);
+                if (comboBoxFacultyEdit.SelectedIndex != -1) {
+                    comboBoxClassEdit.Items.Add(item["TenLop"]);
                 }
+
+                if (comboLefFaculty.SelectedIndex != -1)
+                    comboLefBoxClass.Items.Add(item["TenLop"]);
             }
         }
 
         private void txtId_Validating(object sender, CancelEventArgs e) {
-            if (!isValidStudentId(txtId.Text)) {
-                errorProvider1.SetError(txtId, "Please enter a valid student ID");
-            } else {
-                errorProvider1.SetError(txtId, null);
-            }
+            errorProvider1.SetError(txtId, !isValidStudentId(txtId.Text) ? "Please enter a valid student ID" : null);
         }
 
-        private void createColumsListViewDisplay() {
+        private void createColumnsListViewDisplay() {
             listViewDisplay.View = View.Details;
             listViewDisplay.FullRowSelect = true;
             listViewDisplay.GridLines = true;
@@ -146,12 +137,11 @@ namespace studentManagement {
             listViewDisplay.Columns.Add("Ma Khoa", 100);
             listViewDisplay.Columns.Add("Ma Lop", 100);
 
-            AutoResizeListViewColumns(listViewDisplay);
+            autoResizeListViewColumns(listViewDisplay);
         }
 
         private void comboBoxFaculty_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxFaculty.SelectedIndex != -1)
-                loadClassByFaculty(comboBoxFaculty.SelectedItem.ToString());
+            if (comboBoxFaculty.SelectedIndex != -1) loadClassByFaculty(comboBoxFaculty.SelectedItem.ToString());
         }
 
         private void clearAllSelected() {
@@ -183,10 +173,9 @@ namespace studentManagement {
         }
 
         private void comboLefFaculty_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboLefFaculty.SelectedIndex != -1) {
-                loadClassByFaculty(comboLefFaculty.SelectedItem.ToString());
-                btnFind.Enabled = true;
-            }
+            if (comboLefFaculty.SelectedIndex == -1) return;
+            loadClassByFaculty(comboLefFaculty.SelectedItem.ToString());
+            btnFind.Enabled = true;
         }
 
         private string getFacultyId(string facultyName) {
@@ -194,10 +183,9 @@ namespace studentManagement {
 
             var facultyList = _db.getAllFaculties();
             foreach (var faculty in facultyList) {
-                if (faculty["TenKhoa"] == facultyName) {
-                    result = faculty["MaKhoa"];
-                    break;
-                }
+                if (faculty["TenKhoa"] != facultyName) continue;
+                result = faculty["MaKhoa"];
+                break;
             }
 
             return result;
@@ -208,10 +196,9 @@ namespace studentManagement {
 
             var classList = _db.getAllClasses();
             foreach (var classItem in classList) {
-                if (classItem["TenLop"] == className) {
-                    result = classItem["MaLop"];
-                    break;
-                }
+                if (classItem["TenLop"] != className) continue;
+                result = classItem["MaLop"];
+                break;
             }
 
             return result;
@@ -239,7 +226,7 @@ namespace studentManagement {
                         listViewDisplay.Items.Add(item);
                     }
 
-                    AutoResizeListViewColumns(listViewDisplay);
+                    autoResizeListViewColumns(listViewDisplay);
                     return;
                 }
 
@@ -269,7 +256,7 @@ namespace studentManagement {
                 listViewDisplay.Items.Add(item);
             }
 
-            AutoResizeListViewColumns(listViewDisplay);
+            autoResizeListViewColumns(listViewDisplay);
         }
 
         private void listViewDisplay_SelectedIndexChanged(object sender, EventArgs e) {
@@ -280,40 +267,33 @@ namespace studentManagement {
         }
 
         private void comboBoxFacultyEdit_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxFacultyEdit.SelectedIndex != -1) loadClassByFaculty(comboBoxFacultyEdit.SelectedItem.ToString());
+            if (comboBoxFacultyEdit.SelectedIndex != -1)
+                loadClassByFaculty(comboBoxFacultyEdit.SelectedItem.ToString());
         }
 
         private void radioButtonId_CheckedChanged(object sender, EventArgs e) {
-            if (radioButtonId.Checked) {
-                comboLefBoxClass.Enabled = false;
-                comboLefFaculty.Enabled = false;
-                comboLefBoxClass.Text = string.Empty;
-                comboLefFaculty.Text = string.Empty;
-                txtIdFind.Enabled = true;
-                if (txtIdFind.Text != string.Empty) btnFind.Enabled = true;
-                else btnFind.Enabled = false;
-            }
+            if (!radioButtonId.Checked) return;
+            comboLefBoxClass.Enabled = false;
+            comboLefFaculty.Enabled = false;
+            comboLefBoxClass.Text = string.Empty;
+            comboLefFaculty.Text = string.Empty;
+            txtIdFind.Enabled = true;
+            if (txtIdFind.Text != string.Empty) btnFind.Enabled = true;
+            else btnFind.Enabled = false;
         }
 
         private void radioButtonName_CheckedChanged(object sender, EventArgs e) {
-            if (radioButtonName.Checked) {
-                comboLefBoxClass.Enabled = true;
-                comboLefFaculty.Enabled = true;
-                txtIdFind.Enabled = true;
-                if(txtIdFind.Text != string.Empty) btnFind.Enabled = true;
-                else btnFind.Enabled = false;
-            }
+            if (!radioButtonName.Checked) return;
+            comboLefBoxClass.Enabled = true;
+            comboLefFaculty.Enabled = true;
+            txtIdFind.Enabled = true;
+            btnFind.Enabled = txtIdFind.Text != string.Empty;
         }
 
         private void btnUpdates_Click(object sender, EventArgs e) {
-            string gender;
-            bool classMonitor;
+            var gender = radioFemaleEdit.Checked ? "Nữ" : "Nam";
 
-            if (radioFemaleEdit.Checked) gender = "Nữ";
-            else gender = "Nam";
-
-            if (checkBoxClassMonitorEdit.Checked) classMonitor = true;
-            else classMonitor = false;
+            var classMonitor = checkBoxClassMonitorEdit.Checked;
 
             var studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
             var classId = getClassId(comboBoxClassEdit.Text);
@@ -326,7 +306,7 @@ namespace studentManagement {
             } else MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin!");
         }
 
-        private bool checkAvaluableStudentId(string studentId) {
+        private bool checkAvailableStudentId(string studentId) {
             var studentList = _db.getAllStudents();
             foreach (var item in studentList) {
                 if (item["MaSinhVien"] == studentId) return false;
@@ -336,9 +316,8 @@ namespace studentManagement {
         }
 
         private void btnInput_Click(object sender, EventArgs e) {
-            string gender;
             var classMonitor = false;
-            gender = radioBtnFemale.Checked ? "Nữ" : "Nam";
+            var gender = radioBtnFemale.Checked ? "Nữ" : "Nam";
 
             if (checkBoxClassMonitor.Checked) classMonitor = true;
 
@@ -346,7 +325,7 @@ namespace studentManagement {
             var facultyId = getFacultyId(comboBoxFaculty.Text);
             if (txtId.Text != string.Empty && txtName.Text != string.Empty && birth.Text != string.Empty &&
                 comboBoxClass.SelectedIndex != -1 && comboBoxFaculty.SelectedIndex != -1) {
-                if (checkAvaluableStudentId(txtId.Text)) {
+                if (checkAvailableStudentId(txtId.Text)) {
                     if (_db.insertStudent(txtId.Text, txtName.Text, birth.Text, gender, facultyId, classId,
                             classMonitor)) {
                         MessageBox.Show(@"Thành công!");
@@ -357,14 +336,14 @@ namespace studentManagement {
 
         private void btnDelete_Click(object sender, EventArgs e) {
             try {
-                if(listViewDisplay.SelectedItems.Count != 0) {
-                    DialogResult result = MessageBox.Show("Xác nhận xóa", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if (result == DialogResult.OK) {
-                        var studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
-                        if (!_db.removeStudent(studentId)) return;
-                        MessageBox.Show(@"Thành công!");
-                        loadStudentListView();
-                    }
+                if (listViewDisplay.SelectedItems.Count != 0) {
+                    var result = MessageBox.Show(@"Xác nhận xóa", @"Xác nhận", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Warning);
+                    if (result != DialogResult.OK) return;
+                    var studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
+                    if (!_db.removeStudent(studentId)) return;
+                    MessageBox.Show(@"Thành công!");
+                    loadStudentListView();
                 } else MessageBox.Show(@"vui lòng chọn sinh viên để xóa!");
             } catch {
                 MessageBox.Show(@"Thất bại");
@@ -381,23 +360,20 @@ namespace studentManagement {
         }
 
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxFaculty.SelectedIndex != -1) {
-                if (!checkClassMonitor(getClassId(comboBoxClass.SelectedItem.ToString()))) checkBoxClassMonitor.Enabled = true;
-                else checkBoxClassMonitor.Enabled = false;
-            }
+            if (comboBoxFaculty.SelectedIndex == -1) return;
+            checkBoxClassMonitor.Enabled = !checkClassMonitor(getClassId(comboBoxClass.SelectedItem.ToString()));
         }
 
         private void comboBoxClassEdit_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxFacultyEdit.SelectedIndex != -1) {
-                if (!checkClassMonitor(getClassId(comboBoxClassEdit.SelectedItem.ToString()))) checkBoxClassMonitorEdit.Enabled = true;
-                else checkBoxClassMonitorEdit.Enabled = false;
-                if (checkBoxClassMonitorEdit.Checked) checkBoxClassMonitorEdit.Enabled = true;
-            }
+            if (comboBoxFacultyEdit.SelectedIndex == -1) return;
+            checkBoxClassMonitorEdit.Enabled =
+                !checkClassMonitor(getClassId(comboBoxClassEdit.SelectedItem.ToString())) ||
+                checkBoxClassMonitorEdit.Checked;
         }
 
         private void txtIdFind_TextChanged(object sender, EventArgs e) {
             if (radioButtonId.Checked && txtIdFind.Text != string.Empty) btnFind.Enabled = true;
-            else if(radioButtonName.Checked && txtName.Text == string.Empty) btnFind.Enabled = true;
+            else if (radioButtonName.Checked && txtName.Text == string.Empty) btnFind.Enabled = true;
             else btnFind.Enabled = false;
         }
     }
