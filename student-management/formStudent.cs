@@ -290,6 +290,7 @@ namespace studentManagement {
                 comboLefFaculty.Enabled = false;
                 comboLefBoxClass.Text = string.Empty;
                 comboLefFaculty.Text = string.Empty;
+                txtIdFind.Enabled = true;
             }
         }
 
@@ -297,6 +298,7 @@ namespace studentManagement {
             if (radioButtonName.Checked) {
                 comboLefBoxClass.Enabled = true;
                 comboLefFaculty.Enabled = true;
+                txtIdFind.Enabled = true;
             }
         }
 
@@ -320,10 +322,10 @@ namespace studentManagement {
             if (txtNameEdit.Text != string.Empty && facultyId != string.Empty && classId != string.Empty) {
                 if (_db.insertStudent(studentId, txtNameEdit.Text, birthEdit.Text, gender, facultyId, classId,
                         classMonitor)) {
-                    MessageBox.Show(@"Thanh cong!");
+                    MessageBox.Show(@"Thành công!");
                 }
             } else
-                MessageBox.Show(@"Vui long nhap day du thong tin!");
+                MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin!");
         }
 
         private bool checkAvaluableStudentId(string studentId) {
@@ -353,22 +355,28 @@ namespace studentManagement {
                 if (checkAvaluableStudentId(txtId.Text)) {
                     if (_db.insertStudent(txtId.Text, txtName.Text, birth.Text, gender, facultyId, classId,
                             classMonitor)) {
-                        MessageBox.Show(@"Thanh cong!");
+                        MessageBox.Show(@"Thành công!");
                     }
                 } else
-                    MessageBox.Show(@"Ma sinh vien da ton tai!");
+                    MessageBox.Show(@"Mã sinh viên đã tồn tại!");
             } else
-                MessageBox.Show(@"Vui long nhap day du thong tin");
+                MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin");
         }
 
         private void btnDelete_Click(object sender, EventArgs e) {
             try {
-                var studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
-                if (!_db.removeStudent(studentId)) return;
-                MessageBox.Show(@"Thanh cong!");
-                loadStudentListView();
+                if(listViewDisplay.SelectedItems.Count != 0) {
+                    DialogResult result = MessageBox.Show("Xác nhận xóa", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (result == DialogResult.OK) {
+                        var studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
+                        if (!_db.removeStudent(studentId)) return;
+                        MessageBox.Show(@"Thành công!");
+                        loadStudentListView();
+                    }
+                } else 
+                    MessageBox.Show(@"vui lòng chọn sinh viên để xóa!");
             } catch {
-                MessageBox.Show(@"vui long chon sinh vien de xoa!");
+                MessageBox.Show(@"Thất bại");
             }
         }
 
@@ -400,6 +408,20 @@ namespace studentManagement {
                 if (checkBoxClassMonitorEdit.Checked)
                     checkBoxClassMonitorEdit.Enabled = true;
             }
+        }
+
+        private void txtIdFind_TextChanged(object sender, EventArgs e) {
+            if(txtIdFind.Text != string.Empty && radioButtonId.Checked) btnFind.Enabled = true;
+            else if (radioButtonName.Checked) {
+                if(txtIdFind.Text == string.Empty && (comboBoxClass.SelectedIndex != -1 || comboBoxClass.SelectedIndex != -1))
+                    btnFind.Enabled = true;
+                else if(txtIdFind.Text != string.Empty)
+                    btnFind.Enabled = true;
+                else
+                    btnFind.Enabled = false;
+            }
+            else 
+                btnFind.Enabled = false;
         }
     }
 }
