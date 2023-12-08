@@ -32,6 +32,11 @@ namespace studentManagement {
         }
 
         private void classForm_Load(object sender, EventArgs e) {
+
+        }
+
+        private void btnAddClass_Click(object sender, EventArgs e) {
+            _db.insertClass(txtIdClassAdd.Text(), txtNameClassAdd.Text(), "CNTT");
         }
     }
 }
