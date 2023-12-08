@@ -8,8 +8,8 @@ namespace studentManagement {
         public SubjectForm() {
             InitializeComponent();
             _loadAllFaculty();
-            _createColumsListViewAddScore();
-            _createColumsListViewDisplaySubject();
+            _createColumnsListViewAddScore();
+            _createColumnsListViewDisplaySubject();
         }
 
         private readonly Database _db = Program.db;
@@ -17,9 +17,7 @@ namespace studentManagement {
         //private Database db = new Database(Program.dbLocation);
         private bool _isEditing; // Add a class-level variable to keep track of the state
 
-        private bool _isSubject = true;
-
-        private void _autoResizeListViewColumns(ListView listView) {
+        private static void _autoResizeListViewColumns(ListView listView) {
             foreach (ColumnHeader column in listView.Columns) {
                 column.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
                 //column.Width = -1;
@@ -41,14 +39,12 @@ namespace studentManagement {
                 labelDeleteSubject.Text = @"Chọn Môn Học";
                 btnEditSubject.Text = @"Thêm Môn Học";
                 btnDeleteSubject.Text = @"Chọn";
-                bCheck = false;
             } else {
                 gbAddSubject.Text = @"Thêm Môn Học";
                 btnAddSubject.Text = @"Thêm";
                 labelDeleteSubject.Text = @"Xóa Môn Học";
                 btnEditSubject.Text = @"Chỉnh Sửa Môn Học";
                 btnDeleteSubject.Text = @"Xóa";
-                bCheck = true;
             }
         }
 
@@ -75,14 +71,12 @@ namespace studentManagement {
             addSubjectForm(0);
             addScoreForm(1);
             _clearSelectedComboBoxAndListView();
-            _isSubject = true;
         }
 
         private void btnAddScore_Click(object sender, EventArgs e) {
             addScoreForm(0);
             addSubjectForm(1);
             _clearSelectedComboBoxAndListView();
-            _isSubject = false;
         }
 
         //lay DS diem mon hoc
@@ -106,7 +100,6 @@ namespace studentManagement {
 
             foreach (var row in subject) {
                 var temp = _db.getFaculty(row["MaKhoa"]);
-                ;
                 if (temp != null) {
                     if (comboBoxFaculty.SelectedIndex != -1 &&
                         comboBoxFaculty.SelectedItem.ToString() == temp["TenKhoa"]) {
@@ -130,15 +123,15 @@ namespace studentManagement {
             listViewAddScore.Items.Clear();
 
             var subjectClass = _db.getAllSubjectClass();
-            if (comboBoxSubject.SelectedIndex != -1)
-                foreach (var row in subjectClass) {
-                    var temp = _db.getSubject(row["MaMonHoc"]);
-                    if (comboBoxSubject.SelectedItem.ToString() == temp["TenMonHoc"])
-                        comboBoxClass.Items.Add(row["TenLopHocPhan"]);
-                }
+            if (comboBoxSubject.SelectedIndex == -1) return;
+            foreach (var row in subjectClass) {
+                var temp = _db.getSubject(row["MaMonHoc"]);
+                if (comboBoxSubject.SelectedItem.ToString() == temp["TenMonHoc"])
+                    comboBoxClass.Items.Add(row["TenLopHocPhan"]);
+            }
         }
 
-        private void _createColumsListViewAddScore() {
+        private void _createColumnsListViewAddScore() {
             listViewAddScore.View = View.Details;
             listViewAddScore.FullRowSelect = true;
             listViewAddScore.GridLines = true;
@@ -150,7 +143,7 @@ namespace studentManagement {
             _autoResizeListViewColumns(listViewAddScore);
         }
 
-        private void _createColumsListViewDisplaySubject() {
+        private void _createColumnsListViewDisplaySubject() {
             listViewDisplaySubject.View = View.Details;
             listViewDisplaySubject.FullRowSelect = true;
             listViewDisplaySubject.GridLines = true;
@@ -171,24 +164,19 @@ namespace studentManagement {
             var subjectClassStudentList = _db.getAllSubjectClassStudents();
 
             foreach (var row in subjectClassStudentList) {
-                if (row["MaLopHocPhan"] == maLop) {
-                    var student = _db.getStudent(row["MaSinhVien"]);
-                    var item = new ListViewItem(student["MaSinhVien"]);
-                    item.SubItems.Add(student["HoTen"]);
-                    item.SubItems.Add(row["MaLopHocPhan"]);
-                    if (subClass != null) {
-                        var score = _db.getScore(row["MaSinhVien"], subClass["MaMonHoc"]);
-                        if (score != null) {
-                            item.SubItems.Add(score["Diem"]);
-                        } else {
-                            item.SubItems.Add("");
-                        }
-                    } else {
-                        item.SubItems.Add("");
-                    }
-
-                    listViewAddScore.Items.Add(item);
+                if (row["MaLopHocPhan"] != maLop) continue;
+                var student = _db.getStudent(row["MaSinhVien"]);
+                var item = new ListViewItem(student["MaSinhVien"]);
+                item.SubItems.Add(student["HoTen"]);
+                item.SubItems.Add(row["MaLopHocPhan"]);
+                if (subClass != null) {
+                    var score = _db.getScore(row["MaSinhVien"], subClass["MaMonHoc"]);
+                    item.SubItems.Add(score != null ? score["Diem"] : "");
+                } else {
+                    item.SubItems.Add("");
                 }
+
+                listViewAddScore.Items.Add(item);
             }
 
             _autoResizeListViewColumns(listViewAddScore);
@@ -199,10 +187,9 @@ namespace studentManagement {
 
             var faculties = _db.getAllFaculties();
             foreach (var faculty in faculties) {
-                if (facultyName == faculty["TenKhoa"]) {
-                    result = faculty["MaKhoa"];
-                    break;
-                }
+                if (facultyName != faculty["TenKhoa"]) continue;
+                result = faculty["MaKhoa"];
+                break;
             }
 
             return result;
@@ -213,10 +200,9 @@ namespace studentManagement {
 
             var subjects = _db.getAllSubject();
             foreach (var subject in subjects) {
-                if (subjectName == subject["TenMonHoc"]) {
-                    result = subject["MaMonHoc"];
-                    break;
-                }
+                if (subjectName != subject["TenMonHoc"]) continue;
+                result = subject["MaMonHoc"];
+                break;
             }
 
             return result;
@@ -227,10 +213,9 @@ namespace studentManagement {
 
             var subjectClasses = _db.getAllSubjectClass();
             foreach (var subjectClass in subjectClasses) {
-                if (subjectClassName == subjectClass["TenLopHocPhan"]) {
-                    result = subjectClass["MaLopHocPhan"];
-                    break;
-                }
+                if (subjectClassName != subjectClass["TenLopHocPhan"]) continue;
+                result = subjectClass["MaLopHocPhan"];
+                break;
             }
 
             return result;
@@ -241,12 +226,11 @@ namespace studentManagement {
 
             var subject = _db.getAllSubject();
             foreach (var row in subject) {
-                if (row["MaKhoa"] == maKhoa) {
-                    var item = new ListViewItem(row["MaMonHoc"]);
-                    item.SubItems.Add(row["TenMonHoc"]);
-                    item.SubItems.Add(row["SoTinChi"]);
-                    listViewDisplaySubject.Items.Add(item);
-                }
+                if (row["MaKhoa"] != maKhoa) continue;
+                var item = new ListViewItem(row["MaMonHoc"]);
+                item.SubItems.Add(row["TenMonHoc"]);
+                item.SubItems.Add(row["SoTinChi"]);
+                listViewDisplaySubject.Items.Add(item);
             }
 
             _autoResizeListViewColumns(listViewDisplaySubject);
@@ -261,19 +245,17 @@ namespace studentManagement {
         }
 
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxClass.SelectedIndex != -1)
-                _loadListViewAddScore();
+            if (comboBoxClass.SelectedIndex != -1) _loadListViewAddScore();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
             listViewDisplaySubject.Items.Clear();
             var faculties = _db.getAllFaculties();
-            if (comboBox2.SelectedIndex != -1)
-                foreach (var faculty in faculties) {
-                    if (comboBox2.SelectedItem.ToString() == faculty["TenKhoa"]) {
-                        _loadListViewDisplaySubject(faculty["MaKhoa"]);
-                    }
-                }
+            if (comboBox2.SelectedIndex == -1) return;
+            foreach (var faculty in faculties) {
+                if (comboBox2.SelectedItem.ToString() != faculty["TenKhoa"]) continue;
+                _loadListViewDisplaySubject(faculty["MaKhoa"]);
+            }
         }
 
         private void _clearSelectedComboBoxAndListView() {
@@ -321,29 +303,27 @@ namespace studentManagement {
         }
 
         private void btnConfirmStudent_Click(object sender, EventArgs e) {
-            if (listViewAddScore.SelectedItems.Count == 1) {
-                txtStudentName.Text = listViewAddScore.SelectedItems[0].SubItems[1].Text;
-                txtMssvAddScore.Text = listViewAddScore.SelectedItems[0].SubItems[0].Text;
-                if (listViewAddScore.SelectedItems[0].SubItems[3].Text != "") {
-                    textBox3.Text = listViewAddScore.SelectedItems[0].SubItems[3].Text;
-                    textBox3.Enabled = false;
-                } else {
-                    textBox3.Text = "";
-                    textBox3.Enabled = true;
-                }
+            if (listViewAddScore.SelectedItems.Count != 1) return;
+            txtStudentName.Text = listViewAddScore.SelectedItems[0].SubItems[1].Text;
+            txtMssvAddScore.Text = listViewAddScore.SelectedItems[0].SubItems[0].Text;
+            if (listViewAddScore.SelectedItems[0].SubItems[3].Text != "") {
+                textBox3.Text = listViewAddScore.SelectedItems[0].SubItems[3].Text;
+                textBox3.Enabled = false;
+            } else {
+                textBox3.Text = "";
+                textBox3.Enabled = true;
             }
         }
 
         private void btnAddScore_Click_1(object sender, EventArgs e) {
-            if (textBox3.Enabled) {
-                Console.WriteLine(txtMssvAddScore.Text);
-                Console.WriteLine(_getSubjectID(comboBoxSubject.SelectedItem.ToString()));
-                Console.WriteLine(float.Parse(textBox3.Text));
-                var insertScore = _db.insertScore(txtMssvAddScore.Text,
-                    _getSubjectID(comboBoxSubject.SelectedItem.ToString()), float.Parse(textBox3.Text));
-                Console.WriteLine(insertScore);
-                _loadListViewAddScore();
-            }
+            if (!textBox3.Enabled) return;
+            Console.WriteLine(txtMssvAddScore.Text);
+            Console.WriteLine(_getSubjectID(comboBoxSubject.SelectedItem.ToString()));
+            Console.WriteLine(float.Parse(textBox3.Text));
+            var insertScore = _db.insertScore(txtMssvAddScore.Text,
+                _getSubjectID(comboBoxSubject.SelectedItem.ToString()), float.Parse(textBox3.Text));
+            Console.WriteLine(insertScore);
+            _loadListViewAddScore();
         }
 
         private void btnAddSubject_Click(object sender, EventArgs e) {
@@ -352,21 +332,16 @@ namespace studentManagement {
                 var subject = _db.insertSubject(textBox2.Text, textBox1.Text,
                     _getFacultyID(comboBox1.SelectedItem.ToString()), int.Parse(txtCredit.Text));
                 _loadListViewDisplaySubject(_getFacultyID(comboBox1.SelectedItem.ToString()));
-                if (subject) {
-                    textBox1.Text = "";
-                    textBox2.Text = "";
-                    txtCredit.Text = "";
-                    comboBox1.SelectedIndex = -1;
-                }
+                if (!subject) return;
+                textBox1.Text = "";
+                textBox2.Text = "";
+                txtCredit.Text = "";
+                comboBox1.SelectedIndex = -1;
             }
         }
 
         private void textBox1_Validating(object sender, CancelEventArgs e) {
-            if (textBox1.Text == "") {
-                errorProviderSubjectName.SetError(textBox1, "Không được để trống");
-            } else {
-                errorProviderSubjectName.SetError(textBox1, null);
-            }
+            errorProviderSubjectName.SetError(textBox1, textBox1.Text == "" ? "Không được để trống" : null);
         }
 
         private void textBox2_Validating(object sender, CancelEventArgs e) {
@@ -380,11 +355,8 @@ namespace studentManagement {
         }
 
         private void comboBox1_Validating(object sender, CancelEventArgs e) {
-            if (comboBox1.SelectedIndex == -1) {
-                errorProviderFacultySelected.SetError(comboBox1, "Không được để trống");
-            } else {
-                errorProviderFacultySelected.SetError(comboBox1, null);
-            }
+            errorProviderFacultySelected.SetError(comboBox1,
+                comboBox1.SelectedIndex == -1 ? "Không được để trống" : null);
         }
 
         private void txtCredit_Validating(object sender, CancelEventArgs e) {
