@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Drawing.Printing;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace studentManagement {
@@ -10,12 +10,12 @@ namespace studentManagement {
             createColumsListViewDisplay();
         }
 
-        private Database db = new Database(Program.dbLocation);
-        private bool addStudentActive = true;
+        private readonly Database _db = new Database(Program.dbLocation);
+        private bool _addStudentActive = true;
 
-        private void AutoResizeListViewColumns(System.Windows.Forms.ListView listView) {
-            foreach (System.Windows.Forms.ColumnHeader column in listView.Columns) {
-                column.AutoResize(System.Windows.Forms.ColumnHeaderAutoResizeStyle.HeaderSize);
+        private void AutoResizeListViewColumns(ListView listView) {
+            foreach (ColumnHeader column in listView.Columns) {
+                column.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
         }
 
@@ -29,15 +29,15 @@ namespace studentManagement {
             else groupBoxEdit.Hide();
         }
 
-        private void btnReturn_Click(object sender, System.EventArgs e) {
+        private void btnReturn_Click(object sender, EventArgs e) {
             Close();
         }
 
-        private bool isValidStudentID(string studentID) {
-            if (studentID == "") return false;
+        private bool isValidStudentId(string studentId) {
+            if (studentId == "") return false;
 
-            for (int i = 0; i < studentID.Length; i++) {
-                if (studentID[i] == ' ') {
+            for (var i = 0; i < studentId.Length; i++) {
+                if (studentId[i] == ' ') {
                     return false;
                 }
             }
@@ -45,50 +45,49 @@ namespace studentManagement {
             return true;
         }
 
-        private void btnFind_Click(object sender, System.EventArgs e) {
+        private void btnFind_Click(object sender, EventArgs e) {
             loadStudentListView();
         }
 
-        private void btnEdit_Click(object sender, System.EventArgs e) {
-            if (listViewDisplay.SelectedItems.Count == 1) {
-                groupBoxFind_Show(false);
-                groupBoxEdit_Show(true);
-                var student = listViewDisplay.SelectedItems[0].SubItems[1].Text;
-                txtNameEdit.Text = student;
-                var studentList = db.getAllStudents();
-                foreach (var item in studentList) {
-                    if (item["HoTen"] != student) continue;
-                    comboBoxClassEdit.Text = item["HoTen"].ToString();
-                    if (item["LopTruong"] == "1")
-                        checkBoxClassMonitorEdit.Checked = true;
-                    try {
-                        birthEdit.Text = item["NgaySinh"].ToString();
-                    } catch {
-                        MessageBox.Show("DateTime Error!");
-                    }
+        private void btnEdit_Click(object sender, EventArgs e) {
+            if (listViewDisplay.SelectedItems.Count != 1) return;
+            groupBoxFind_Show(false);
+            groupBoxEdit_Show(true);
+            var student = listViewDisplay.SelectedItems[0].SubItems[1].Text;
+            txtNameEdit.Text = student;
+            var studentList = _db.getAllStudents();
+            foreach (var item in studentList) {
+                if (item["HoTen"] != student) continue;
+                comboBoxClassEdit.Text = item["HoTen"];
+                if (item["LopTruong"] == "1")
+                    checkBoxClassMonitorEdit.Checked = true;
+                try {
+                    birthEdit.Text = item["NgaySinh"];
+                } catch {
+                    MessageBox.Show(@"DateTime Error!");
                 }
-
-                String facultyName = listViewDisplay.SelectedItems[0].SubItems[4].Text;
-                var facultyList = db.getAllFaculties();
-                foreach (var item in facultyList) {
-                    if (item["MaKhoa"].ToString() == facultyName)
-                        comboBoxFacultyEdit.Text = item["TenKhoa"].ToString();
-                }
-
-                String className = listViewDisplay.SelectedItems[0].SubItems[5].Text;
-                var classList = db.getAllClasses();
-                foreach (var item in classList) {
-                    if (item["MaLop"].ToString() == className)
-                        comboBoxClassEdit.Text = item["TenLop"].ToString();
-                }
-
-                string gender = listViewDisplay.SelectedItems[0].SubItems[3].Text;
-                if (gender == "Nam") radioMaleEdit.Checked = true;
-                else radioFemaleEdit.Checked = true;
             }
+
+            var facultyName = listViewDisplay.SelectedItems[0].SubItems[4].Text;
+            var facultyList = _db.getAllFaculties();
+            foreach (var item in facultyList) {
+                if (item["MaKhoa"] == facultyName)
+                    comboBoxFacultyEdit.Text = item["TenKhoa"];
+            }
+
+            var className = listViewDisplay.SelectedItems[0].SubItems[5].Text;
+            var classList = _db.getAllClasses();
+            foreach (var item in classList) {
+                if (item["MaLop"] == className)
+                    comboBoxClassEdit.Text = item["TenLop"];
+            }
+
+            var gender = listViewDisplay.SelectedItems[0].SubItems[3].Text;
+            if (gender == "Nam") radioMaleEdit.Checked = true;
+            else radioFemaleEdit.Checked = true;
         }
 
-        private void btnReturnToFind_Click(object sender, System.EventArgs e) {
+        private void btnReturnToFind_Click(object sender, EventArgs e) {
             groupBoxEdit_Show(false);
             groupBoxFind_Show(true);
             btnDelete.Enabled = false;
@@ -96,11 +95,11 @@ namespace studentManagement {
         }
 
         private void loadAllFaculty() {
-            var facultyList = db.getAllFaculties();
+            var facultyList = _db.getAllFaculties();
             foreach (var faculty in facultyList) {
-                comboBoxFaculty.Items.Add(faculty["TenKhoa"].ToString());
-                comboBoxFacultyEdit.Items.Add(faculty["TenKhoa"].ToString());
-                comboLefFaculty.Items.Add(faculty["TenKhoa"].ToString());
+                comboBoxFaculty.Items.Add(faculty["TenKhoa"]);
+                comboBoxFacultyEdit.Items.Add(faculty["TenKhoa"]);
+                comboLefFaculty.Items.Add(faculty["TenKhoa"]);
             }
 
             checkBoxClassMonitor.Enabled = false;
@@ -113,23 +112,23 @@ namespace studentManagement {
             comboLefBoxClass.Text = "";
             comboBoxClassEdit.Items.Clear();
             comboBoxClassEdit.Text = "";
-            var classList = db.getAllClasses();
+            var classList = _db.getAllClasses();
             foreach (var item in classList) {
-                if (item["MaKhoa"].ToString() == getFacultyID(facultyName)) {
+                if (item["MaKhoa"] == getFacultyId(facultyName)) {
                     if (comboBoxFaculty.SelectedIndex != -1)
-                        comboBoxClass.Items.Add(item["TenLop"].ToString());
+                        comboBoxClass.Items.Add(item["TenLop"]);
                     if (comboBoxFacultyEdit.SelectedIndex != -1) {
-                        comboBoxClassEdit.Items.Add(item["TenLop"].ToString());
+                        comboBoxClassEdit.Items.Add(item["TenLop"]);
                     }
 
                     if (comboLefFaculty.SelectedIndex != -1)
-                        comboLefBoxClass.Items.Add(item["TenLop"].ToString());
+                        comboLefBoxClass.Items.Add(item["TenLop"]);
                 }
             }
         }
 
-        private void txtId_Validating(object sender, System.ComponentModel.CancelEventArgs e) {
-            if (!isValidStudentID(txtId.Text)) {
+        private void txtId_Validating(object sender, CancelEventArgs e) {
+            if (!isValidStudentId(txtId.Text)) {
                 errorProvider1.SetError(txtId, "Please enter a valid student ID");
             } else {
                 errorProvider1.SetError(txtId, null);
@@ -171,12 +170,12 @@ namespace studentManagement {
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e) {
-            if (tabControl.SelectedIndex == 0 && !addStudentActive) {
+            if (tabControl.SelectedIndex == 0 && !_addStudentActive) {
                 clearAllSelected();
-                addStudentActive = true;
-            } else if (tabControl.SelectedIndex == 1 && addStudentActive) {
+                _addStudentActive = true;
+            } else if (tabControl.SelectedIndex == 1 && _addStudentActive) {
                 clearAllSelected();
-                addStudentActive = false;
+                _addStudentActive = false;
                 btnDelete.Enabled = false;
                 groupBoxEdit_Show(false);
                 groupBoxFind_Show(true);
@@ -188,13 +187,13 @@ namespace studentManagement {
                 loadClassByFaculty(comboLefFaculty.SelectedItem.ToString());
         }
 
-        private string getFacultyID(string facultyName) {
+        private string getFacultyId(string facultyName) {
             var result = "";
 
-            var facultyList = db.getAllFaculties();
+            var facultyList = _db.getAllFaculties();
             foreach (var faculty in facultyList) {
-                if (faculty["TenKhoa"].ToString() == facultyName) {
-                    result = faculty["MaKhoa"].ToString();
+                if (faculty["TenKhoa"] == facultyName) {
+                    result = faculty["MaKhoa"];
                     break;
                 }
             }
@@ -202,13 +201,13 @@ namespace studentManagement {
             return result;
         }
 
-        private string getClassID(string className) {
+        private string getClassId(string className) {
             var result = "";
 
-            var classList = db.getAllClasses();
+            var classList = _db.getAllClasses();
             foreach (var classItem in classList) {
-                if (classItem["TenLop"].ToString() == className) {
-                    result = classItem["MaLop"].ToString();
+                if (classItem["TenLop"] == className) {
+                    result = classItem["MaLop"];
                     break;
                 }
             }
@@ -218,23 +217,23 @@ namespace studentManagement {
 
         private void loadStudentListView() {
             listViewDisplay.Items.Clear();
-            var studentList = db.getAllStudents();
+            var studentList = _db.getAllStudents();
 
             if (txtIdFind.Text != "")
                 if (radioButtonName.Checked) {
-                    for (int i = 0; i < studentList.Count;) {
-                        if (studentList[i]["HoTen"].ToString() != txtIdFind.Text) studentList.Remove(studentList[i]);
+                    for (var i = 0; i < studentList.Count;) {
+                        if (studentList[i]["HoTen"] != txtIdFind.Text) studentList.Remove(studentList[i]);
                         else i++;
                     }
                 } else if (radioButtonId.Checked) {
-                    var student = db.getStudent(txtIdFind.Text);
+                    var student = _db.getStudent(txtIdFind.Text);
                     if (student != null) {
-                        var item = new ListViewItem(student["MaSinhVien"].ToString());
-                        item.SubItems.Add(student["HoTen"].ToString());
-                        item.SubItems.Add(student["NgaySinh"].ToString());
-                        item.SubItems.Add(student["GioiTinh"].ToString());
-                        item.SubItems.Add(student["MaKhoa"].ToString());
-                        item.SubItems.Add(student["MaLop"].ToString());
+                        var item = new ListViewItem(student["MaSinhVien"]);
+                        item.SubItems.Add(student["HoTen"]);
+                        item.SubItems.Add(student["NgaySinh"]);
+                        item.SubItems.Add(student["GioiTinh"]);
+                        item.SubItems.Add(student["MaKhoa"]);
+                        item.SubItems.Add(student["MaLop"]);
                         listViewDisplay.Items.Add(item);
                     }
 
@@ -243,28 +242,28 @@ namespace studentManagement {
                 }
 
             if (comboLefFaculty.SelectedIndex != -1) {
-                for (int i = 0; i < studentList.Count;) {
-                    if (studentList[i]["MaKhoa"].ToString() != getFacultyID(comboLefFaculty.SelectedItem.ToString()))
+                for (var i = 0; i < studentList.Count;) {
+                    if (studentList[i]["MaKhoa"] != getFacultyId(comboLefFaculty.SelectedItem.ToString()))
                         studentList.Remove(studentList[i]);
                     else i++;
                 }
             }
 
             if (comboLefBoxClass.SelectedIndex != -1) {
-                for (int i = 0; i < studentList.Count;) {
-                    if (studentList[i]["MaLop"].ToString() != getClassID(comboLefBoxClass.SelectedItem.ToString()))
+                for (var i = 0; i < studentList.Count;) {
+                    if (studentList[i]["MaLop"] != getClassId(comboLefBoxClass.SelectedItem.ToString()))
                         studentList.Remove(studentList[i]);
                     else i++;
                 }
             }
 
             foreach (var student in studentList) {
-                var item = new ListViewItem(student["MaSinhVien"].ToString());
-                item.SubItems.Add(student["HoTen"].ToString());
-                item.SubItems.Add(student["NgaySinh"].ToString());
-                item.SubItems.Add(student["GioiTinh"].ToString());
-                item.SubItems.Add(student["MaKhoa"].ToString());
-                item.SubItems.Add(student["MaLop"].ToString());
+                var item = new ListViewItem(student["MaSinhVien"]);
+                item.SubItems.Add(student["HoTen"]);
+                item.SubItems.Add(student["NgaySinh"]);
+                item.SubItems.Add(student["GioiTinh"]);
+                item.SubItems.Add(student["MaKhoa"]);
+                item.SubItems.Add(student["MaLop"]);
                 listViewDisplay.Items.Add(item);
             }
 
@@ -315,22 +314,22 @@ namespace studentManagement {
             else
                 classMonitor = false;
 
-            string studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
-            string classId = getClassID(comboBoxClassEdit.Text);
-            string facultyId = getFacultyID(comboBoxFacultyEdit.Text);
+            var studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
+            var classId = getClassId(comboBoxClassEdit.Text);
+            var facultyId = getFacultyId(comboBoxFacultyEdit.Text);
             if (txtNameEdit.Text != string.Empty && facultyId != string.Empty && classId != string.Empty) {
-                if (db.insertStudent(studentId, txtNameEdit.Text, birthEdit.Text, gender, facultyId, classId,
+                if (_db.insertStudent(studentId, txtNameEdit.Text, birthEdit.Text, gender, facultyId, classId,
                         classMonitor)) {
-                    MessageBox.Show("Thanh cong!");
+                    MessageBox.Show(@"Thanh cong!");
                 }
             } else
-                MessageBox.Show("Vui long nhap day du thong tin!");
+                MessageBox.Show(@"Vui long nhap day du thong tin!");
         }
 
-        private bool checkAvaluableStudentID(string studentID) {
-            var studentList = db.getAllStudents();
+        private bool checkAvaluableStudentId(string studentId) {
+            var studentList = _db.getAllStudents();
             foreach (var item in studentList) {
-                if (item["MaSinhVien"].ToString() == studentID) {
+                if (item["MaSinhVien"] == studentId) {
                     return false;
                 }
             }
@@ -340,47 +339,43 @@ namespace studentManagement {
 
         private void btnInput_Click(object sender, EventArgs e) {
             string gender;
-            bool classMonitor = false;
+            var classMonitor = false;
 
-            if (radioBtnFemale.Checked)
-                gender = "Nữ";
-            else
-                gender = "Nam";
+            gender = radioBtnFemale.Checked ? "Nữ" : "Nam";
 
             if (checkBoxClassMonitor.Checked)
                 classMonitor = true;
 
-            string classId = getClassID(comboBoxClass.Text);
-            string facultyId = getFacultyID(comboBoxFaculty.Text);
+            var classId = getClassId(comboBoxClass.Text);
+            var facultyId = getFacultyId(comboBoxFaculty.Text);
             if (txtId.Text != string.Empty && txtName.Text != string.Empty && birth.Text != string.Empty &&
                 comboBoxClass.SelectedIndex != -1 && comboBoxFaculty.SelectedIndex != -1) {
-                if (checkAvaluableStudentID(txtId.Text)) {
-                    if (db.insertStudent(txtId.Text, txtName.Text, birth.Text, gender, facultyId, classId,
+                if (checkAvaluableStudentId(txtId.Text)) {
+                    if (_db.insertStudent(txtId.Text, txtName.Text, birth.Text, gender, facultyId, classId,
                             classMonitor)) {
-                        MessageBox.Show("Thanh cong!");
+                        MessageBox.Show(@"Thanh cong!");
                     }
                 } else
-                    MessageBox.Show("Ma sinh vien da ton tai!");
+                    MessageBox.Show(@"Ma sinh vien da ton tai!");
             } else
-                MessageBox.Show("Vui long nhap day du thong tin");
+                MessageBox.Show(@"Vui long nhap day du thong tin");
         }
 
         private void btnDelete_Click(object sender, EventArgs e) {
             try {
-                string studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
-                if (db.removeStudent(studentId)) {
-                    MessageBox.Show("Thanh cong!");
-                    loadStudentListView();
-                }
+                var studentId = listViewDisplay.SelectedItems[0].SubItems[0].Text;
+                if (!_db.removeStudent(studentId)) return;
+                MessageBox.Show(@"Thanh cong!");
+                loadStudentListView();
             } catch {
-                MessageBox.Show("vui long chon sinh vien de xoa!");
+                MessageBox.Show(@"vui long chon sinh vien de xoa!");
             }
         }
 
-        private bool checkClassMonitor(string classID) {
-            var classList = db.getAllStudents();
+        private bool checkClassMonitor(string classId) {
+            var classList = _db.getAllStudents();
             foreach (var item in classList) {
-                if (item["MaLop"].ToString() == classID && item["LopTruong"].ToString() == "1")
+                if (item["MaLop"] == classId && item["LopTruong"] == "1")
                     return true;
             }
 
@@ -389,7 +384,7 @@ namespace studentManagement {
 
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e) {
             if (comboBoxFaculty.SelectedIndex != -1) {
-                if (!checkClassMonitor(getClassID(comboBoxClass.SelectedItem.ToString())))
+                if (!checkClassMonitor(getClassId(comboBoxClass.SelectedItem.ToString())))
                     checkBoxClassMonitor.Enabled = true;
                 else
                     checkBoxClassMonitor.Enabled = false;
@@ -398,7 +393,7 @@ namespace studentManagement {
 
         private void comboBoxClassEdit_SelectedIndexChanged(object sender, EventArgs e) {
             if (comboBoxFacultyEdit.SelectedIndex != -1) {
-                if (!checkClassMonitor(getClassID(comboBoxClassEdit.SelectedItem.ToString())))
+                if (!checkClassMonitor(getClassId(comboBoxClassEdit.SelectedItem.ToString())))
                     checkBoxClassMonitorEdit.Enabled = true;
                 else
                     checkBoxClassMonitorEdit.Enabled = false;
