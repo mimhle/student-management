@@ -10,7 +10,7 @@ namespace studentManagement {
             createColumsListViewDisplay();
         }
 
-        private readonly Database _db = new Database(Program.dbLocation);
+        private readonly Database _db = Program.db;
         private bool _addStudentActive = true;
 
         private void AutoResizeListViewColumns(ListView listView) {

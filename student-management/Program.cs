@@ -3,9 +3,7 @@ using System.Windows.Forms;
 
 namespace studentManagement {
     static class Program {
-        public static string dbLocation = "Data Source=ltwin.db";
-
-        public static Database db = new Database(dbLocation);
+        public static readonly Database db = new Database("Data Source=ltwin.db");
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
