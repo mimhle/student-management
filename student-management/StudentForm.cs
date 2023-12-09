@@ -368,6 +368,7 @@ namespace studentManagement {
         private void comboBoxClass_SelectedIndexChanged(object sender, EventArgs e) {
             if (comboBoxFaculty.SelectedIndex == -1) return;
             checkBoxClassMonitor.Enabled = !checkClassMonitor(getClassId(comboBoxClass.SelectedItem.ToString()));
+            if (checkClassMonitor(getClassId(comboBoxClass.SelectedItem.ToString()))) checkBoxClassMonitor.Checked = false;
         }
 
         private void comboBoxClassEdit_SelectedIndexChanged(object sender, EventArgs e) {
