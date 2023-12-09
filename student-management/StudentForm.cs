@@ -87,6 +87,8 @@ namespace studentManagement {
             groupBoxEdit_Show(false);
             groupBoxFind_Show(true);
             btnDelete.Enabled = false;
+            btnFind.Enabled = false;
+            btnEdit.Enabled = false;
             clearAllSelected();
         }
 
@@ -166,6 +168,8 @@ namespace studentManagement {
             } else if (tabControl.SelectedIndex == 1 && _addStudentActive) {
                 clearAllSelected();
                 _addStudentActive = false;
+                btnFind.Enabled = false;
+                btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
                 groupBoxEdit_Show(false);
                 groupBoxFind_Show(true);
@@ -288,6 +292,8 @@ namespace studentManagement {
             comboLefFaculty.Enabled = true;
             txtIdFind.Enabled = true;
             btnFind.Enabled = txtIdFind.Text != string.Empty;
+            comboLefFaculty.Enabled = true;
+            comboLefBoxClass.Enabled = true;
         }
 
         private void btnUpdates_Click(object sender, EventArgs e) {
@@ -372,8 +378,7 @@ namespace studentManagement {
         }
 
         private void txtIdFind_TextChanged(object sender, EventArgs e) {
-            if (radioButtonId.Checked && txtIdFind.Text != string.Empty) btnFind.Enabled = true;
-            else if (radioButtonName.Checked && txtName.Text == string.Empty) btnFind.Enabled = true;
+            if (txtIdFind.Text != string.Empty || comboLefFaculty.Text != string.Empty) btnFind.Enabled = true;
             else btnFind.Enabled = false;
         }
     }
