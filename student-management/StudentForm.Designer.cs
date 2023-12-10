@@ -429,6 +429,7 @@ namespace studentManagement {
             // 
             // comboLefBoxClass
             // 
+            this.comboLefBoxClass.Enabled = false;
             this.comboLefBoxClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboLefBoxClass.FormattingEnabled = true;
             this.comboLefBoxClass.Location = new System.Drawing.Point(728, 239);
@@ -439,6 +440,7 @@ namespace studentManagement {
             // comboLefFaculty
             // 
             this.comboLefFaculty.BackColor = System.Drawing.SystemColors.Window;
+            this.comboLefFaculty.Enabled = false;
             this.comboLefFaculty.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboLefFaculty.FormattingEnabled = true;
             this.comboLefFaculty.Location = new System.Drawing.Point(463, 239);
