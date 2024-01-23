@@ -10,9 +10,9 @@ namespace studentManagement {
 
             // test code for Database.cs
             _db.insertStudent("SV01", "Nguyen Van A", "1999-01-01", "Nam", "CNTT", "48.CNTT.A");
-            _db.insertStudent("SV02", "Nguyen Van A", "1999-01-01", "Nam", "CNTT", "48.CNTT.A");
-            _db.insertStudent("SV03", "Nguyen Van B", "1999", "Nam", "CNTT", "48.CNTT.A", true);
-            _db.insertStudent("SV04", "Nguyen Van C", "1999", "Nam", "CNTT", "48.CNTT.B", true);
+            _db.insertStudent("SV02", "Le Thi D", "1999-01-01", "Nữ", "CNTT", "48.CNTT.A");
+            _db.insertStudent("SV03", "Nguyen Van B", "1999-01-01", "Nam", "CNTT", "48.CNTT.A", true);
+            _db.insertStudent("SV04", "Nguyen Van C", "1999-01-01", "Nam", "CNTT", "48.CNTT.B", true);
             _db.updatePassword("SV03", "12345");
 
             _db.insertFaculty("CNTT", "Cong nghe thong tin");
